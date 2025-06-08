@@ -1,0 +1,52 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  @apply font-serif;
+}
+
+.swiper-slide {
+  transform: scale(0.85);
+  transition: transform 0.3s ease;
+}
+
+.swiper-slide-active {
+  transform: scale(1);
+}
+
+.hero-sec {
+  display: flex;
+  justify-content: space-around;
+  gap: 0;
+}
+
+
+.swiper-pagination {
+                bottom: -20px !important;
+              }
+.swiper-pagination-bullet {
+                background-color: #d1d5db; /* Tailwind's gray-300 */
+                opacity: 1;
+              }
+              .swiper-pagination-bullet-active {
+                background-color: white;
+              }
