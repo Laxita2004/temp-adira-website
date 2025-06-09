@@ -1,6 +1,8 @@
 import "./globals.css";
 import { ReactNode } from "react";
 import { Cormorant_Garamond } from 'next/font/google';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -17,8 +19,15 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return ( 
     <html lang="en" className={cormorant.variable}>
-      <body className="bg-light text-gray-900 font-serif">
-        {children}
+      <body className="min-h-screen flex flex-col">
+        {/* Your Header */}
+        <Header />
+
+        {/* Main content grows to fill remaining space */}
+        <main className="flex-1">{children}</main>
+
+        {/* Sticky Footer */}
+        <Footer />
       </body>
     </html>
   );

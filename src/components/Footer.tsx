@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Left: Logo + Description */}
         <div>
-          <img src="/AdiraLogo.png" alt="Adira Logo" className="h-[150px] mb-4" />
+          <img src="/logo/AdiraLogo.png" alt="Adira Logo" className="h-[150px] mb-4" />
           <p className="text-sm">
             A little description about the brand including theme, caption, aim
             etc.

@@ -73,7 +73,7 @@ const Header = () => {
           {/* CENTER */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
-              <img src="/AdiraLogo.png" alt="Logo" className="h-20 w-auto" />
+              <img src="/logo/AdiraLogo.png" alt="Logo" className="h-20 w-auto" />
             </Link>
           </div>
 
