@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
-const categories = ["Best Seller", "Sale", "New In", "Pastel Collection", "View All"];
+const categories = ["Best Seller", "Sale", "New In", "View All"];
 
 const TopBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("Best Seller");
+  const router = useRouter();
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -22,10 +24,8 @@ const TopBar = () => {
     document
       .getElementById("new-in-section")
       ?.scrollIntoView({ behavior: "smooth" });
-  } else if(category === "Pastel Collection") {
-    document
-      .getElementById("pastel-section")
-      ?.scrollIntoView({ behavior: "smooth" });
+  } else if(category === "View All") {
+    router.push("/shop/all");
   }
   };
 
