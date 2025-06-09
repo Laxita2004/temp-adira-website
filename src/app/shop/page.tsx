@@ -4,6 +4,7 @@ import TopBar from "@/components/shop/TopBar";
 import FadeInSection from "@/components/FadeIn";
 import BestSeller from "@/components/shop/BestSeller";
 import SalesSection from "@/components/shop/SaleSection";
+import NewInSection from "@/components/shop/NewInSection";
 
 const shop = () => {
   return (
@@ -20,6 +21,10 @@ const shop = () => {
 
       <FadeInSection>
         <SalesSection />
+      </FadeInSection>
+
+      <FadeInSection>
+        <NewInSection />
       </FadeInSection>
     </div>
   );

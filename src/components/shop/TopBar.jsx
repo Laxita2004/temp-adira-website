@@ -18,6 +18,14 @@ const TopBar = () => {
     document
       .getElementById("sale-section")
       ?.scrollIntoView({ behavior: "smooth" });
+  } else if(category === "New In") {
+    document
+      .getElementById("new-in-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  } else if(category === "Pastel Collection") {
+    document
+      .getElementById("pastel-section")
+      ?.scrollIntoView({ behavior: "smooth" });
   }
   };
 
