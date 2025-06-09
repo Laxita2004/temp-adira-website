@@ -3,6 +3,7 @@
 import TopBar from "@/components/shop/TopBar";
 import FadeInSection from "@/components/FadeIn";
 import BestSeller from "@/components/shop/BestSeller";
+import SalesSection from "@/components/shop/SaleSection";
 
 const shop = () => {
   return (
@@ -15,6 +16,10 @@ const shop = () => {
 
       <FadeInSection>
         <BestSeller />
+      </FadeInSection>
+
+      <FadeInSection>
+        <SalesSection />
       </FadeInSection>
     </div>
   );

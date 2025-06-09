@@ -63,7 +63,18 @@ const BestSeller: React.FC = () => {
 
   return (
     <div id="best-seller-section" className="relative py-12 px-4">
-      <h2 className="text-2xl font-semibold mb-6 px-4">Best Sellers</h2>
+      <div className="flex items-center justify-between mb-8 px-4">
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900 tracking-wide">
+            Best Sellers
+          </h2>
+          <div className="w-16 h-1 mt-2 bg-primary rounded-full"></div>
+        </div>
+        {/* Optional link/button */}
+        <button className="text-sm text-primary hover:underline">
+          View All
+        </button>
+      </div>
 
       {/* Navigation Arrows */}
       <button
@@ -103,8 +114,12 @@ const BestSeller: React.FC = () => {
 
             {/* Hover overlay (DESKTOP ONLY) */}
             <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-end p-4 hidden md:flex">
-              <p className="text-white font-semibold text-sm mb-2">{item.name}</p>
-              <p className="text-white font-semibold text-sm mb-2">{item.price}</p>
+              <p className="text-white font-semibold text-sm mb-2">
+                {item.name}
+              </p>
+              <p className="text-white font-semibold text-sm mb-2">
+                {item.price}
+              </p>
               <button className="bg-white text-primary px-3 py-1 text-xs font-medium rounded-full flex items-center gap-2 self-start hover:bg-primary hover:text-white transition">
                 <FaShoppingCart className="text-sm" /> Add to Cart
               </button>

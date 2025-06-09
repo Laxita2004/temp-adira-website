@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-const categories = ["Best Seller", "Sale", "New In", "Pastel Collection"];
+const categories = ["Best Seller", "Sale", "New In", "Pastel Collection", "View All"];
 
 const TopBar = () => {
   const [selectedCategory, setSelectedCategory] = useState("Best Seller");
@@ -13,6 +13,10 @@ const TopBar = () => {
     if (category === "Best Seller") {
     document
       .getElementById("best-seller-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  } else if(category === "Sale") {
+    document
+      .getElementById("sale-section")
       ?.scrollIntoView({ behavior: "smooth" });
   }
   };
