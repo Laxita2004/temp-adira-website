@@ -20,14 +20,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return ( 
     <html lang="en" className={cormorant.variable}>
       <body className="min-h-screen flex flex-col">
-        {/* Your Header */}
-        <Header />
+        
 
         {/* Main content grows to fill remaining space */}
         <main className="flex-1">{children}</main>
 
-        {/* Sticky Footer */}
-        <Footer />
+        
       </body>
     </html>
   );

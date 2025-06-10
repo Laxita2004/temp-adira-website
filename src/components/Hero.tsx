@@ -25,9 +25,7 @@ const Hero = () => {
       {/* Youtube Embed Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[-1]">
   <iframe
-    className="absolute top-1/2 left-1/2
-             w-[177.78vh] h-screen
-             -translate-x-1/2 -translate-y-1/2"
+    className="w-[250%] h-[132.5%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
     src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&loop=1&playlist=${currentVideoId}`}
     title="Background Video"
     frameBorder="0"

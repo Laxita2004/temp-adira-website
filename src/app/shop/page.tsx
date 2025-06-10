@@ -5,9 +5,13 @@ import FadeInSection from "@/components/FadeIn";
 import BestSeller from "@/components/shop/BestSeller";
 import SalesSection from "@/components/shop/SaleSection";
 import NewInSection from "@/components/shop/NewInSection";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const shop = () => {
   return (
+    <>
+    <Header />
     <div className="bg-light min-h-screen flex flex-col">
       <FadeInSection>
         <div className="flex justify-center mt-[150px]">
@@ -27,6 +31,9 @@ const shop = () => {
         <NewInSection />
       </FadeInSection>
     </div>
+    <Footer />
+    </>
+    
   );
 };
 
