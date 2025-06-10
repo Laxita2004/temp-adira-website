@@ -9,31 +9,31 @@ const collections = [
   {
     name: "Rangresa",
     tagline: "Sarees for Cocktail & Nighttime Glamour",
-    image: "/rangresa.png",
+    image: "/collections/rangresa.png",
     href: "/collections/rangresa",
   },
   {
     name: "Noir Enchanté",
     tagline: "Sarees for Cocktail & Nighttime Glamour",
-    image: "/noir.png",
+    image: "/collections/noir.png",
     href: "/collections/noir-enchante",
   },
   {
     name: "Éclore",
     tagline: "Printed Sarees in Vibrant Motifs",
-    image: "/eclore.png",
+    image: "/collections/eclore.png",
     href: "/collections/ecloire",
   },
   {
     name: "Gauze & Gulaal",
     tagline: "Delicate Handpainted Sarees",
-    image: "/gauze.png",
+    image: "/collections/gauze.png",
     href: "/collections/gauze&gulaal",
   },
   {
     name: "Viraasat",
     tagline: "Bold Colors & Artistic Expressions",
-    image: "/viraasat.png",
+    image: "/collections/viraasat.png",
     href: "/collections/viraasat",
   },
 ];

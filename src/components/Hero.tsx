@@ -3,38 +3,42 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const videoSources = [
-  "/videos/video1.mp4",
-  "/videos/video2.mp4",
-  "/videos/video3.mp4",
+const youtubeSources = [
+  "L3ydZM-IeKQ"
 ];
 
 const Hero = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoSources.length);
-    }, 5000); // switch every 10 seconds
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % youtubeSources.length);
+  //   }, 5000); 
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  const currentVideoId = youtubeSources[currentVideoIndex];
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
-      <video
-        key={currentVideoIndex}
-        className="absolute top-0 left-0 w-full h-full object-cover"
-        src={videoSources[currentVideoIndex]}
-        autoPlay
-        muted
-        playsInline
-        loop={false} // we want to change manually
-      />
+      {/* Youtube Embed Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[-1]">
+  <iframe
+    className="absolute top-1/2 left-1/2
+             w-[177.78vh] h-screen
+             -translate-x-1/2 -translate-y-1/2"
+    src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&loop=1&playlist=${currentVideoId}`}
+    title="Background Video"
+    frameBorder="0"
+    allow="autoplay; encrypted-media"
+    allowFullScreen
+  />
+</div>
+
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
+      <div className="absolute inset-0 bg-black bg-opacity-30 z-10" />
 
       {/* Slogan + Buttons */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
