@@ -14,6 +14,8 @@ import {
   FaPaintBrush,
   FaShoppingBag,
 } from "react-icons/fa";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const About = () => {
   const controls = useAnimation();
@@ -27,6 +29,7 @@ const About = () => {
 
   return (
     <>
+    <Header />
       <section className="relative h-screen w-full bg-gradient-to-r from-[#f5f5f5] to-[#5e0f0f] text-white">
         {/* Background Image */}
         {/* <Image
@@ -200,6 +203,7 @@ const About = () => {
           </FadeInSection>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

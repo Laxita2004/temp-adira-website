@@ -12,6 +12,7 @@ import FadeInSection from "../components/FadeIn";
 export default function Home() {
   return (
     <>
+      <Header />
       <Hero />
 
       <FadeInSection>
@@ -29,6 +30,8 @@ export default function Home() {
       <FadeInSection>
         <Testimonials />
       </FadeInSection>
+
+      <Footer />
     </>
   );
 }
