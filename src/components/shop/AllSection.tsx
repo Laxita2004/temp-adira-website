@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { FaShoppingCart, FaEye } from "react-icons/fa";
 
 const products = [
@@ -111,9 +112,12 @@ const AllSection = () => {
 
             <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex justify-center items-center">
               <div className="flex flex-col gap-2">
-                <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
-                  <FaEye className="text-lg" /> View Product
-                </button>
+                <Link href={`/shop/product/${product.id}`}>
+                  <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
+                    <FaEye className="text-lg" /> View Product
+                  </button>
+                </Link>
+
                 <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
                   <FaShoppingCart className="text-lg" /> Add to Cart
                 </button>
