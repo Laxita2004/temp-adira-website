@@ -7,7 +7,7 @@ const AdminPanel = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-light">
       {/* OVERLAY */}
       {sidebarOpen && (
         <div
@@ -18,7 +18,7 @@ const AdminPanel = () => {
 
       {/* SIDEBAR */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40 transform transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-light shadow-lg z-40 transform transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -27,21 +27,21 @@ const AdminPanel = () => {
           <Link
             href="/admin/inventory"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-gray-200 px-4 py-2 rounded hover:text-primary transition duration-300"
+            className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300"
           >
             Manage Inventory
           </Link>
           <Link
             href="/admin/orders"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-gray-200 px-4 py-2 rounded hover:text-primary transition duration-300"
+            className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300"
           >
             Orders Placed
           </Link>
           <Link
             href="/admin/history"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-gray-200 px-4 py-2 rounded hover:text-primary transition duration-300"
+            className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300"
           >
             Order History
           </Link>
@@ -55,14 +55,14 @@ const AdminPanel = () => {
           <Link
             href="/admin/users"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-gray-200 px-4 py-2 rounded hover:text-primary transition duration-300"
+            className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300"
           >
             Edit User Info
           </Link>
           <Link
             href="/admin/sales"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-gray-200 px-4 py-2 rounded hover:text-primary transition duration-300"
+            className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300"
           >
             Sales Dashboard
           </Link>
