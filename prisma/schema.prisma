@@ -75,6 +75,7 @@ model ShippingAddress {
 model Product {
   id          Int          @id @default(autoincrement())
   title       String
+  tags        String[]
   description String
   price       Decimal       // precise money arithmetic
   inStock     Int
