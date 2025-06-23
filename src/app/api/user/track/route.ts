@@ -24,8 +24,15 @@ export const GET = async (req: Request) => {
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
-    // Return only the order status (e.g., "PENDING", "SHIPPED", etc.)
-    return NextResponse.json({ status: order.status });
+    // Return the order status (e.g., "PENDING", "SHIPPED", etc.) and related info
+    return NextResponse.json({
+      status: order.status,
+      updatedAt: order.updatedAt,
+      orderSummary: {
+        total: order.total,
+        itemCount: order.items.length,
+      },
+    });
   } catch (err) {
     console.error("Error tracking order:", err);
     return NextResponse.json(
