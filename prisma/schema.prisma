@@ -79,6 +79,7 @@ model Product {
   description String
   price       Decimal       // precise money arithmetic
   inStock     Int
+  category    String
   materialId  Int
   patternId   Int
   themeId     Int
