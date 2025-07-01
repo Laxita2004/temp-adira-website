@@ -1,7 +1,3 @@
-// ---------------------------------------------------------------------------
-// Prisma schema — fixed & improved
-// ---------------------------------------------------------------------------
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,9 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ---------------------------------------------------------------------------
-// ENUMS – keep business logic out of free-form strings
-// ---------------------------------------------------------------------------
 enum OrderStatus {
   PENDING
   CONFIRMED
@@ -35,50 +28,82 @@ enum PaymentProvider {
   CASH_ON_DELIVERY
 }
 
-// ---------------------------------------------------------------------------
-// MODELS
-// ---------------------------------------------------------------------------
 model Admin {
-  email    String  @id           // using the e-mail itself as PK is OK here
-  name     String
-  password String
+  email     String   @id
+  name      String
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("admin")
 }
 
 model User {
-  id            Int               @id @default(autoincrement())
-  email         String            @unique
-  name          String
-  password      String
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
-  orders        Order[]
-  cartItems     CartItem[]
-  shippingAddrs ShippingAddress[] // renamed for clarity
+  email          String           @id
+  name           String
+  password       String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
 
-  @@map("users")                  // (optional) explicit table name
+  sessions       Session[]
+
+  orders         Order[]
+  cart           Cart?
+  shippingAddrs  ShippingAddress[]
+  searchHistory  SearchHistory[]
+  productViews   ProductView[]
+
+  @@map("user")
+}
+
+model Session {
+  id           String    @id @default(cuid())
+  sessionToken String    @unique
+  userEmail    String
+  expires      DateTime
+  user         User      @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_token")
 }
 
 model ShippingAddress {
   id        Int     @id @default(autoincrement())
-  userId    Int
+  userEmail String
   address   String
   city      String
   state     String
   country   String
-  pinCode   String               // postal codes are NOT always numeric
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pinCode   String
+  user      User    @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 
-  @@map("shipping_addresses")
+  @@map("shipping_address")
+}
+
+model SearchHistory {
+  id         Int      @id @default(autoincrement())
+  userEmail  String
+  query      String
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+
+  @@map("search_history")
 }
 
 model Product {
-  id          Int          @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String
   tags        String[]
   description String
-  price       Decimal       // precise money arithmetic
+  price       Decimal
   inStock     Int
   category    String
   materialId  Int
@@ -89,27 +114,36 @@ model Product {
   theme       Theme         @relation(fields: [themeId], references: [id])
   images      ProductImage[]
   cartItems   CartItem[]
-  orderItems  OrderItem[]   // add reverse side of OrderItem relation
+  orderItems  OrderItem[]
+  productViews ProductView[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+
+  @@map("product")
 }
 
 model Material {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+
+  @@map("material")
 }
 
 model Pattern {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+
+  @@map("pattern")
 }
 
 model Theme {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+
+  @@map("theme")
 }
 
 model ProductImage {
@@ -117,30 +151,55 @@ model ProductImage {
   url       String
   productId Int
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_image")
+}
+
+model ProductView {
+  id         Int      @id @default(autoincrement())
+  userEmail  String
+  productId  Int
+  frequency  Int      @default(1)
+  lastViewed DateTime @default(now())
+  user       User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userEmail, productId])
+  @@map("product_view")
+}
+
+model Cart {
+  id        Int        @id @default(autoincrement())
+  userEmail String     @unique
+  user      User       @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  cartItems CartItem[]
+
+  @@map("cart")
 }
 
 model CartItem {
-  id        Int     @id @default(autoincrement())
-  userId    Int
+  id        Int      @id @default(autoincrement())
+  cartId    Int
   productId Int
-  quantity  Int
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int      @default(1)
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
 
-  @@unique([userId, productId])   // a user can have max one cart line per product
+  @@unique([cartId, productId])
+  @@map("cart_items")
 }
 
 model Order {
   id         Int         @id @default(autoincrement())
-  userId     Int
+  userEmail  String
   total      Decimal
   status     OrderStatus @default(PENDING)
   createdAt  DateTime    @default(now())
-  user       User        @relation(fields: [userId], references: [id])
+  user       User        @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   items      OrderItem[]
-  payment    Payment?    // 1-to-1 optional
+  payment    Payment?
 
-  @@map("orders")
+  @@map("order")
 }
 
 model OrderItem {
@@ -151,6 +210,8 @@ model OrderItem {
   price     Decimal
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product   Product @relation(fields: [productId], references: [id])
+
+  @@map("order_item")
 }
 
 model Payment {
@@ -161,6 +222,8 @@ model Payment {
   status    PaymentStatus   @default(PENDING)
   createdAt DateTime        @default(now())
   order     Order           @relation(fields: [orderId], references: [id])
+
+  @@map("payment_details")
 }
 
 model Testimonial {
