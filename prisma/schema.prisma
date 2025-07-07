@@ -52,6 +52,7 @@ model User {
   shippingAddrs  ShippingAddress[]
   searchHistory  SearchHistory[]
   productViews   ProductView[]
+  testimonials Testimonial[]
 
   @@map("user")
 }
@@ -118,6 +119,7 @@ model Product {
   productViews ProductView[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  testimonials Testimonial[]
 
   @@map("product")
 }
@@ -228,11 +230,13 @@ model Payment {
 
 model Testimonial {
   id        Int      @id @default(autoincrement())
-  userId    Int
+  userEmail  String
   productId Int
   review    String
   createdAt DateTime @default(now())
 
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("testimonial")
 }
