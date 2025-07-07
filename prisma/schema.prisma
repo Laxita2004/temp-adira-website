@@ -9,6 +9,7 @@ datasource db {
 
 enum OrderStatus {
   PENDING
+  CONFIRMED
   PROCESSING
   SHIPPED
   DELIVERED
@@ -51,6 +52,7 @@ model User {
   shippingAddrs  ShippingAddress[]
   searchHistory  SearchHistory[]
   productViews   ProductView[]
+  testimonials Testimonial[]
 
   @@map("user")
 }
@@ -100,9 +102,11 @@ model SearchHistory {
 model Product {
   id          Int           @id @default(autoincrement())
   title       String
+  tags        String[]
   description String
   price       Decimal
   inStock     Int
+  category    String
   materialId  Int
   patternId   Int
   themeId     Int
@@ -115,6 +119,7 @@ model Product {
   productViews ProductView[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  testimonials Testimonial[]
 
   @@map("product")
 }
@@ -221,4 +226,17 @@ model Payment {
   order     Order           @relation(fields: [orderId], references: [id])
 
   @@map("payment_details")
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  userEmail  String
+  productId Int
+  review    String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("testimonial")
 }
