@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 // This API fetches a specific product by its ID, including its images.
 // PATH: GET /products/${productId}
@@ -37,3 +37,4 @@ export const GET = async (
     );
   }
 };
+

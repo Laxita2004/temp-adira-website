@@ -28,16 +28,13 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => (
         <Link href="/admin/inventory" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
           Manage Inventory
         </Link>
-        <Link href="/admin/orders" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
+        <Link href="/admin/orders/placed" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
           Orders Placed
         </Link>
-        <Link href="/admin/history" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
+        <Link href="/admin/orders/history" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
           Order History
         </Link>
-        <Link href="/admin/confirm" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
-          Confirm Orders
-        </Link>
-        <Link href="/admin/users" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
+        <Link href="/admin/profile" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
           Edit User Info
         </Link>
         <Link href="/admin/sales" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">

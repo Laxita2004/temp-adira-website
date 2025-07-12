@@ -6,23 +6,29 @@ import { NextResponse } from "next/server";
 // PATH: /api/cart/add
 export const POST = async (req: Request) => {
   try {
-    // Parse data from request body
-    const { userId, productId, quantity } = await req.json();
+    const { userEmail, productId, quantity } = await req.json();
 
-    // Validate input (optional but recommended)
-    if (!userId || !productId || !quantity) {
+    if (!userEmail || !productId || !quantity) {
       return NextResponse.json(
-        { error: "Missing userId, productId, or quantity" },
+        { error: "Missing userEmail, productId, or quantity" },
         { status: 400 }
       );
     }
 
-    // If the cart item already exists, increment quantity
-    // Otherwise, create a new cart item entry
+    // Get the user's cart (assumes one cart per user)
+    const cart = await prisma.cart.findUnique({
+      where: { userEmail },
+    });
+
+    if (!cart) {
+      return NextResponse.json({ error: "Cart not found" }, { status: 404 });
+    }
+
+    // Upsert cart item based on cartId + productId
     const cartItem = await prisma.cartItem.upsert({
       where: {
-        userId_productId: {
-          userId,
+        cartId_productId: {
+          cartId: cart.id,
           productId,
         },
       },
@@ -32,7 +38,7 @@ export const POST = async (req: Request) => {
         },
       },
       create: {
-        userId,
+        cartId: cart.id,
         productId,
         quantity,
       },
