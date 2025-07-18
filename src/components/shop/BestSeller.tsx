@@ -1,55 +1,19 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaShoppingCart } from "react-icons/fa";
 
 interface Product {
+  id: number;
   name: string;
   price: string;
   imageUrl: string;
 }
 
-const bestSellers: Product[] = [
-  {
-    name: "Co-ord Set",
-    price: "Rp. 150.124",
-    imageUrl:
-      "http://images.unsplash.com/photo-1584998316204-3b1e3b1895ae?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Class Dress",
-    price: "Rp. 80.124",
-    imageUrl:
-      "https://images.unsplash.com/photo-1619794724492-651397287d94?q=80&w=990&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Monroe Dress",
-    price: "Rp. 130.104",
-    imageUrl:
-      "https://images.unsplash.com/photo-1608912215571-61b7d5914b35?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Chanel Jacket",
-    price: "Rp. 95.994",
-    imageUrl:
-      "https://images.unsplash.com/photo-1524255684952-d7185b509571?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Bodycon Dresses",
-    price: "Rp. 80.124",
-    imageUrl:
-      "https://images.unsplash.com/photo-1582533575066-75bd83ac91de?q=80&w=960&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Denim Top",
-    price: "Rp. 70.124",
-    imageUrl:
-      "https://images.unsplash.com/photo-1618375279997-351e32d80a02?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
-
 const BestSeller: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [bestSellers, setBestSellers] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const scroll = (direction: "left" | "right") => {
     const scrollAmount = 300;
@@ -60,6 +24,25 @@ const BestSeller: React.FC = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const fetchBestSellers = async () => {
+      try {
+        const res = await fetch("/api/products/filter?tag=bestseller");
+        const data = await res.json();
+        setBestSellers(data);
+      } catch (error) {
+        console.error("Failed to fetch best sellers:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBestSellers();
+  }, []);
+
+  if (loading) return <p className="px-4 py-8 text-gray-600">Loading best sellers...</p>;
+  if (bestSellers.length === 0) return <p className="px-4 py-8 text-gray-600">No best sellers found.</p>;
 
   return (
     <div id="best-seller-section" className="relative py-12 px-4">
@@ -95,9 +78,9 @@ const BestSeller: React.FC = () => {
         ref={scrollRef}
         className="flex overflow-x-auto gap-4 px-4 scroll-smooth scrollbar-hide"
       >
-        {bestSellers.map((item, idx) => (
+        {bestSellers.map((item) => (
           <div
-            key={idx}
+            key={item.id}
             className="relative min-w-[320px] group rounded-xl overflow-hidden shadow-lg bg-white"
           >
             {/* Always-visible small cart icon */}
@@ -118,7 +101,7 @@ const BestSeller: React.FC = () => {
                 {item.name}
               </p>
               <p className="text-white font-semibold text-sm mb-2">
-                {item.price}
+                Rs. {item.price}/-
               </p>
               <button className="bg-white text-primary px-3 py-1 text-xs font-medium rounded-full flex items-center gap-2 self-start hover:bg-primary hover:text-white transition">
                 <FaShoppingCart className="text-sm" /> Add to Cart

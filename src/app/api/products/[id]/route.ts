@@ -4,7 +4,7 @@ import { NextResponse, NextRequest } from "next/server";
 // This API fetches a specific product by its ID, including its images.
 // PATH: GET /products/${productId}
 export const GET = async (
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
   try {

@@ -136,6 +136,7 @@ model Pattern {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+  imageUrl String
 
   @@map("pattern")
 }
@@ -144,6 +145,7 @@ model Theme {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+  imageUrl String
 
   @@map("theme")
 }
