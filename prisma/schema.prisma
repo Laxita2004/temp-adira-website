@@ -28,6 +28,11 @@ enum PaymentProvider {
   CASH_ON_DELIVERY
 }
 
+enum DiscountType {
+  PERCENTAGE
+  FLAT
+}
+
 model Admin {
   email     String   @id
   name      String
@@ -39,30 +44,30 @@ model Admin {
 }
 
 model User {
-  email          String           @id
-  name           String
-  password       String
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  email     String   @id
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  sessions       Session[]
+  sessions Session[]
 
-  orders         Order[]
-  cart           Cart?
-  shippingAddrs  ShippingAddress[]
-  searchHistory  SearchHistory[]
-  productViews   ProductView[]
-  testimonials Testimonial[]
+  orders        Order[]
+  cart          Cart?
+  shippingAddrs ShippingAddress[]
+  searchHistory SearchHistory[]
+  productViews  ProductView[]
+  testimonials  Testimonial[]
 
   @@map("user")
 }
 
 model Session {
-  id           String    @id @default(cuid())
-  sessionToken String    @unique
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
   userEmail    String
   expires      DateTime
-  user         User      @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  user         User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 
   @@map("session")
 }
@@ -77,49 +82,50 @@ model VerificationToken {
 }
 
 model ShippingAddress {
-  id        Int     @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   userEmail String
   address   String
   city      String
   state     String
   country   String
   pinCode   String
-  user      User    @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  user      User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 
   @@map("shipping_address")
 }
 
 model SearchHistory {
-  id         Int      @id @default(autoincrement())
-  userEmail  String
-  query      String
-  createdAt  DateTime @default(now())
-  user       User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  id        Int      @id @default(autoincrement())
+  userEmail String
+  query     String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 
   @@map("search_history")
 }
 
 model Product {
-  id          Int           @id @default(autoincrement())
-  title       String
-  tags        String[]
-  description String
-  price       Decimal
-  inStock     Int
-  category    String
-  materialId  Int
-  patternId   Int
-  themeId     Int
-  material    Material      @relation(fields: [materialId], references: [id])
-  pattern     Pattern       @relation(fields: [patternId], references: [id])
-  theme       Theme         @relation(fields: [themeId], references: [id])
-  images      ProductImage[]
-  cartItems   CartItem[]
-  orderItems  OrderItem[]
-  productViews ProductView[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  testimonials Testimonial[]
+  id            Int            @id @default(autoincrement())
+  title         String
+  tags          String[]
+  description   String
+  price         Decimal
+  inStock       Int
+  category      String
+  materialId    Int
+  patternId     Int
+  themeId       Int
+  material      Material       @relation(fields: [materialId], references: [id])
+  pattern       Pattern        @relation(fields: [patternId], references: [id])
+  theme         Theme          @relation(fields: [themeId], references: [id])
+  images        ProductImage[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+  productViews  ProductView[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  testimonials  Testimonial[]
+  offerProducts OfferProduct[]
 
   @@map("product")
 }
@@ -136,6 +142,7 @@ model Pattern {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+  imageUrl String
 
   @@map("pattern")
 }
@@ -144,6 +151,7 @@ model Theme {
   id       Int       @id @default(autoincrement())
   name     String    @unique
   products Product[]
+  imageUrl String
 
   @@map("theme")
 }
@@ -180,32 +188,32 @@ model Cart {
 }
 
 model CartItem {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   cartId    Int
   productId Int
-  quantity  Int      @default(1)
-  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
 
   @@unique([cartId, productId])
   @@map("cart_items")
 }
 
 model Order {
-  id         Int         @id @default(autoincrement())
-  userEmail  String
-  total      Decimal
-  status     OrderStatus @default(PENDING)
-  createdAt  DateTime    @default(now())
-  user       User        @relation(fields: [userEmail], references: [email], onDelete: Cascade)
-  items      OrderItem[]
-  payment    Payment?
+  id        Int         @id @default(autoincrement())
+  userEmail String
+  total     Decimal
+  status    OrderStatus @default(PENDING)
+  createdAt DateTime    @default(now())
+  user      User        @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  items     OrderItem[]
+  payment   Payment?
 
   @@map("order")
 }
 
 model OrderItem {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   orderId   Int
   productId Int
   quantity  Int
@@ -230,13 +238,43 @@ model Payment {
 
 model Testimonial {
   id        Int      @id @default(autoincrement())
-  userEmail  String
+  userEmail String
   productId Int
   review    String
   createdAt DateTime @default(now())
 
-  user      User     @relation(fields: [userEmail], references: [email], onDelete: Cascade)
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("testimonial")
+}
+
+model Offer {
+  id            Int          @id @default(autoincrement())
+  title         String
+  description   String
+  bannerUrl     String
+  discountType  DiscountType
+  discountValue Decimal
+  isActive      Boolean      @default(true)
+  startsAt      DateTime
+  endsAt        DateTime
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  offerProducts OfferProduct[]
+
+  @@map("offer")
+}
+
+model OfferProduct {
+  id        Int @id @default(autoincrement())
+  offerId   Int
+  productId Int
+
+  offer   Offer   @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([offerId, productId])
+  @@map("offer_product")
 }

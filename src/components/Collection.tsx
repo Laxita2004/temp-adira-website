@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Navigation } from "swiper/modules";
 import Image from "next/image";
@@ -8,40 +8,31 @@ import Link from "next/link";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-const collections = [
-  {
-    title: "Jaal Work",
-    image: "https://images.unsplash.com/photo-1609748340878-c690e3e4706b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0",
-    link: "/collections/jaal",
-  },
-  {
-    title: "Pittan Work",
-    image: "https://images.unsplash.com/photo-1609748341642-ae4c6562bf3d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0",
-    link: "/collections/pittan",
-  },
-  {
-    title: "Printed Chiffon",
-    image: "https://images.unsplash.com/photo-1609748340041-f5d61e061ebc?q=80&w=1009&auto=format&fit=crop&ixlib=rb-4.1.0",
-    link: "/collections/printed-chiffon",
-  },
-  {
-    title: "Gota Patti Work",
-    image: "https://images.unsplash.com/photo-1609748340756-aeb8223d6c64?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0",
-    link: "/collections/gota",
-  },
-  {
-    title: "Cloud Chiffon",
-    image: "https://images.unsplash.com/photo-1609748340878-c690e3e4706b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0",
-    link: "/collections/cloud",
-  },
-  {
-    title: "Leheriya Chiffon",
-    image: "https://images.unsplash.com/photo-1609748340041-f5d61e061ebc?q=80&w=1009&auto=format&fit=crop&ixlib=rb-4.1.0",
-    link: "/collections/leheriya",
-  },
-];
+type Pattern = {
+  id: number;
+  name: string;
+  imageUrl: string;
+};
 
 const Collection = () => {
+  const [collections, setCollections] = useState<Pattern[]>([]);
+
+  useEffect(() => {
+    const fetchPatterns = async () => {
+      try {
+        const res = await fetch("/api/patterns");
+        if (!res.ok) throw new Error("Failed to fetch collections");
+
+        const data: Pattern[] = await res.json();
+        setCollections(data);
+      } catch (err) {
+        console.error("Error loading collections:", err);
+      }
+    };
+
+    fetchPatterns();
+  }, []);
+
   return (
     <section className="w-full px-4 pt-10 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8">
       <h2 className="text-center text-4xl font-bold text-primary mb-10">
@@ -76,17 +67,17 @@ const Collection = () => {
           >
             <div className="relative w-full h-80">
               <Image
-                src={item.image}
-                alt={`${item.title} saree`}
+                src={item.imageUrl}
+                alt={`${item.name} saree`}
                 fill
                 className="object-cover"
               />
             </div>
 
             <div className="p-4 text-center bg-white">
-              <h3 className="text-lg font-semibold text-primary mb-2">{item.title}</h3>
+              <h3 className="text-lg font-semibold text-primary mb-2">{item.name}</h3>
               <Link
-                href={item.link}
+                href={`/shop/all?pattern=${encodeURIComponent(item.name)}`}
                 className="inline-block px-5 py-2 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition duration-300"
               >
                 View Collection

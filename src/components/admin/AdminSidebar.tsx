@@ -37,6 +37,9 @@ const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => (
         <Link href="/admin/profile" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
           Edit User Info
         </Link>
+        <Link href="/admin/offers" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
+          Offers Management
+        </Link>
         <Link href="/admin/sales" onClick={() => setSidebarOpen(false)} className="hover:bg-secondary px-4 py-2 rounded hover:text-primary transition duration-300">
           Sales Dashboard
         </Link>
