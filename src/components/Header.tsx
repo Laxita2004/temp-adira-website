@@ -26,6 +26,13 @@ const Header = () => {
         <div className="p-4 text-primary font-bold text-xl">Menu</div>
         <nav className="flex flex-col gap-2 p-4 pt-[50px]">
           <Link
+            href="/"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Home
+          </Link>
+          <Link
             href="/shop"
             onClick={() => setSidebarOpen(false)}
             className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"

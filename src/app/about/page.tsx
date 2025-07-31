@@ -30,7 +30,7 @@ const About = () => {
   return (
     <>
     <Header />
-      <section className="relative h-screen w-full bg-gradient-to-r from-[#f5f5f5] to-[#5e0f0f] text-white">
+      <section className="relative h-screen w-full bg-gradient-to-r from-[#f5f5f5] to-[#5e0f0f] text-white mt-[100px]">
         {/* Background Image */}
         {/* <Image
           src="/about/founder.png"
@@ -46,7 +46,7 @@ const About = () => {
         {/* Text Content */}
         <div className="relative z-20 flex flex-col lg:flex-row items-center justify-between h-full px-6 lg:px-20 text-white">
           {/* Center Column (Intro/Quote) */}
-          <div className="flex-1 text-center lg:text-left mb-10 lg:mb-0">
+          <div className="flex-1 text-center lg:text-left mb-10 lg:mb-0 mt-10">
             <FadeInSection>
               <h2 className="text-3xl lg:text-5xl font-bold tracking-wide mb-4 leading-snug">
                 Passion Meets Purpose

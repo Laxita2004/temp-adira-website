@@ -104,6 +104,23 @@ model SearchHistory {
   @@map("search_history")
 }
 
+model Color {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  hexCode  String
+  products ProductColor[]
+}
+
+model ProductColor {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  colorId   Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  color     Color   @relation(fields: [colorId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, colorId])
+}
+
 model Product {
   id            Int            @id @default(autoincrement())
   title         String
@@ -126,6 +143,7 @@ model Product {
   updatedAt     DateTime       @updatedAt
   testimonials  Testimonial[]
   offerProducts OfferProduct[]
+  productColors ProductColor[]
 
   @@map("product")
 }

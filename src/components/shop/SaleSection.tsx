@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const salesItems = [
   {
@@ -25,7 +25,39 @@ const salesItems = [
   },
 ];
 
+type Product = {
+  id: number;
+  title: string;
+  image: string;
+};
+
+type Offer = {
+  id: number;
+  title: string;
+  discountValue: number;
+  bannerUrl: string;
+  products: Product[];
+};
+
 const SalesSection = () => {
+  const [offers, setOffers] = useState<Offer[]>([]);
+
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const res = await fetch("/api/offers/active");
+        const data = await res.json();
+        if (data.success) {
+          setOffers(data.offers); // Adjust if key is different
+        }
+      } catch (error) {
+        console.error("Failed to fetch active offers:", error);
+      }
+    };
+
+    fetchOffers();
+  }, []);
+
   return (
     <section className="bg-muted py-12 px-4" id="sale-section">
 
@@ -43,47 +75,49 @@ const SalesSection = () => {
       </div>
 
 
-      {/* Top Banner */}
-      <div
-        className="relative bg-cover bg-center text-white text-center py-16 px-4 rounded-xl mb-10"
-        style={{
-          backgroundImage:
-            "url('https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        }}
-      >
-        <h4 className="text-m tracking-widest text-primary font-bold uppercase">
-          DIWALI
-        </h4>
-        <h2 className="text-4xl font-extrabold mt-2 mb-2">SALES</h2>
-        <p className="text-lg font-medium mb-4">Mega Discount</p>
-        <p className="text-sm">UPTO 70% OFF | THIS WEEK ONLY</p>
-        <button className="mt-4 bg-white text-black px-6 py-2 rounded-full font-semibold shadow hover:bg-primary hover:text-white transition">
-          Shop Now
-        </button>
-      </div>
-
-      {/* Offer Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        {salesItems.map((item, idx) => (
+      {/* Loop through active offers */}
+      {offers.map((offer) => (
+        <div key={offer.id} className="mb-12">
+          {/* Sale Banner */}
           <div
-            key={idx}
-            className="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition"
+            className="relative bg-cover bg-center text-white text-center py-16 px-4 rounded-xl mb-6"
+            style={{ backgroundImage: `url(${offer.bannerUrl})` }}
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
-            <h3 className="text-lg font-semibold">{item.title}</h3>
-            <p className="text-primary font-bold mb-2">
-              {item.discount} Offer
-            </p>
-            <button className="bg-primary text-white px-4 py-1 rounded-full text-sm hover:bg-secondary transition">
+            <h4 className="text-m tracking-widest text-primary font-bold uppercase">
+              {offer.title}
+            </h4>
+            <h2 className="text-4xl font-extrabold mt-2 mb-2">SALES</h2>
+            <p className="text-lg font-medium mb-4">Mega Discount</p>
+            <p className="text-sm">UPTO {offer.discountValue}% OFF</p>
+            <button className="mt-4 bg-white text-black px-6 py-2 rounded-full font-semibold shadow hover:bg-primary hover:text-white transition">
               Shop Now
             </button>
           </div>
-        ))}
-      </div>
+
+          {/* Offer Products */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            {offer.products.map((product) => (
+              <div
+                key={product.id}
+                className="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition"
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-48 object-cover rounded-md mb-4"
+                />
+                <h3 className="text-lg font-semibold">{product.title}</h3>
+                <p className="text-primary font-bold mb-2">
+                  {offer.discountValue}% Offer
+                </p>
+                <button className="bg-primary text-white px-4 py-1 rounded-full text-sm hover:bg-secondary transition">
+                  Shop Now
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </section>
   );
 };

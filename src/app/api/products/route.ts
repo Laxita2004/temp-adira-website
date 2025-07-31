@@ -22,6 +22,11 @@ export const GET = async () => {
             },
           },
         },
+        colors: {
+          include: {
+            color: true,
+          },
+        },
       },
       orderBy: {
         createdAt: "desc",
@@ -30,7 +35,7 @@ export const GET = async () => {
 
     return NextResponse.json(products);
   } catch (error) {
-    console.error("❌ Failed to fetch products:", error);
+    console.error("Failed to fetch products:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
@@ -53,6 +58,7 @@ export const POST = async (req: NextRequest) => {
       materialId,
       patternId,
       themeId,
+      colorIds,
       imageUrls, // array of image URLs
     } = body;
 
@@ -79,12 +85,22 @@ export const POST = async (req: NextRequest) => {
         images: {
           create: imageUrls.map((url: string) => ({ url })),
         },
+        colors: {
+          create: colorIds.map((colorId: number) => ({
+            color: { connect: { id: colorId } },
+          })),
+        }
       },
       include: {
         images: true,
         material: true,
         pattern: true,
         theme: true,
+        colors: {
+          include: {
+            color: true,
+          },
+        },
       },
     });
 
