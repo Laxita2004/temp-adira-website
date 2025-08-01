@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaShoppingCart } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 interface Product {
   id: number;
@@ -11,6 +12,7 @@ interface Product {
 }
 
 const BestSeller: React.FC = () => {
+  const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [bestSellers, setBestSellers] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,8 +43,10 @@ const BestSeller: React.FC = () => {
     fetchBestSellers();
   }, []);
 
-  if (loading) return <p className="px-4 py-8 text-gray-600">Loading best sellers...</p>;
-  if (bestSellers.length === 0) return <p className="px-4 py-8 text-gray-600">No best sellers found.</p>;
+  if (loading)
+    return <p className="px-4 py-8 text-gray-600">Loading best sellers...</p>;
+  if (bestSellers.length === 0)
+    return <p className="px-4 py-8 text-gray-600">No best sellers found.</p>;
 
   return (
     <div id="best-seller-section" className="relative py-12 px-4">
@@ -54,7 +58,10 @@ const BestSeller: React.FC = () => {
           <div className="w-16 h-1 mt-2 bg-primary rounded-full"></div>
         </div>
         {/* Optional link/button */}
-        <button className="text-sm text-primary hover:underline">
+        <button
+          className="text-sm text-primary hover:underline"
+          onClick={() => router.push("/shop/all?tag=bestseller")}
+        >
           View All
         </button>
       </div>
@@ -83,10 +90,7 @@ const BestSeller: React.FC = () => {
             key={item.id}
             className="relative min-w-[320px] group rounded-xl overflow-hidden shadow-lg bg-white"
           >
-            {/* Always-visible small cart icon */}
-            <div className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md z-10">
-              <FaShoppingCart className="text-primary" />
-            </div>
+            
 
             {/* Image */}
             <img
@@ -96,15 +100,15 @@ const BestSeller: React.FC = () => {
             />
 
             {/* Hover overlay (DESKTOP ONLY) */}
-            <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-col justify-end p-4 hidden md:flex">
+            <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4">
               <p className="text-white font-semibold text-sm mb-2">
                 {item.name}
               </p>
-              <p className="text-white font-semibold text-sm mb-2">
-                Rs. {item.price}/-
-              </p>
-              <button className="bg-white text-primary px-3 py-1 text-xs font-medium rounded-full flex items-center gap-2 self-start hover:bg-primary hover:text-white transition">
-                <FaShoppingCart className="text-sm" /> Add to Cart
+              <button
+                onClick={() => router.push(`/shop/product/${item.id}`)}
+                className="bg-white text-primary px-3 py-1 text-xs font-medium rounded-full flex items-center gap-2 self-start hover:bg-primary hover:text-white transition"
+              >
+                View Product
               </button>
             </div>
 

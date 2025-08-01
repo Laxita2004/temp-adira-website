@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { MdOutlineNotificationImportant } from "react-icons/md";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showNote, setShowNote] = useState(false);
 
   return (
     <>
@@ -33,11 +33,39 @@ const Header = () => {
             Home
           </Link>
           <Link
+            href="/shop/all"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Shop All Products
+          </Link>
+          <Link
             href="/shop"
             onClick={() => setSidebarOpen(false)}
             className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
-            Shop
+            Best Sellers
+          </Link>
+          <Link
+            href="/shop/all?pattern=jaal%20work"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Jaal Work
+          </Link>
+          <Link
+            href="/shop/all?pattern=statement%border"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Statement Borders
+          </Link>
+          <Link
+            href="/shop/all?pattern=printed%chiffons"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Printed Chiffons
           </Link>
           <Link
             href="/about"
@@ -53,13 +81,6 @@ const Header = () => {
             className="px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Contact
-          </Link>
-          <Link
-            href="/orders"
-            onClick={() => setSidebarOpen(false)}
-            className="px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
-          >
-            Track Your Order
           </Link>
         </nav>
       </aside>
@@ -84,54 +105,26 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* RIGHT */}
-          <div className="flex items-center gap-4">
-            {!isLoggedIn ? (
-              <Link href="/login" className="text-primary font-semibold">
-                Login
-              </Link>
-            ) : (
-              <div className="relative">
-                <button
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="text-primary font-semibold"
-                >
-                  Profile
-                </button>
+          {/* RIGHT — Notification Tooltip */}
+          <div className="flex items-center gap-4 relative z-50">
+            <div
+              className="relative group cursor-pointer"
+              onMouseEnter={() => setShowNote(true)}
+              onMouseLeave={() => setShowNote(false)}
+            >
+              <MdOutlineNotificationImportant className="text-2xl text-primary" />
 
-                {showProfileMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-md z-10">
-                    <Link
-                      href="/profile"
-                      className="block px-4 py-2 hover:bg-muted"
-                    >
-                      Edit Profile
-                    </Link>
-                    <Link
-                      href="/wishlist"
-                      className="block px-4 py-2 hover:bg-muted"
-                    >
-                      Wishlist
-                    </Link>
-                    <Link
-                      href="/cart"
-                      className="block px-4 py-2 hover:bg-muted"
-                    >
-                      Cart
-                    </Link>
-                    <button
-                      onClick={() => {
-                        setIsLoggedIn(false); // replace with actual logout
-                        setShowProfileMenu(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 hover:bg-muted"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
+              {showNote && (
+                <div className="absolute top-10 right-0 w-72 text-lg bg-primary/90 backdrop-blur-md border border-light shadow-lg rounded p-3 text-light z-50 animate-fadeIn">
+                  <strong>This is our temporary website!</strong>
+                  <p className="mt-1">
+                    Many of you were asking where you can view our full catalog.
+                    While the original website is under construction, here’s a
+                    temporary version with our collections, catalog, and more!
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>

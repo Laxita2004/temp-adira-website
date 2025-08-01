@@ -29,10 +29,12 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");
   const sort = searchParams.get("sort");
+  const offerId = searchParams.get("offerId");
+  const [offerTitle, setOfferTitle] = useState("");
 
   // fetch filters
   useEffect(() => {
-      const fetchFilters = async () => {
+    const fetchFilters = async () => {
       const res = await fetch("/api/products/filters");
       const data = await res.json();
       setAvailablePatterns(data.patterns || []);
@@ -42,6 +44,22 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
     };
     fetchFilters();
   }, []);
+
+  useEffect(() => {
+    const fetchOffer = async () => {
+      if (!offerId) return;
+      try {
+        const res = await fetch(`/api/offers/${offerId}`);
+        const data = await res.json();
+        if (data?.title) {
+          setOfferTitle(data.title);
+        }
+      } catch (err) {
+        console.error("Error fetching offer title:", err);
+      }
+    };
+    fetchOffer();
+  }, [offerId]);
 
   // fetch products
   useEffect(() => {
@@ -100,6 +118,13 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
             }
           />
         )}
+        {offerId && (
+          <FilterChip
+            paramKey="offerId"
+            paramValue={offerId}
+            label={`Offer: ${offerTitle || offerId}`}
+          />
+        )}
       </div>
 
       {/* Filter & Sort Options */}
@@ -112,7 +137,7 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
             More Filters
           </button>
         </div>
-        <div>Recommended</div>
+        {/* <div>Recommended</div> */}
       </div>
 
       {/* Filter Modal */}
@@ -133,6 +158,7 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product: any) => (
+            
             <div
               key={product.id}
               className="bg-white border rounded-xl overflow-hidden shadow-sm group relative"
@@ -144,12 +170,12 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
               )}
               <img
                 src={product.images?.[0]?.url}
-                alt={product.name}
+                alt={product.title}
                 className="w-full h-64 object-cover"
               />
-              <div className="p-4">
-                <h3 className="text-sm font-medium capitalize">
-                  {product.name}
+              <div className="p-4 mt-2">
+                <h3 className="text-lg bg-yellow text-black font-bold capitalize">
+                  {product.title}
                 </h3>
                 <div className="mt-2 text-sm">
                   <span className="font-bold">₹{product.price}</span>
@@ -162,9 +188,9 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
                       <FaEye className="text-lg" /> View Product
                     </button>
                   </Link>
-                  <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
+                  {/* <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
                     <FaShoppingCart className="text-lg" /> Add to Cart
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

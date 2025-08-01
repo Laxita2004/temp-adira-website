@@ -1,16 +1,16 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 // This API fetches a specific product by its ID, including its images.
-// PATH: GET /products/${productId}
+// PATH: GET /api/products/${productId}
 export const GET = async (
-  req: NextRequest,
+  request: Request,
   { params }: { params: { id: string } }
 ) => {
   try {
     const productId = Number(params.id);
+    console.log("Product ID:", productId);
 
-    // Validate the product ID
     if (isNaN(productId)) {
       return NextResponse.json(
         { error: "Invalid product ID" },
@@ -18,7 +18,6 @@ export const GET = async (
       );
     }
 
-    // Fetch the product with its images
     const product = await prisma.product.findUnique({
       where: { id: productId },
       include: { images: true },
@@ -37,4 +36,3 @@ export const GET = async (
     );
   }
 };
-

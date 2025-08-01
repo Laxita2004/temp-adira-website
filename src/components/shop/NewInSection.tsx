@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -27,7 +28,6 @@ const NewInSection = () => {
 
   return (
     <section className="py-16 px-4 " id="new-in-section">
-
       <div className="flex items-center justify-between mb-8 px-4">
         <div>
           <h2 className="text-3xl font-bold text-gray-900 tracking-wide">
@@ -36,9 +36,12 @@ const NewInSection = () => {
           <div className="w-16 h-1 mt-2 bg-primary rounded-full"></div>
         </div>
         {/* Optional link/button */}
-        <button className="text-sm text-primary hover:underline">
+        <Link
+          href="/shop/all?sort=newest"
+          className="text-sm text-primary hover:underline"
+        >
           View All
-        </button>
+        </Link>
       </div>
 
       {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

@@ -61,7 +61,7 @@ export default function EditProductPage() {
   e.preventDefault();
 
   try {
-    const res = await fetch(`/api/products/${id}`, {
+    const res = await fetch(`/api/admin/products/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

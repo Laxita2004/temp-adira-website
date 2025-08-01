@@ -22,11 +22,7 @@ export const GET = async () => {
             },
           },
         },
-        colors: {
-          include: {
-            color: true,
-          },
-        },
+        
       },
       orderBy: {
         createdAt: "desc",
@@ -85,22 +81,13 @@ export const POST = async (req: NextRequest) => {
         images: {
           create: imageUrls.map((url: string) => ({ url })),
         },
-        colors: {
-          create: colorIds.map((colorId: number) => ({
-            color: { connect: { id: colorId } },
-          })),
-        }
       },
       include: {
         images: true,
         material: true,
         pattern: true,
         theme: true,
-        colors: {
-          include: {
-            color: true,
-          },
-        },
+        
       },
     });
 

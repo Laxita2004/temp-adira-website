@@ -5,23 +5,33 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { FaInstagram, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
   {
     quote: "Absolutely love the collection! I got so many compliments.",
-    name: "Hkm. Pushpa Solanki",
+    name: "Pushpalata Ji Solanki",
     location: "Sanawad",
   },
   {
-    quote: "Every saree I ordered was better than I imagined. So graceful!",
-    name: "Megha Patel",
-    location: "Ahmedabad",
+    quote: "The pittan work was even more beautiful in person, and the fabric felt so light and luxurious. So graceful!",
+    name: "Anushree Ji Thakur",
+    location: "Washington, D.C., USA",
   },
   {
-    quote: "Beautiful poshaks and very prompt service. Loved the packaging!",
-    name: "Ritu Sharma",
-    location: "Udaipur",
+    quote: "Blown away by the quality and detailing! Every saree I ordered was better than I imagined.",
+    name: "Minu Ji Soni",
+    location: "Indore",
+  },
+  {
+    quote: "Beautiful sarees and very prompt service!",
+    name: "Mitali Ji Thakur",
+    location: "Lucknow",
+  },
+  {
+    quote: "Loved the black saree I ordered – it was perfect for the cocktail party! Got so many compliments on it.",
+    name: "Kritika Ji Dongre",
+    location: "Netherlands",
   },
 ];
 
@@ -51,7 +61,6 @@ const Testimonials = () => {
                 </div>
               </SwiperSlide>
             ))}
-
           </Swiper>
         </div>
 
@@ -62,11 +71,20 @@ const Testimonials = () => {
             Become a part of the Adira family!
           </p>
           <p className="text-white/70 mb-6">
-            Sign up and follow us on Instagram for latest updates
+            Follow us on Instagram and join our whatsapp community for latest
+            updates
+            <br />
+            (A little secret: We offer upto 15% off to our instagram followers!)
           </p>
-          <button className="bg-white text-primary font-semibold px-6 py-2 rounded-full border hover:bg-primary hover:text-white hover:border-white transition">
-            Sign Up
-          </button>
+          <a
+            href="https://www.instagram.com/adirachiffons?igsh=N2FxaDBidHVpeTcx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-lg bg-white text-primary font-semibold px-6 py-2 rounded-full border hover:bg-primary hover:text-white hover:border-white transition"
+          >
+            <FaInstagram className="mr-2" />
+            <span>adirachiffons</span>
+          </a>
         </div>
       </div>
     </section>

@@ -1,88 +1,70 @@
 "use client";
 
 import Header from "../../components/Header";
+import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FiPhone } from "react-icons/fi";
 
 export default function Contact() {
   return (
     <>
       <Header />
-      <div className="bg-light min-h-screen flex flex-col">
-        <div className="min-h-screen bg-light text-primary flex items-center justify-center px-4 py-16">
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl w-full px-6">
-            {/* Left Side - Contact Info */}
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
-              <p className="mb-6 text-sm md:text-base">
-                Whether you're curious about a saree, need help with your order,
-                or simply want to share your story draped in Adira — we’re
-                always here for you. Drop us a message, and our team will get
-                back to you with the same care and grace that goes into every
-                thread we weave. 
-                
-                📩 Let’s stay connected. Because every
-                conversation at Adira begins with warmth..
-              </p>
-              <div className="space-y-4 text-sm">
-                <p className="flex items-center gap-2">
-                  📧 <span>adirachiffons@gmail.com</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  📞 <span>+91 70007 85499</span>
-                </p>
-              </div>
-            </div>
+      <div className="relative min-h-screen w-full">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center blur-sm"
+          style={{ backgroundImage: "url('/contact/contactbg.png')" }}
+        />
 
-            {/* Right Side - Form */}
-            <div className="bg-white text-black p-6 md:p-8 rounded-md shadow-lg">
-              <h3 className="text-xl font-semibold mb-1">
-                We’d love to hear from you!
-              </h3>
-              <p className="text-sm mb-6">Let’s get in touch</p>
-              <form className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="input-style"
-                  />
-                  <input
-                    type="text"
-                    placeholder="e.g. Laxita Thakur"
-                    className="input-style"
-                  />
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="input-style"
-                  />
-                  <div className="flex w-full">
-                    
-                    <input
-                      type="tel"
-                      placeholder="+1 (555) 000-0000"
-                      className="input-style border-l-0 rounded-l-none"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Address"
-                  className="input-style"
-                />
-                <textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  className="input-style"
-                />
-                <button
-                  type="submit"
-                  className="bg-primary text-light px-6 py-2 rounded-md hover:bg-[#2f2146] transition"
-                >
-                  Send Message
-                </button>
-              </form>
+        {/* Grey Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-40" />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center  justify-center min-h-screen text-light text-center px-4">
+          <div className="bg-light/20 rounded-md backdrop-blur-md shadow-xl px-10 py-10">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Let’s Connect
+            </h1>
+            <p className="max-w-xl mb-6 text-sm md:text-base text-muted">
+              We'd love to hear from you! Whether you have a question about our
+              products, need help with an order, or just want to say hello—feel
+              free to reach out.
+              <br />
+              You can message us directly on WhatsApp or Instagram .
+              <br />
+              We're here to assist you every step of the way.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-8 text-lg md:text-xl">
+              <a
+                href="http://chat.whatsapp.com/HIm4x09TqlPE4gDgMStdZW"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-primary transition"
+              >
+                <FaWhatsapp /> WhatsApp
+              </a>
+              <a
+                href="https://www.instagram.com/adirachiffons?igsh=N2FxaDBidHVpeTcx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-primary transition"
+              >
+                <FaInstagram /> Instagram
+              </a>
+              <a
+                href="https://wa.me/917000785499"
+                className="flex items-center gap-2 hover:text-primary transition"
+              >
+                <FiPhone /> +91 70007 85499
+              </a>
+              <a
+                href="https://www.facebook.com/dharmnishtha.singh.thakur?mibextid=ZbWKwL"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-primary transition"
+              >
+                <FaFacebook /> Facebook
+              </a>
             </div>
           </div>
         </div>

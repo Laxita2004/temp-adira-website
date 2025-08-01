@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 
 // edit a product
-// PATH: PUT /api/products/${productId}
+// PATH: PUT /api/admin/products/${productId}
 export const PUT = async (req: NextRequest, { params }: { params: { id: string } }) => {
   try {
     const productId = parseInt(params.id);

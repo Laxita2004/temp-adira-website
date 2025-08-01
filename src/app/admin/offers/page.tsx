@@ -19,7 +19,7 @@ export default function Offers() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`api/offers`)
+    fetch(`/api/offers/active`)
       .then((res) => res.json())
       .then(setOffers);
   }, []);
@@ -36,12 +36,12 @@ export default function Offers() {
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <AdminHeader setSidebarOpen={setSidebarOpen} />
       <div className="flex justify-between items-center pt-[120px] ">
-        <h1 className="text-xl font-semibold">Sales</h1>
+        <h1 className="text-xl font-semibold">Offers</h1>
         <Link
           href="/admin/offers/new"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-primary text-white px-4 py-2 rounded"
         >
-          + New Sale
+          + New Offer
         </Link>
       </div>
 
@@ -57,7 +57,7 @@ export default function Offers() {
               <img src={offer.bannerUrl} alt="banner" className="w-60 mt-2 rounded" />
             )}
             <div className="mt-2 flex gap-4">
-              <Link href={`/admin/sales/edit/${offer.id}`} className="text-blue-500">Edit</Link>
+              <Link href={`/admin/offers/edit/${offer.id}`} className="text-blue-500">Edit</Link>
               <button onClick={() => deleteOffer(offer.id)} className="text-red-500">Delete</button>
             </div>
           </div>
