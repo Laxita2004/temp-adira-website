@@ -1,14 +1,15 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse, NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-// edit a product
-// PATH: PUT /api/admin/products/${productId}
+// Edit a product
+// PUT /api/admin/products/[id]
 export async function PUT(
-  req: NextRequest,
-  context: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
-    const productId = parseInt(context.params.id);
+    const productId = parseInt(params.id);
+
     if (isNaN(productId)) {
       return NextResponse.json({ error: "Invalid product ID" }, { status: 400 });
     }
@@ -24,7 +25,7 @@ export async function PUT(
       patternId,
       themeId,
       imageUrls,
-    } = await req.json();
+    } = await request.json();
 
     const existingProduct = await prisma.product.findUnique({
       where: { id: productId },
@@ -48,7 +49,7 @@ export async function PUT(
         theme: { connect: { id: themeId } },
         updatedAt: new Date(),
         images: {
-          deleteMany: {}, // delete all current images
+          deleteMany: {}, // delete all old images
           create: imageUrls?.map((url: string) => ({ url })) || [],
         },
       },
