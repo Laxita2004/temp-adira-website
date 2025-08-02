@@ -3,9 +3,12 @@ import { NextResponse, NextRequest } from "next/server";
 
 // edit a product
 // PATH: PUT /api/admin/products/${productId}
-export const PUT = async (req: NextRequest, { params }: { params: { id: string } }) => {
+export async function PUT(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
   try {
-    const productId = parseInt(params.id);
+    const productId = parseInt(context.params.id);
     if (isNaN(productId)) {
       return NextResponse.json({ error: "Invalid product ID" }, { status: 400 });
     }
@@ -23,7 +26,6 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
       imageUrls,
     } = await req.json();
 
-    // Check if product exists
     const existingProduct = await prisma.product.findUnique({
       where: { id: productId },
     });
@@ -32,7 +34,6 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    // Update product data
     const updatedProduct = await prisma.product.update({
       where: { id: productId },
       data: {
@@ -46,7 +47,6 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
         pattern: { connect: { id: patternId } },
         theme: { connect: { id: themeId } },
         updatedAt: new Date(),
-        // First delete old images if needed
         images: {
           deleteMany: {}, // delete all current images
           create: imageUrls?.map((url: string) => ({ url })) || [],
@@ -65,4 +65,4 @@ export const PUT = async (req: NextRequest, { params }: { params: { id: string }
     console.error("❌ Failed to update product:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
-};
+}
