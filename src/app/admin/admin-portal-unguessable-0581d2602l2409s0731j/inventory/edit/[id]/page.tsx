@@ -85,7 +85,7 @@ export default function EditProductPage() {
 
     if (res.ok) {
       alert('✅ Product updated!');
-      router.push('/admin/inventory');
+      router.push('/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory');
     } else {
       alert(`❌ Error: ${data?.error || 'Unknown error'}`);
     }
@@ -116,7 +116,7 @@ export default function EditProductPage() {
             <input name="patternId" value={form.patternId} onChange={handleChange} className="w-full p-2 border" placeholder="Pattern ID" required />
             <input name="themeId" value={form.themeId} onChange={handleChange} className="w-full p-2 border" placeholder="Theme ID" required />
             <input name="imageUrls" value={form.imageUrls} onChange={handleChange} className="w-full p-2 border" placeholder="Comma-separated image URLs" required />
-            <button type="submit" className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+            <button type="submit" className="bg-primary text-light px-4 py-2 rounded hover:bg-gray-800">
               Save Changes
             </button>
           </form>

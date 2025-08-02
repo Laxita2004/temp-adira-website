@@ -3,12 +3,12 @@ import { NextResponse } from "next/server";
 
 // This API fetches a specific product by its ID, including its images.
 // PATH: GET /api/products/${productId}
-export const GET = async (
+export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
-) => {
+  context: { params: { id: string } }
+) {
   try {
-    const productId = Number(params.id);
+    const productId = Number(context.params.id);
     console.log("Product ID:", productId);
 
     if (isNaN(productId)) {
@@ -34,5 +34,29 @@ export const GET = async (
       { error: "Internal Server Error" },
       { status: 500 }
     );
+  }
+}
+
+
+// DELETE /api/products/[id]
+export const DELETE = async (
+  request: Request,
+  { params }: { params: { id: string } }
+) => {
+  try {
+    const productId = Number(params.id);
+
+    if (isNaN(productId)) {
+      return NextResponse.json({ error: "Invalid product ID" }, { status: 400 });
+    }
+
+    await prisma.product.delete({
+      where: { id: productId },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    return NextResponse.json({ error: "Failed to delete product" }, { status: 500 });
   }
 };

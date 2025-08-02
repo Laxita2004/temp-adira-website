@@ -94,6 +94,12 @@ const Footer = () => {
             <li>
               <Link href="/shop?tag=bestseller">Bestsellers</Link>
             </li>
+            <li>
+              <Link href="/shop">Sale</Link>
+            </li>
+            <li>
+              <Link href="/shop">New Collection</Link>
+            </li>
           </ul>
         </div>
       </div>

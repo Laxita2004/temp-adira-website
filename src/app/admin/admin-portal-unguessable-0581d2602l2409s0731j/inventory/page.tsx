@@ -44,7 +44,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
     if (!confirmed) return;
 
     try {
-        const res = await fetch(`api/___`, {
+        const res = await fetch(`/api/products/${id}`, {
             method: "DELETE",
         });
 
@@ -65,8 +65,8 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
       <div className="pt-[120px] flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Inventory</h1>
         <Link
-          href="/admin/inventory/add"
-          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
+          href="/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory/add"
+          className="bg-primary text-light px-4 py-2 rounded hover:bg-gray-800"
         >
           + Add New Product
         </Link>
@@ -101,7 +101,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
                   </td>
                   <td className="p-3 border space-x-2">
                     <Link
-                      href={`/admin/inventory/edit/${product.id}`}
+                      href={`/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory//edit/${product.id}`}
                       className="text-blue-600 hover:underline"
                     >
                       Edit

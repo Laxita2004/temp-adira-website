@@ -47,6 +47,20 @@ const Header = () => {
             Best Sellers
           </Link>
           <Link
+            href="/shop"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Sale
+          </Link>
+          <Link
+            href="/shop"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            New In
+          </Link>
+          <Link
             href="/shop/all?pattern=jaal%20work"
             onClick={() => setSidebarOpen(false)}
             className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
@@ -119,7 +133,7 @@ const Header = () => {
                   <strong>This is our temporary website!</strong>
                   <p className="mt-1">
                     Many of you were asking where you can view our full catalog.
-                    While the original website is under construction, here’s a
+                    While the original website is under development, here’s a
                     temporary version with our collections, catalog, and more!
                   </p>
                 </div>

@@ -12,6 +12,8 @@ type Product = {
 type Offer = {
   id: number;
   title: string;
+  description: string;
+  discountType: "FLAT" | "PERCENTAGE";
   discountValue: number;
   bannerUrl: string;
   products: Product[];
@@ -62,7 +64,9 @@ const SalesSection = () => {
       </div>
 
       {offers.length === 0 ? (
-        <div className="text-center text-gray-600">No active sales right now.</div>
+        <div className="text-center text-gray-600">
+          No active sales right now.
+        </div>
       ) : (
         offers.map((offer) => (
           <div key={offer.id} className="mb-12">
@@ -74,8 +78,12 @@ const SalesSection = () => {
                 {offer.title}
               </h4>
               <h2 className="text-4xl font-extrabold mt-2 mb-2">SALES</h2>
-              <p className="text-lg font-medium mb-4">Mega Discount</p>
-              <p className="text-sm">UPTO {offer.discountValue}% OFF</p>
+              <p className="text-lg font-medium mb-1">{offer.description}</p>
+              <p className="text-sm">
+                {offer.discountType === "FLAT"
+                  ? `FLAT ₹${offer.discountValue} OFF`
+                  : `UPTO ${offer.discountValue}% OFF`}
+              </p>
               <Link href={`/shop/all?offerId=${offer.id}`}>
                 <button className="mt-4 bg-white text-black px-6 py-2 rounded-full font-semibold shadow hover:bg-primary hover:text-white transition">
                   Shop Now

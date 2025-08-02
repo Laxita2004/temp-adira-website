@@ -41,6 +41,17 @@ const FilterModal: React.FC<FilterModalProps> = ({
   const [patterns, setPatterns] = useState<Pattern[]>([]);
   const [materials, setMaterials] = useState<Material[]>([]);
   const [themes, setThemes] = useState<Theme[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await fetch("/api/category");
+      const data = await res.json();
+      setCategories(data);
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const fetchPatterns = async () => {
@@ -153,7 +164,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
               className="w-[250px] bg-muted border rounded px-3 py-2"
             >
               <option value="">All</option>
-              {availableCategories.map((c) => (
+              {categories.map((c) => (
                 <option key={c} value={c}>
                   {c}
                 </option>

@@ -10,7 +10,7 @@ interface Product {
   title: string;
   price: string;
   description: string;
-  images: { id: number; imageUrl: string }[];
+  images: { id: number; url: string }[];
 }
 
 const ProductPage = () => {
@@ -26,7 +26,7 @@ const ProductPage = () => {
         const data = await res.json();
         setProduct(data);
         if (data.images?.length > 0) {
-          setSelectedImage(data.images[0].imageUrl);
+          setSelectedImage(data.images[0].url);
         }
       } catch (err) {
         console.error("Failed to fetch product:", err);
@@ -54,24 +54,33 @@ const ProductPage = () => {
       <div className="max-w-5xl mx-auto px-4 py-12 bg-light mt-[120px]">
         <div className="flex flex-col md:flex-row gap-10 bg-light">
           <div className="w-full md:w-1/2">
-            <img
-              src={selectedImage}
-              alt={product.title}
-              className="w-full rounded-xl shadow"
-            />
-            <div className="flex gap-2 mt-4">
+            {/* Selected Image */}
+            <div className="w-full h-[500px] rounded-xl overflow-hidden shadow mb-4">
+              <img
+                src={selectedImage}
+                alt={product.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Thumbnails */}
+            <div className="flex gap-2">
               {product.images.map((img) => (
-                <img
+                <div
                   key={img.id}
-                  src={img.imageUrl}
-                  alt="thumb"
-                  onClick={() => setSelectedImage(img.imageUrl)}
-                  className={`w-20 h-20 object-cover rounded cursor-pointer border ${
-                    selectedImage === img.imageUrl
+                  className={`w-20 h-20 rounded overflow-hidden border cursor-pointer ${
+                    selectedImage === img.url
                       ? "border-primary"
                       : "border-gray-300"
                   }`}
-                />
+                  onClick={() => setSelectedImage(img.url)}
+                >
+                  <img
+                    src={img.url}
+                    alt="thumb"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -80,6 +89,12 @@ const ProductPage = () => {
             <h1 className="text-3xl font-bold">{product.title}</h1>
             <p className="text-xl text-green-700">₹{product.price}</p>
             <p>{product.description}</p>
+            <a
+                  href="/care"
+                  className="text-primary py-[2px] hover:underline"
+                >
+                  Saree Care Guide
+                </a>
 
             <div className="space-y-4 mt-6">
               <p className="text-md text-gray-700">
@@ -89,8 +104,11 @@ const ProductPage = () => {
                 WhatsApp, Instagram, or Facebook.
                 <br />
                 We'll help you place your order!
-                <br/>
-                <em>Please bear with us while our full website is under development!</em>
+                <br />
+                <em>
+                  Please bear with us while our full website is under
+                  development!
+                </em>
               </p>
 
               <div className="flex gap-4">

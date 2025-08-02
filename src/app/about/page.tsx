@@ -29,7 +29,7 @@ const About = () => {
         className="relative min-h-screen w-full bg-cover bg-center text-primary mt-[100px] px-6 lg:px-20 py-16"
         style={{ backgroundImage: "url('/about/aboutbg.png')" }}
       >
-        <div className="absolute inset-0 bg-black/30 z-0" />
+        <div className="absolute inset-0 bg-black/50 z-0" />
         <div className="relative flex flex-col lg:flex-row md:mt-5 text-center items-center justify-between w-full gap-12 z-10 -w-7xl mx-auto mt-20">
           {/* Left */}
           <div className="flex-1 space-y-6 mt-10">
