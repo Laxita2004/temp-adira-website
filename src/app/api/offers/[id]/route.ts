@@ -2,9 +2,9 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // GET /api/offers/[id]
-export async function GET(_: Request, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
   try {
-    const saleId = Number(params.id);
+    const saleId = Number(context.params.id);
     if (isNaN(saleId)) {
       return NextResponse.json({ error: "Invalid sale ID" }, { status: 400 });
     }
@@ -26,9 +26,9 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
 
 // Edit Sale
 // PATCH /api/offers/[id]
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, context: { params: { id: string } }) {
   try {
-    const saleId = Number(params.id);
+    const saleId = Number(context.params.id);
     if (isNaN(saleId)) {
       return NextResponse.json({ error: "Invalid sale ID" }, { status: 400 });
     }
@@ -57,9 +57,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
 // Delete Sale
 // DELETE /api/offers/[id]
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_: Request, context: { params: { id: string } }) {
     try {
-        const saleId = Number(params.id)
+        const saleId = Number(context.params.id)
     const deletedSale = await prisma.offer.delete({
       where: { id: saleId },
     });
