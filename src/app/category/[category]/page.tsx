@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import AllSection from "@/components/shop/AllSection";
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
-  const category = params.category;
+type CategoryPageProps = {
+  params: {
+    category: string;
+  };
+};
 
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const category = params.category;
   return <AllSection defaultCategory={category} />;
 }
