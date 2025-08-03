@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 // This API fetches a specific product by its ID, including its images.
 // PATH: GET /api/products/${productId}
 export async function GET(
-  request: Request,
-  context: { params: { id: string } }
+  request,
+  context
 ) {
   try {
     const productId = Number(context.params.id);
@@ -40,11 +40,10 @@ export async function GET(
 
 // DELETE /api/products/[id]
 export const DELETE = async (
-  request: Request,
-  { params }: { params: { id: string } }
+  request, context
 ) => {
   try {
-    const productId = Number(params.id);
+    const productId = Number(context.params.id);
 
     if (isNaN(productId)) {
       return NextResponse.json({ error: "Invalid product ID" }, { status: 400 });
