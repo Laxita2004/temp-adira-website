@@ -5,10 +5,21 @@ import { NextResponse } from "next/server";
 // PATH: POST /api/user/testimonial
 export const POST = async (req: Request) => {
   try {
-    const { userId, productId, review } = await req.json();
+    const { userEmail, productId, review } = await req.json();
+
+    if (!userEmail || !productId || !review) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
     const testimonial = await prisma.testimonial.create({
-      data: { userId, productId, review },
+      data: {
+        userEmail,
+        productId,
+        review,
+      },
     });
 
     return NextResponse.json(testimonial);
