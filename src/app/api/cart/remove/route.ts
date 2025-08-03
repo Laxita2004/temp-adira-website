@@ -3,24 +3,22 @@ import { NextResponse } from "next/server";
 
 // This API removes a product from a user's cart using userId and productId
 // PATH:  /api/cart/remove
+// /api/cart/remove
 export const POST = async (req: Request) => {
   try {
-    // Parse the request body
-    const { userId, productId } = await req.json();
+    const { cartId, productId } = await req.json();
 
-    // Validate input
-    if (!userId || !productId) {
+    if (!cartId || !productId) {
       return NextResponse.json(
-        { error: "Missing userId or productId" },
+        { error: "Missing cartId or productId" },
         { status: 400 }
       );
     }
 
-    // Delete the cart item matching both userId and productId
     await prisma.cartItem.delete({
       where: {
-        userId_productId: {
-          userId,
+        cartId_productId: {
+          cartId,
           productId,
         },
       },
