@@ -1,8 +1,7 @@
 "use client";
-export const dynamic = "force-dynamic";
 import React from "react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { FaShoppingCart, FaEye } from "react-icons/fa";
 import FilterChip from "@/components/FilterChip";
@@ -103,27 +102,35 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
         {theme && <FilterChip paramKey="theme" paramValue={theme} />}
         {tag && <FilterChip paramKey="tag" paramValue={tag} />}
         {(minPrice || maxPrice) && (
-          <FilterChip
-            paramKey="minPrice"
-            paramValue={`${minPrice || "0"}–${maxPrice || "∞"}`}
-            label={`₹${minPrice || 0}–₹${maxPrice || "∞"}`}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <FilterChip
+              paramKey="minPrice"
+              paramValue={`${minPrice || "0"}–${maxPrice || "∞"}`}
+              label={`₹${minPrice || 0}–₹${maxPrice || "∞"}`}
+            />
+          </Suspense>
         )}
         {sort && (
-          <FilterChip
-            paramKey="sort"
-            paramValue={sort}
-            label={
-              sort === "lowToHigh" ? "Price: Low to High" : "Price: High to Low"
-            }
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <FilterChip
+              paramKey="sort"
+              paramValue={sort}
+              label={
+                sort === "lowToHigh"
+                  ? "Price: Low to High"
+                  : "Price: High to Low"
+              }
+            />
+          </Suspense>
         )}
         {offerId && (
-          <FilterChip
-            paramKey="offerId"
-            paramValue={offerId}
-            label={`Offer: ${offerTitle || offerId}`}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <FilterChip
+              paramKey="offerId"
+              paramValue={offerId}
+              label={`Offer: ${offerTitle || offerId}`}
+            />
+          </Suspense>
         )}
       </div>
 
@@ -141,14 +148,16 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
       </div>
 
       {/* Filter Modal */}
-      <FilterModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        availableCategories={availableCategories}
-        availableMaterials={availableMaterials}
-        availablePatterns={availablePatterns}
-        availableThemes={availableThemes}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <FilterModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          availableCategories={availableCategories}
+          availableMaterials={availableMaterials}
+          availablePatterns={availablePatterns}
+          availableThemes={availableThemes}
+        />
+      </Suspense>
 
       {/* Product Grid */}
       {loading ? (
@@ -158,7 +167,6 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product: any) => (
-            
             <div
               key={product.id}
               className="bg-white border rounded-xl overflow-hidden shadow-sm group relative"
