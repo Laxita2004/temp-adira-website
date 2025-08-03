@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 // This API removes a product from a user's cart using userId and productId
 // PATH:  /api/cart/remove
-// /api/cart/remove
 export const POST = async (req: Request) => {
   try {
     const { cartId, productId } = await req.json();

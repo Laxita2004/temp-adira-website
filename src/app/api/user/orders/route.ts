@@ -5,23 +5,30 @@ import { NextResponse } from "next/server";
 // PATH: GET /api/orders/user?userId=7
 export const GET = async (req: Request) => {
   try {
-    // Extract search params from the request URL
     const { searchParams } = new URL(req.url);
-    const userId = Number(searchParams.get("userId"));
+    const email = searchParams.get("email");
 
-    // Validate userId
-    if (isNaN(userId)) {
+    if (!email) {
       return NextResponse.json(
-        { error: "Invalid or missing userId" },
+        { error: "Missing user email" },
         { status: 400 }
       );
     }
 
-    // Fetch all orders placed by this user, including the items in each order
     const orders = await prisma.order.findMany({
-      where: { userId },
+      where: {
+        userEmail: email,
+      },
       include: {
-        items: true,
+        items: {
+          include: {
+            product: true, // optional: include product details in order items
+          },
+        },
+        payment: true, // optional: include payment info
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
 
