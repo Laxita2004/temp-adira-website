@@ -7,16 +7,16 @@ export const GET = async (req: Request) => {
   try {
     // Extract userId from URL query parameters
     const { searchParams } = new URL(req.url);
-    const userId = Number(searchParams.get("userId"));
+    const cartId = Number(searchParams.get("cartId"));
 
     // Validate userId
-    if (isNaN(userId)) {
+    if (isNaN(cartId)) {
       return NextResponse.json({ error: "Invalid userId" }, { status: 400 });
     }
 
     // Fetch cart items for the user, including related product details
     const cart = await prisma.cartItem.findMany({
-      where: { userId },
+      where: { cartId },
       include: { product: true },
     });
 
