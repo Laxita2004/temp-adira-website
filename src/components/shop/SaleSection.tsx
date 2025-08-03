@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { transcode } from "buffer";
 
 type Product = {
   id: number;
@@ -12,10 +13,10 @@ type Product = {
 type Offer = {
   id: number;
   title: string;
-  description: string;
+  bannerUrl: string;
   discountType: "FLAT" | "PERCENTAGE";
   discountValue: number;
-  bannerUrl: string;
+  description: string;
   products: Product[];
 };
 
@@ -28,9 +29,14 @@ const SalesSection = () => {
       try {
         const res = await fetch("/api/offers/active");
         const data = await res.json();
-        console.log("Fetched offers:", data);
+        // console.log("Fetched offers:", data);
         if (data.success) {
-          setOffers(data.offers);
+          const transformedOffers = data.offers.map((offer: any) => ({
+          ...offer,
+          products: offer.offerProducts.map((op: any) => op.product),
+        }));
+
+          setOffers(transformedOffers);
         }
       } catch (error) {
         console.error("Failed to fetch active offers:", error);

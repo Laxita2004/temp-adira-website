@@ -22,7 +22,7 @@ export async function GET() {
       },
     });
 
-    console.log("✅ /api/offers/active was called");
+    // console.log("✅ /api/offers/active was called");
 
     return NextResponse.json({ success: true, offers: activeOffers });
   } catch (error) {
