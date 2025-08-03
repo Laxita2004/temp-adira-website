@@ -1,5 +1,5 @@
 // app/shop/all/page.tsx
-
+"use client"
 import React from "react";
 import AllSection from "@/components/shop/AllSection"; // adjust path if needed
 import Header from "@/components/Header";
