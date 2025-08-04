@@ -167,9 +167,10 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product: any) => (
-            <div
+            <Link
+              href={`/shop/product/${product.id}`}
               key={product.id}
-              className="bg-white border rounded-xl overflow-hidden shadow-sm group relative"
+              className="bg-white border rounded-xl overflow-hidden shadow-sm group relative block"
             >
               {product.tags?.includes("new arrival") && (
                 <span className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
@@ -201,7 +202,7 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
                   </button> */}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
