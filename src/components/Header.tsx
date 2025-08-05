@@ -68,14 +68,21 @@ const Header = () => {
             Jaal Work
           </Link>
           <Link
-            href="/shop/all?pattern=statement%border"
+            href="/shop/all?pattern=scattered%20motifs"
+            onClick={() => setSidebarOpen(false)}
+            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+          >
+            Scattered Motifs (Khulla buta work)
+          </Link>
+          <Link
+            href="/shop/all?pattern=statement%20border"
             onClick={() => setSidebarOpen(false)}
             className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Statement Borders
           </Link>
           <Link
-            href="/shop/all?pattern=printed%chiffons"
+            href="/shop/all?pattern=printed%20chiffons"
             onClick={() => setSidebarOpen(false)}
             className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >

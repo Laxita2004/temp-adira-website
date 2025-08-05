@@ -8,7 +8,7 @@ interface Product {
   id: number;
   name: string;
   price: string;
-  imageUrl: string;
+  images: { url: string }[];
 }
 
 const BestSeller: React.FC = () => {
@@ -89,12 +89,11 @@ const BestSeller: React.FC = () => {
           <div
             key={item.id}
             className="relative min-w-[320px] group rounded-xl overflow-hidden shadow-lg bg-white"
+            onClick={() => router.push(`/shop/product/${item.id}`)}
           >
-            
-
             {/* Image */}
             <img
-              src={item.imageUrl}
+              src={item.images?.[0]?.url}
               alt={item.name}
               className="w-full h-80 object-cover"
             />
