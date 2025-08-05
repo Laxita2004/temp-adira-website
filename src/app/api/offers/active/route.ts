@@ -9,6 +9,7 @@ export async function GET() {
       where: {
         startsAt: { lte: today },
         endsAt: { gte: today },
+        isActive: true,
       },
       include: {
         offerProducts: {
