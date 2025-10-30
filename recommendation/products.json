@@ -1,0 +1,1045 @@
+[
+  {
+    "id": 12,
+    "title": "GulChaand",
+    "description": "A drape that blooms like poetry, Gulchaand is an ode to timeless artistry and quiet luxury. Hand-painted with delicate floral motifs, each brushstroke breathes life into the vibrant rani pink silk chiffon, creating a garden of grace in motion. The look is crowned with a moonlit silver zari border, adding a soft Banarasi shimmer that catches the light — and hearts — with every step.\n\nWhere tradition flows into modern elegance, Gulchaand is made for moments that deserve to be remembered.",
+    "category": "saree",
+    "price": "3500",
+    "tags": [
+      "hand painted",
+      "pink",
+      "rani pink"
+    ],
+    "materialId": 3,
+    "patternId": 6,
+    "themeId": 5,
+    "images": [
+      {
+        "id": 63,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372837/gg2_xowbkn.png",
+        "productId": 12
+      },
+      {
+        "id": 64,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372887/gg4_n7uvav.pnghttps://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372880/gg3_dcqhlp.png",
+        "productId": 12
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Niharika",
+    "description": "Mysterious, timeless, and effortlessly graceful — Niharika is a vision draped in contrast and charm. Set against a deep black canvas, delicate white hand-painted roses bloom like moonlit whispers. The saree is framed with a sleek satin border, adding structure to its fluid beauty, while a subtle shimmer weaves through, catching the light like stars in a midnight sky.\n\nElegant yet bold, Niharika is made for evenings where every step is a story, and every gaze lingers just a little longer.",
+    "category": "saree",
+    "price": "3800",
+    "tags": [
+      "black",
+      "bestseller",
+      "hand painted"
+    ],
+    "materialId": 3,
+    "patternId": 6,
+    "themeId": 6,
+    "images": [
+      {
+        "id": 65,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754373784/140_v1ahh0.png",
+        "productId": 13
+      },
+      {
+        "id": 66,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754373782/146_edly1x.png",
+        "productId": 13
+      },
+      {
+        "id": 67,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754373786/147_nu7iaw.png",
+        "productId": 13
+      },
+      {
+        "id": 68,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754373781/138_bex20y.png",
+        "productId": 13
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Yajnaseni",
+    "description": "A tribute to the fearless spirit of Draupadi, Yajnaseni is a saree that commands presence. In a fiery bright orange hue, this drape captures both power and poise. Crafted in luxe silk chiffon, it flows like flame — weightless yet unwavering.\n\nDelicately scattered pearl motifs glisten across the body like drops of strength and serenity, adding a touch of quiet luxury to its bold foundation.\n\nMade for the woman who walks with purpose, Yajnaseni is more than a saree — it’s a statement of strength, elegance, and timeless spirit.",
+    "category": "saree",
+    "price": "6200",
+    "tags": [
+      "orange",
+      "bestseller"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 69,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754374503/103_zig3no.png",
+        "productId": 14
+      },
+      {
+        "id": 70,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754374513/106_e2o0pi.png",
+        "productId": 14
+      },
+      {
+        "id": 71,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754374494/105_zvhiue.png",
+        "productId": 14
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Chandrika",
+    "description": "Radiating warmth and divine grace, Chandrika is a luminous celebration of love and tradition. Crafted from luxe silk chiffon, this ethereal saree drapes like a dream — featherlight yet regal. Its bright orange hue, reminiscent of the rising moon’s first blush, is perfect for the glow of Karwachauth nights.\n\nAdorned with delicate jaal-work, each thread tells a tale of timeless artistry. Whether under the moonlight or diya-lit evenings, Chandrika promises to make every festive moment unforgettable.",
+    "category": "saree",
+    "price": "14970",
+    "tags": [
+      "bestseller",
+      "new",
+      "jaal work",
+      "orange"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 25,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754210296/DSC_0071_nkej7y.jpg",
+        "productId": 4
+      },
+      {
+        "id": 26,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754209612/DSC_00883_uaaxpa.jpg",
+        "productId": 4
+      },
+      {
+        "id": 27,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754111763/DSC_00902_jz61tj.jpg",
+        "productId": 4
+      },
+      {
+        "id": 28,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754111763/DSC_00902_jz61tj.jpg",
+        "productId": 4
+      },
+      {
+        "id": 29,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754111675/DSC_0095_ijp3iz.jpg",
+        "productId": 4
+      },
+      {
+        "id": 30,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754110586/DSC_0085_orx4m4.jpg",
+        "productId": 4
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Saher",
+    "description": "Delicate as the first light of dawn, Saher is a soft pink dream woven in luxe silk chiffon. Featherlight and flowing, it drapes the body like poetry — effortless, serene, and graceful. Scattered (khulla buta) across the saree are hand-embellished bootas of sequins and pearls, each catching the light with subtle shimmer, like dew drops on a rose at sunrise.\n\nPerfect for intimate celebrations, pre-wedding rituals, or festive soirées, Saher is elegance reimagined for the modern muse who embraces tradition with a touch of sparkle.",
+    "category": "saree",
+    "price": "5100",
+    "tags": [
+      "scattered motifs",
+      "pink",
+      "pearls",
+      "sequins"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 36,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754318303/2_zkztrn.png",
+        "productId": 6
+      },
+      {
+        "id": 37,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754318356/5_vm29df.png",
+        "productId": 6
+      },
+      {
+        "id": 38,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754318346/3_yfsict.png",
+        "productId": 6
+      },
+      {
+        "id": 39,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754318303/2_zkztrn.png",
+        "productId": 6
+      },
+      {
+        "id": 40,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754213625/5_wcv6np.png",
+        "productId": 6
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Tulsi",
+    "description": "Rooted in purity and wrapped in grace, Tulsi is an ode to timeless Indian beauty. In a refreshing apple green hue, this saree is crafted in flowy luxe silk chiffon fabric and adorned with intricate jaal work all over, reminiscent of nature’s finest textures. The cutwork border adds a touch of structured sophistication, making it perfect for the modern woman who cherishes her heritage.\n\nWhether worn for festive rituals, day weddings, or cultural celebrations, Tulsi radiates quiet strength, tradition, and poise.",
+    "category": "saree",
+    "price": "6100",
+    "tags": [
+      "bestseller",
+      "new",
+      "green",
+      "jaal work"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 46,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754319717/4_plqt8f.png",
+        "productId": 8
+      },
+      {
+        "id": 47,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754319998/5_v6nn5e.png",
+        "productId": 8
+      },
+      {
+        "id": 48,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754319970/3_knzbm4.png",
+        "productId": 8
+      },
+      {
+        "id": 49,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754319712/2_il9mwd.png",
+        "productId": 8
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Arunya ",
+    "description": "As gentle as the morning’s first light, Arunya is a tender symphony of baby pink and butter yellow, brought to life with intricate pearl jaal work all over. The soft, pastel tones melt into each other like sunrise skies, while the lustrous pearls form delicate patterns that shimmer with grace.\n\nCrafted for haldi-mehendi mornings, elegant day functions, or summer festivities, Aarunya is light, luminous, and deeply feminine — made for those who carry warmth and serenity wherever they go.",
+    "category": "saree",
+    "price": "7890",
+    "tags": [
+      "bestseller",
+      "pink",
+      "yellow",
+      "jaal work",
+      "new"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 50,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754320441/5_af31de.png",
+        "productId": 9
+      },
+      {
+        "id": 51,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754320436/4_n72mck.png",
+        "productId": 9
+      },
+      {
+        "id": 52,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754320327/3_cqvgrw.png",
+        "productId": 9
+      },
+      {
+        "id": 53,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754320421/2_adrbpv.png",
+        "productId": 9
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Ratnangi",
+    "description": "Draped in the richness of tradition and the sparkle of celebration, Ratnangi is a masterpiece in luxe silk chiffon. Its bold red base is brought to life with intricate jaal work in yellow resham dhaga, woven like rays of devotion. Scattered across this tapestry are glimmering gemstones, adding an ethereal glow that catches every eye and every light.\n\nA saree made for moments that matter — from bridal pheras to festive evenings, Ratnangi is more than a garment; it's a living expression of heritage, artistry, and inner fire.",
+    "category": "saree",
+    "price": "5050",
+    "tags": [
+      "bestseller",
+      "new",
+      "red",
+      "jaal work",
+      "yellow"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 54,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754370876/3_rgof3t.png",
+        "productId": 10
+      },
+      {
+        "id": 55,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754370887/5_oiou5f.png",
+        "productId": 10
+      },
+      {
+        "id": 56,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754370881/4_qelvfg.png",
+        "productId": 10
+      },
+      {
+        "id": 57,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754370872/2_trkcdw.png",
+        "productId": 10
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Ruhani",
+    "description": "Soft as a whisper and radiant as a dream, Ruhani is a saree that speaks to the soul. In a delicate blend of blush pink and serene blue, it drapes like poetry in motion — fluid, feminine, and timeless. The surface is brought to life with intricate cut dana and sequin jaal work, creating a soft shimmer that glows with every movement.\n\nCrafted for twilight weddings, cocktail evenings, or dreamy festivities, Ruhani isn’t just worn — it’s felt. A perfect harmony of color and craftsmanship, light and soul.",
+    "category": "saree",
+    "price": "5520",
+    "tags": [
+      "bestseller",
+      "new",
+      "pink",
+      "blue",
+      "jaal work"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 58,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372562/210_jhzcxj.png",
+        "productId": 11
+      },
+      {
+        "id": 59,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372571/212_zczwh0.png",
+        "productId": 11
+      },
+      {
+        "id": 60,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372577/213_abfxfb.png",
+        "productId": 11
+      },
+      {
+        "id": 61,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372567/211_qj0nhr.png",
+        "productId": 11
+      },
+      {
+        "id": 62,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754372581/STORY_ozqkyk.png",
+        "productId": 11
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Mayurika",
+    "description": "Vivid like a festival fire and regal like the peacock’s plume, Mayurika is a saree that turns every glance into admiration. In glowing shades of bright red and orange, it flows like a sunset woven into silk. The true showstopper? Its grand statement border, richly adorned with aari-taari embroidery, glimmering sequins, and majestic peacock motifs — each detail handcrafted to perfection.\n\nFiery in color and regal in craft, Mayurika is meant for those who dress not just to impress, but to express.",
+    "category": "saree",
+    "price": "11500",
+    "tags": [
+      "new",
+      "statement border",
+      "red",
+      "orange"
+    ],
+    "materialId": 3,
+    "patternId": 4,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 72,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375103/214_zanirs.png",
+        "productId": 15
+      },
+      {
+        "id": 73,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375107/215_w3vect.png",
+        "productId": 15
+      },
+      {
+        "id": 74,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375111/216_eqzjre.png",
+        "productId": 15
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Induja",
+    "description": "A celestial drape in deep midnight blue, Induja embodies quiet strength and luminous grace. The statement border glistens with intricate pittan work, adding a regal weight to the otherwise fluid silhouette. Woven in luxe silk chiffon, this saree captures the mystery of a moonlit night — serene, radiant, and unforgettable.\n\nPerfect for evenings that demand poise with a hint of drama.",
+    "category": "saree",
+    "price": "6300",
+    "tags": [
+      "bestseller",
+      "pittan work",
+      "statement border"
+    ],
+    "materialId": 3,
+    "patternId": 4,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 75,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375969/219_wkwexi.png",
+        "productId": 16
+      },
+      {
+        "id": 76,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375956/217_yb0rih.png",
+        "productId": 16
+      },
+      {
+        "id": 77,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375963/218_pkmnrt.png",
+        "productId": 16
+      },
+      {
+        "id": 78,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375978/221_ofqa88.png",
+        "productId": 16
+      },
+      {
+        "id": 79,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754375978/221_ofqa88.png",
+        "productId": 16
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Roohgulab",
+    "description": "Soft as a sigh and radiant like first love — Roohgulab is a saree dipped in the gentlest shade of pink, graced with a shimmering cut dana and sequin statement border. Crafted in luxe silk chiffon, it moves like poetry and glows with a quiet charm. A timeless pick for celebrations where subtlety speaks louder than sparkle.",
+    "category": "saree",
+    "price": "8050",
+    "tags": [
+      "bestseller",
+      "new",
+      "pink",
+      "statement border"
+    ],
+    "materialId": 3,
+    "patternId": 4,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 80,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754376565/205_j3ihxx.png",
+        "productId": 17
+      },
+      {
+        "id": 81,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754376570/206_ccroxz.png",
+        "productId": 17
+      },
+      {
+        "id": 82,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754376575/207_lvxuzv.png",
+        "productId": 17
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Tarini",
+    "description": "A celebration of nature’s poetry — this forest green drape is adorned with intricate jaal work that weaves tales of tradition. Accentuated with delicate mor pankh motifs, it captures the soul of the wild — regal, rhythmic, and resplendent. Crafted in soft luxe chiffon, this saree whispers elegance in every fold.",
+    "category": "saree",
+    "price": "10350",
+    "tags": [
+      "bestseller",
+      "jaal work",
+      "green"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 83,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754378128/224_orha9r.png",
+        "productId": 18
+      },
+      {
+        "id": 84,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754378117/223_ldsfsi.png",
+        "productId": 18
+      },
+      {
+        "id": 85,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754378112/222_rvdie0.png",
+        "productId": 18
+      },
+      {
+        "id": 86,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754378123/225_tx3axe.png",
+        "productId": 18
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Wisteria",
+    "description": "In a mesmerizing shade of amethyst, Wisteria is a drape where mystique meets brilliance. Scattered with delicate motifs crafted from bright blue sequins and cutdana, each shimmer mirrors twilight skies brushed with wild blooms. A saree that feels like dusk in full bloom — soft, whimsical, and quietly radiant.",
+    "category": "saree",
+    "price": "5100",
+    "tags": [
+      "purple",
+      "blue"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 6,
+    "images": [
+      {
+        "id": 87,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754379001/148_isdfih.png",
+        "productId": 19
+      },
+      {
+        "id": 88,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754379006/149_hamtaj.png",
+        "productId": 19
+      },
+      {
+        "id": 89,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754379011/150_qlukr7.png",
+        "productId": 19
+      },
+      {
+        "id": 90,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754379016/151_rkwf0b.png",
+        "productId": 19
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Nandini",
+    "description": "Nandini — a name that symbolizes joy, prosperity, and divine femininity — is a saree that radiates sunshine and sweetness in equal measure.\n\nThis drape is a soft celebration of yellow and pink, two hues that blend like a summer sunrise — gentle, vibrant, and full of life. Crafted in luxe silk chiffon, it flows like a whisper around you — airy, graceful, and endlessly elegant.\n\nScattered all over the saree are dainty motifs, glinting softly like wildflowers in bloom, adding a delicate touch of charm. The cut work border is where craftsmanship truly shines — intricate, elegant, and adding the perfect hint of drama to this otherwise dreamy silhouette.\n\nNandini is a saree that holds both lightness and beauty in its folds. Whether it’s for a mehendi celebration, a morning puja, or a heartfelt gifting moment, this saree is woven to make memories — effortlessly timeless and tender.",
+    "category": "saree",
+    "price": "5800",
+    "tags": [
+      "bestseller",
+      "yellow",
+      "pink"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 91,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754381880/259_cfnecz.png",
+        "productId": 20
+      },
+      {
+        "id": 92,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754381956/261_ibmu3h.png",
+        "productId": 20
+      },
+      {
+        "id": 93,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754381858/260_jbpb6x.png",
+        "productId": 20
+      },
+      {
+        "id": 94,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382209/262_riounp.png",
+        "productId": 20
+      },
+      {
+        "id": 95,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382217/263_udbrks.png",
+        "productId": 20
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Hridya",
+    "description": "Hridya — meaning \"of the heart\" — is a saree that speaks in the softest language of beauty and grace. Drenched in a stunning play of yellow and green, it echoes the joy of nature in bloom — vibrant, soothing, and full of life.\n\nCrafted in airy, luxe chiffon, Hridya feels like a breeze on the skin — light, flowy, and feminine. The entire drape is adorned with delicate sequin motifs, scattered like stardust, adding a shimmer that catches the light with every movement. The jaal work runs through the fabric like vines of gold — intricate and mesmerizing, creating a quiet opulence.\n\nIt’s a saree that feels festive yet serene — perfect for golden mornings, spring weddings, haldi afternoons, or any moment where you want your heart to shine through your drape. Hridya is not just a saree — it’s a feeling.",
+    "category": "saree",
+    "price": "7360",
+    "tags": [
+      "bestseller",
+      "jaal work",
+      "green",
+      "yellow"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 96,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382375/255_fjahsm.png",
+        "productId": 21
+      },
+      {
+        "id": 97,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382380/256_isho1f.png",
+        "productId": 21
+      },
+      {
+        "id": 98,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382386/258_cct7j3.png",
+        "productId": 21
+      },
+      {
+        "id": 99,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382390/257_wsdjo0.png",
+        "productId": 21
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Gauri",
+    "description": "Gauri — named after the radiant and auspicious form of the Goddess — is a vision of divine grace and timeless allure. In a deep, vibrant red, the saree holds the warmth of traditions and the strength of womanhood, just like the goddess it is inspired by.\n\nCrafted in luxe silk chiffon, it moves like a whisper, soft and fluid, yet striking in its presence. The all-over jaal work, delicate yet intricate, wraps the saree in a web of artistry, symbolizing celebration and craftsmanship. What makes Gauri truly ethereal are the unexpected yet enchanting sky blue motifs, dancing over the red canvas like blessings from the skies — adding a pop of calm to the passion.\n\nGauri is made for moments of reverence — for weddings, rituals, or simply when you want to feel divine. It’s a saree that blends the sacred with the stylish, draping you in stories, sentiments, and sheer splendor.",
+    "category": "saree",
+    "price": "7600",
+    "tags": [
+      "jaal work",
+      "red"
+    ],
+    "materialId": 3,
+    "patternId": 3,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 100,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382510/252_rqkziw.png",
+        "productId": 22
+      },
+      {
+        "id": 101,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382505/251_thoflg.png",
+        "productId": 22
+      },
+      {
+        "id": 102,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382520/254_jhtrpo.png",
+        "productId": 22
+      },
+      {
+        "id": 103,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382515/253_ojlcim.png",
+        "productId": 22
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Pakhi",
+    "description": "Pakhi — meaning bird — is a celebration of freedom, grace, and femininity. Drenched in a rich rani pink, this saree sings of vibrance and strength, just like the spirited flight of a bird across an open sky.\n\nCrafted in soft, flowing luxe chiffon, it drapes like a gentle breeze — airy, effortless, and luminous. The saree is adorned with delicate bird motifs, scattered thoughtfully like little whispers of nature — a tribute to the winged wonders that symbolize joy, new beginnings, and boundless dreams.\n\nPakhi isn’t just a saree — it’s a feeling. It’s for the woman who soars high, yet always carries the warmth of her roots. For festive mornings or starlit evenings, this drape becomes a flight into grace, wrapped in color, culture, and quiet confidence.",
+    "category": "saree",
+    "price": "6670",
+    "tags": [
+      "rani pink"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 104,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382732/249_bajwyb.png",
+        "productId": 23
+      },
+      {
+        "id": 105,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382727/248_bwjnkt.png",
+        "productId": 23
+      },
+      {
+        "id": 106,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382737/250_y2b8ao.png",
+        "productId": 23
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Leher",
+    "description": "Leher — a name that means \"wave\" — flows like poetry across the body, draped in hues of deep, regal purple. This leheriya saree captures the rhythm of tradition and the fluidity of movement, as if each stripe echoes the rise and fall of music, memories, and dreams.\n\nCrafted in luxe silk chiffon, it carries the grace of air and water — light, free, and impossibly soft. Scattered bootas shimmer gently across the fabric like quiet blessings — each hand-placed motif a reminder that beauty often lies in the little things.\n\nRooted in heritage but styled for the now, Leher is a drape that dances with you. Whether it’s a festive gathering, a soulful mehendi, or an evening filled with soft lights and laughter — this saree becomes part of your story, flowing with your every step, like waves on the shore of celebration.",
+    "category": "saree",
+    "price": "5060",
+    "tags": [
+      "leheriya"
+    ],
+    "materialId": 3,
+    "patternId": 7,
+    "themeId": 5,
+    "images": [
+      {
+        "id": 107,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382832/247_xgghzv.png",
+        "productId": 24
+      },
+      {
+        "id": 108,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382827/246_ryc0gr.png",
+        "productId": 24
+      },
+      {
+        "id": 109,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382823/245_der8wg.png",
+        "productId": 24
+      },
+      {
+        "id": 110,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382817/244_fmwgci.png",
+        "productId": 24
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Vaasanti",
+    "description": "As tender as the first breeze of spring and as poetic as a field of blooming wildflowers — Vaasanti captures the very soul of the season it is named after. Draped in soft pastel hues that echo the blush of cherry blossoms, the freshness of new leaves, and the golden warmth of sunlight, this saree is a celebration of renewal, hope, and quiet joy.\n\nCrafted in flowing silk chiffon, Vaasanti feels like a whisper against the skin — weightless yet full of presence. Scattered motifs shimmer gently across the fabric like petals caught mid-air, lending it a gentle sparkle with every step. It’s a drape that makes you feel like you’ve stepped into your softest, most dreamlike self — perfect for a morning celebration or a moment of still beauty.",
+    "category": "saree",
+    "price": "6550",
+    "tags": [
+      "bestseller",
+      "blue",
+      "pink",
+      "green"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 3,
+    "images": [
+      {
+        "id": 111,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382980/240_dqkjzh.png",
+        "productId": 25
+      },
+      {
+        "id": 112,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382987/242_see6eu.png",
+        "productId": 25
+      },
+      {
+        "id": 113,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382991/241_ouvrfw.png",
+        "productId": 25
+      },
+      {
+        "id": 114,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754382996/243_otvexn.png",
+        "productId": 25
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Haripriya",
+    "description": "A symphony of serenity and strength, Haripriya is a shaded masterpiece where ocean blue gently melts into forest green — a palette inspired by nature’s most soulful elements. Crafted in our luxe chiffon fabric, the saree drapes like a dream, light as air yet striking in presence. Scattered hand-embroidered motifs glisten subtly across the body like stars in twilight, while the understated border grounds the ethereal flow with quiet elegance.\n\nHaripriya, meaning “beloved of Lord Vishnu,” is more than a name — it is an emotion. It speaks of devotion wrapped in dignity, of a woman who carries her calm like a crown and her grace like armor. This drape is made for moments when your spirit seeks beauty that’s gentle, grounding, and timeless.",
+    "category": "saree",
+    "price": "6550",
+    "tags": [
+      "bestseller",
+      "green",
+      "blue"
+    ],
+    "materialId": 3,
+    "patternId": 5,
+    "themeId": 4,
+    "images": [
+      {
+        "id": 115,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383181/236_fop44b.png",
+        "productId": 26
+      },
+      {
+        "id": 116,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383188/237_zriovg.png",
+        "productId": 26
+      },
+      {
+        "id": 117,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383192/238_lbtyae.png",
+        "productId": 26
+      },
+      {
+        "id": 118,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383197/239_w5lhn5.png",
+        "productId": 26
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Shreeja",
+    "description": "A whisper of elegance woven in light peach, Shreeja is grace personified. Crafted in our signature luxe silk chiffon, the saree flows like poetry in motion — soft, airy, and unforgettably feminine. Delicate floral motifs bloom gently across the drape, each petal hand-placed to mirror nature’s quiet charm. The border, subtle yet distinct, lends structure to the fluidity, framing the saree with refined charm.\n\nShreeja — meaning \"born from prosperity\" — is a tribute to effortless beauty and inner radiance. It’s for the woman who walks with kindness, speaks with wisdom, and carries tradition like an heirloom passed down through lifetimes. Adorn this drape when you want to feel light, luminous, and unapologetically you.",
+    "category": "saree",
+    "price": "4500",
+    "tags": [
+      "printed chiffon",
+      "peach"
+    ],
+    "materialId": 3,
+    "patternId": 8,
+    "themeId": 7,
+    "images": [
+      {
+        "id": 119,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383337/234_ofqgq4.png",
+        "productId": 27
+      },
+      {
+        "id": 120,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383342/233_jpu2gy.png",
+        "productId": 27
+      },
+      {
+        "id": 121,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383331/232_mlutjf.png",
+        "productId": 27
+      },
+      {
+        "id": 122,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383483/235_zomme2.png",
+        "productId": 27
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Sharda",
+    "description": "Rooted in divinity and designed with depth, Sharda is a tribute to wisdom, strength, and sacred femininity. Crafted in earthy maroon, the color of devotion and richness, this saree features delicate resham dhaga motifs that add texture and grace. The natural crepe fabric lends a beautiful fall — understated yet majestic. Named after the Goddess of knowledge, Sharda is for the seeker, the nurturer, the woman who leads with soul and speaks with silence. A saree that feels as powerful as it is peaceful.",
+    "category": "saree",
+    "price": "4200",
+    "tags": [
+      "maroon",
+      "bestseller",
+      "new"
+    ],
+    "materialId": 4,
+    "patternId": 5,
+    "themeId": 6,
+    "images": [
+      {
+        "id": 123,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383735/230_bk23g8.png",
+        "productId": 28
+      },
+      {
+        "id": 124,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383740/231_fup4yd.png",
+        "productId": 28
+      },
+      {
+        "id": 125,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754383729/229_vwjab0.png",
+        "productId": 28
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Hansa",
+    "description": "Hansa is a whisper of blush, a soft echo of roses in full bloom. In a delicate baby pink hue, this saree is adorned with scattered rose motifs, lovingly embroidered to capture nature’s grace. Fine sequins sparkle gently across the drape, mimicking morning dew on petals. Feminine, calm, and quietly captivating — Hansa is made for occasions where elegance must speak softly yet be felt deeply. A saree that’s all heart — gentle, graceful, and timeless.",
+    "category": "saree",
+    "price": "3700",
+    "tags": [
+      "bestseller",
+      "pink",
+      "floral"
+    ],
+    "materialId": 3,
+    "patternId": 8,
+    "themeId": 7,
+    "images": [
+      {
+        "id": 126,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384149/226_hpr4qt.png",
+        "productId": 29
+      },
+      {
+        "id": 127,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384154/228_zqe8u6.png",
+        "productId": 29
+      },
+      {
+        "id": 128,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384159/227_ertngf.png",
+        "productId": 29
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Arohi",
+    "description": "Like a festive song rising in crescendo, Arohi is designed for the soul that dances in joy. This vibrant leheriya saree in shades of peach and yellow mirrors the rhythm of Rajasthani festivities. Accented with glimmering gota patti work, every fold of this saree tells a story of handcrafted love and celebration. Draped in its bright hues and swaying patterns, Arohi makes you feel like the melody at the heart of every moment. Traditional yet youthful — a perfect choice for pre-wedding revelries or festive mornings.",
+    "category": "saree",
+    "price": "6600",
+    "tags": [
+      "leheriya",
+      "yellow",
+      "peach",
+      "bestseller"
+    ],
+    "materialId": 3,
+    "patternId": 7,
+    "themeId": 5,
+    "images": [
+      {
+        "id": 129,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384326/199_t8mf8m.png",
+        "productId": 30
+      },
+      {
+        "id": 130,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384319/198_giltgi.pnghttps://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384331/201_rpicvd.png",
+        "productId": 30
+      },
+      {
+        "id": 131,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384336/200_sw8jly.png",
+        "productId": 30
+      },
+      {
+        "id": 132,
+        "url": "",
+        "productId": 30
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "title": "Nargis",
+    "description": "There’s something timeless about flowers in bloom and the soft drape of chiffon — Nargis brings both together in a poetic dance. The rich mustard yellow base, softened with a spray of floral prints, speaks of golden hour meadows and warm autumn winds. The saree’s airy silk chiffon drape ensures it floats like a whisper around you, while its subtle border frames the beauty within. Nargis is for the quiet romantic — rooted in elegance, with a heart that blooms in every season.",
+    "category": "saree",
+    "price": "4000",
+    "tags": [
+      "bestseller",
+      "floral",
+      "printed chiffon"
+    ],
+    "materialId": 3,
+    "patternId": 8,
+    "themeId": 7,
+    "images": [
+      {
+        "id": 133,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384522/176_jxyxls.png",
+        "productId": 31
+      },
+      {
+        "id": 134,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384527/177_spaftl.png",
+        "productId": 31
+      },
+      {
+        "id": 135,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384538/179_s4eghn.png",
+        "productId": 31
+      },
+      {
+        "id": 136,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384544/180_ccthdf.png",
+        "productId": 31
+      },
+      {
+        "id": 137,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384533/178_wlbmw8.png",
+        "productId": 31
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Ruby",
+    "description": "Dramatic, bold, and unapologetically glamorous — Ruby is a celebration of feminine fire. Draped in a deep rani pink that commands attention, this saree features an all-over sequins jaal that shimmers with every movement, catching light and glances alike. The cutwork border adds a dash of contemporary charm while retaining classic glamour. Ruby is for the woman who walks into a room and owns it — regal, radiant, and rare.",
+    "category": "saree",
+    "price": "6200",
+    "tags": [
+      "bestseller",
+      "cut work",
+      "rani pink"
+    ],
+    "materialId": 3,
+    "patternId": 9,
+    "themeId": 6,
+    "images": [
+      {
+        "id": 138,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384605/170_vb8lly.png",
+        "productId": 32
+      },
+      {
+        "id": 139,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384616/173_si48zc.png",
+        "productId": 32
+      },
+      {
+        "id": 140,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384622/174_zk5jq5.png",
+        "productId": 32
+      },
+      {
+        "id": 141,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384593/167_wiecq4.png",
+        "productId": 32
+      },
+      {
+        "id": 142,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384600/171_rsey4e.png",
+        "productId": 32
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "title": "Kanak",
+    "description": "Like sunlight woven into six yards, Kanak is an ode to warmth, festivity, and grace. Crafted in a glowing yellow hue that instantly uplifts, this saree is adorned with delicate gota patti work — each floral motif hand-placed like blessings from nature herself. Its soft, breathable luxe silk chiffon fabric flows effortlessly, making it a perfect blend of comfort and elegance. Whether you're walking into a haldi celebration or a morning ritual, Kanak evokes tradition with a joyful, radiant spirit.",
+    "category": "saree",
+    "price": "3570",
+    "tags": [
+      "bestseller",
+      "haldi",
+      "yellow",
+      "gota patti"
+    ],
+    "materialId": 3,
+    "patternId": 10,
+    "themeId": 7,
+    "images": [
+      {
+        "id": 143,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384979/165_avz0jg.png",
+        "productId": 33
+      },
+      {
+        "id": 144,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384973/164_orxiyt.png",
+        "productId": 33
+      },
+      {
+        "id": 145,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384967/158_tgpwcb.png",
+        "productId": 33
+      },
+      {
+        "id": 146,
+        "url": "https://res.cloudinary.com/dlkpsy7j5/image/upload/v1754384945/156_rsgbyz.png",
+        "productId": 33
+      }
+    ]
+  }
+]

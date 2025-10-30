@@ -18,6 +18,7 @@ const ProductPage = () => {
   const router = useRouter();
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedImage, setSelectedImage] = useState<string>("");
+  const [recommendations, setRecommendations] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,6 +36,22 @@ const ProductPage = () => {
 
     if (id) fetchProduct();
   }, [id]);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      if (!product?.title) return;
+      try {
+        const res = await fetch(`http://127.0.0.1:8000/recommend?title=${encodeURIComponent(product?.title)}`);
+        const data = await res.json();
+        console.log("Recommendations response:", data);
+        setRecommendations(data.recommendations || []);
+      } catch (err) {
+        console.error("Failed to fetch recommendations:", err);
+      }
+    };
+
+    fetchRecommendations();
+  }, [product]);
 
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -132,7 +149,35 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
+        {recommendations.length > 0 && (
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">
+            You may also like...
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {recommendations.map((rec) => (
+              <div 
+                key = {rec.id}
+                className="border rounded-lg shadow hover:shadow-lg transition"
+                onClick = {() => router.push(`/shop/product/${rec.id}`)}
+                >
+                  <img 
+                    src={rec.images?.[0]?.url || "/placeholder.jpg"}
+                    alt={rec.title}
+                    className="w-full h-64 object-cover rounded-t-lg"
+                    />
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold">{rec.title}</h3>
+                    <p className="text-green-700 font-medium">₹{rec.price}</p>
+                  </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       </div>
+
+      
 
       <Footer />
     </>
