@@ -147,22 +147,6 @@ This approach ensures efficient, scalable, and content-driven recommendations wi
 
 ---
 
-## 📸 Screenshots
-
-| Product Page                           | Recommendations                              |
-| -------------------------------------- | -------------------------------------------- |
-| ![Product Page](docs/product-page.png) | ![Recommendations](docs/recommendations.png) |
-
----
-
-## 🧑‍💻 Author
-
-**Laxita Thakur**
-Cloud & Full Stack Developer
-📧 [[email@domain.com](mailto:email@domain.com)] | 🌐 [Portfolio Link] | 💼 [LinkedIn Profile]
-
----
-
 ## 📜 License
 
 This project is licensed under the **MIT License** — feel free to use and modify it with credit.
