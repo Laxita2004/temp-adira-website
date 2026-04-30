@@ -1,12 +1,13 @@
 "use client";
 
-import TopBar from "@/components/shop/TopBar";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import FadeInSection from "@/components/FadeIn";
+import TopBar from "@/components/shop/TopBar";
 import BestSeller from "@/components/shop/BestSeller";
 import SalesSection from "@/components/shop/SaleSection";
 import NewInSection from "@/components/shop/NewInSection";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 
 const shop = () => {
   return (

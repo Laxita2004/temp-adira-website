@@ -1,46 +1,137 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const Register= () => {
-    return (
-        <div className="flex items-center justify-center min-h-screen bg-light px-4">
-            <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-                <h2 className="text-3xl font-bold text-center mb-2 text-primary">Register</h2>
-                <p className="text-sm text-secondary text-center mb-6 mt-0">And be a part of the Adira family!</p>
+const Register = () => {
+  const router = useRouter();
 
-                <form className="space-y-4">
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    name: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong");
+      } else {
+        alert("Registered successfully!");
+        router.push("/login");
+      }
+    } catch (err) {
+      setError("Network error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-light px-4">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center mb-2 text-primary">
+          Register
+        </h2>
+        <p className="text-sm text-secondary text-center mb-6">
+          And be a part of the Adira family!
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name */}
+          <div>
+            <label className="block mb-1 text-sm font-medium">Name</label>
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded-lg px-4 py-2"
+              placeholder="Your name"
+            />
+          </div>
+
+          {/* Email */}
           <div>
             <label className="block mb-1 text-sm font-medium">Email</label>
             <input
+              name="email"
               type="email"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded-lg px-4 py-2"
               placeholder="you@example.com"
             />
           </div>
 
+          {/* Password */}
           <div>
             <label className="block mb-1 text-sm font-medium">Password</label>
             <input
+              name="password"
               type="password"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary"
+              value={form.password}
+              onChange={handleChange}
+              required
+              minLength={6}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2"
               placeholder="••••••••"
             />
           </div>
 
-          <button type="submit" className="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary/90">
-            Register
+          {/* Error */}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          {/* Success */}
+          {success && <p className="text-green-600 text-sm">{success}</p>}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50"
+          >
+            {loading ? "Registering..." : "Register"}
           </button>
         </form>
 
         <p className="text-center text-sm mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-primary hover:underline">Login</Link>
+          <Link href="/login" className="text-primary hover:underline">
+            Login
+          </Link>
         </p>
-            </div>
-        </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 export default Register;
