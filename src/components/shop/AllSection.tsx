@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
-import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { FaShoppingCart, FaEye } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import FilterChip from "@/components/FilterChip";
 import FilterModal from "@/components/FilterModal";
 
@@ -31,7 +30,7 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
   const offerId = searchParams.get("offerId");
   const [offerTitle, setOfferTitle] = useState("");
 
-  // fetch filters
+  // Fetch Filters
   useEffect(() => {
     const fetchFilters = async () => {
       const res = await fetch("/api/products/filters");
@@ -44,15 +43,14 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
     fetchFilters();
   }, []);
 
+  // Fetch offer title
   useEffect(() => {
+    if (!offerId) return;
     const fetchOffer = async () => {
-      if (!offerId) return;
       try {
         const res = await fetch(`/api/offers/${offerId}`);
         const data = await res.json();
-        if (data?.title) {
-          setOfferTitle(data.title);
-        }
+        if (data?.title) setOfferTitle(data.title);
       } catch (err) {
         console.error("Error fetching offer title:", err);
       }
@@ -60,7 +58,7 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
     fetchOffer();
   }, [offerId]);
 
-  // fetch products
+  // Fetch Products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -92,6 +90,10 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
     fetchProducts();
   }, [category, tag, pattern, material, minPrice, maxPrice, sort]);
 
+  const handleCardClick = (id: string) => {
+    router.push(`/shop/product/${id}`);
+  };
+
   return (
     <section className="px-4 md:px-10 py-16 bg-light">
       {/* Applied Filter Chips */}
@@ -101,50 +103,40 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
         {material && <FilterChip paramKey="material" paramValue={material} />}
         {theme && <FilterChip paramKey="theme" paramValue={theme} />}
         {tag && <FilterChip paramKey="tag" paramValue={tag} />}
+
         {(minPrice || maxPrice) && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <FilterChip
-              paramKey="minPrice"
-              paramValue={`${minPrice || "0"}–${maxPrice || "∞"}`}
-              label={`₹${minPrice || 0}–₹${maxPrice || "∞"}`}
-            />
-          </Suspense>
+          <FilterChip
+            paramKey="minPrice"
+            paramValue={`${minPrice || "0"}–${maxPrice || "∞"}`}
+            label={`₹${minPrice || 0}–₹${maxPrice || "∞"}`}
+          />
         )}
+
         {sort && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <FilterChip
-              paramKey="sort"
-              paramValue={sort}
-              label={
-                sort === "lowToHigh"
-                  ? "Price: Low to High"
-                  : "Price: High to Low"
-              }
-            />
-          </Suspense>
+          <FilterChip
+            paramKey="sort"
+            paramValue={sort}
+            label={sort === "lowToHigh" ? "Price: Low to High" : "Price: High to Low"}
+          />
         )}
+
         {offerId && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <FilterChip
-              paramKey="offerId"
-              paramValue={offerId}
-              label={`Offer: ${offerTitle || offerId}`}
-            />
-          </Suspense>
+          <FilterChip
+            paramKey="offerId"
+            paramValue={offerId}
+            label={`Offer: ${offerTitle || offerId}`}
+          />
         )}
       </div>
 
-      {/* Filter & Sort Options */}
+      {/* Filters Modal Button */}
       <div className="flex justify-between items-center mb-8 text-sm text-gray-600">
-        <div className="flex gap-4">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="underline underline-offset-4"
-          >
-            More Filters
-          </button>
-        </div>
-        {/* <div>Recommended</div> */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="underline underline-offset-4"
+        >
+          More Filters
+        </button>
       </div>
 
       {/* Filter Modal */}
@@ -167,21 +159,23 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product: any) => (
-            <Link
-              href={`/shop/product/${product.id}`}
+            <div
               key={product.id}
-              className="bg-white border rounded-xl overflow-hidden shadow-sm group relative block"
+              onClick={() => handleCardClick(product.id)}
+              className="bg-white border rounded-xl overflow-hidden shadow-sm group relative block cursor-pointer"
             >
               {product.tags?.includes("new arrival") && (
                 <span className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
                   New Arrival
                 </span>
               )}
+
               <img
-                src={product.images?.[0]?.url}
+                src={product.images?.[0]?.url || null}
                 alt={product.title}
                 className="w-full h-64 object-cover"
               />
+
               <div className="p-4 mt-2">
                 <h3 className="text-lg bg-yellow text-black font-bold capitalize">
                   {product.title}
@@ -190,19 +184,20 @@ const AllSection = ({ defaultCategory }: { defaultCategory?: string }) => {
                   <span className="font-bold">₹{product.price}</span>
                 </div>
               </div>
+
+              {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex justify-center items-center">
-                <div className="flex flex-col gap-2">
-                  <Link href={`/shop/product/${product.id}`}>
-                    <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
-                      <FaEye className="text-lg" /> View Product
-                    </button>
-                  </Link>
-                  {/* <button className="bg-white text-primary px-3 py-1 text-xs font-large rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition">
-                    <FaShoppingCart className="text-lg" /> Add to Cart
-                  </button> */}
-                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/shop/product/${product.id}`);
+                  }}
+                  className="bg-white text-primary px-3 py-1 text-xs rounded-full flex items-center gap-2 justify-center hover:bg-primary hover:text-white transition"
+                >
+                  <FaEye className="text-lg" /> View Product
+                </button>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}
