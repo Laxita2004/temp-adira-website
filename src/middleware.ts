@@ -10,23 +10,25 @@ export async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  // Public routes
-  const publicRoutes = ["/", "/login", "/register"];
-
-  if (publicRoutes.includes(pathname)) {
-    return NextResponse.next();
+  // 🔹 Redirect logged-in users away from login
+  if (pathname === "/login" && token) {
+    if (token.role === "ADMIN") {
+      return NextResponse.redirect(new URL("/admin", req.url));
+    }
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // Protected routes (require login)
-  const userRoutes = ["/cart", "/profile"];
-
-  if (userRoutes.some((route) => pathname.startsWith(route))) {
+  // 🔹 Protect user routes
+  if (
+    pathname.startsWith("/cart") ||
+    pathname.startsWith("/profile")
+  ) {
     if (!token) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
   }
 
-  // Admin routes
+  // 🔹 Protect admin routes
   if (pathname.startsWith("/admin")) {
     if (!token) {
       return NextResponse.redirect(new URL("/login", req.url));

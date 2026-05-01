@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 
 const Login = () => {
   const router = useRouter();
@@ -37,10 +38,16 @@ const Login = () => {
     setLoading(false);
 
     if (res?.error) {
-      alert("Invalid credentials"); 
+      alert("Invalid credentials");
     } else {
-      alert("Login successful!"); 
-      router.push("/"); 
+      //Fetch session to get role
+      const session = await getSession();
+
+      if (session?.user.role === "ADMIN") {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
     }
   };
 
