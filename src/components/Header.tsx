@@ -28,70 +28,70 @@ const Header = () => {
           <Link
             href="/"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Home
           </Link>
           <Link
             href="/shop/all"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Shop All Products
           </Link>
           <Link
             href="/shop"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Best Sellers
           </Link>
           <Link
             href="/shop"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Sale
           </Link>
           <Link
             href="/shop"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             New In
           </Link>
           <Link
             href="/shop/all?pattern=jaal%20work"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Jaal Work
           </Link>
           <Link
             href="/shop/all?pattern=scattered%20motifs"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Scattered Motifs (Khulla buta work)
           </Link>
           <Link
             href="/shop/all?pattern=statement%20border"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Statement Borders
           </Link>
           <Link
             href="/shop/all?pattern=printed%20chiffons"
             onClick={() => setSidebarOpen(false)}
-            className="hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Printed Chiffons
           </Link>
           <Link
             href="/about"
             onClick={() => setSidebarOpen(false)}
-            className="px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
           >
             About Us
           </Link>
@@ -99,7 +99,7 @@ const Header = () => {
           <Link
             href="/contact"
             onClick={() => setSidebarOpen(false)}
-            className="px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
+            className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Contact
           </Link>

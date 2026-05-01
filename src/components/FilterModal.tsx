@@ -157,11 +157,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
         <div className="space-y-4">
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium mb-1">Category</label>
+            <label className="text-gray-700 block text-sm font-medium mb-1">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-[250px] bg-muted border rounded px-3 py-2"
+              className="text-gray-700 w-[250px] bg-muted border rounded px-3 py-2"
             >
               <option value="">All</option>
               {categories.map((c) => (
@@ -174,11 +174,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
           {/* Pattern */}
           <div>
-            <label className="block text-sm font-medium mb-1">Pattern</label>
+            <label className="block text-gray-700 text-sm font-medium mb-1">Pattern</label>
             <select
               value={selectedPattern}
               onChange={(e) => setSelectedPattern(e.target.value)}
-              className="w-[250px] bg-muted border rounded px-3 py-2"
+              className="text-gray-700 w-[250px] bg-muted border rounded px-3 py-2"
             >
               <option value="">All</option>
               {patterns.map((pattern) => (
@@ -191,11 +191,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
           {/* Material */}
           <div>
-            <label className="block text-sm font-medium mb-1">Material</label>
+            <label className="text-gray-700 block text-sm font-medium mb-1">Material</label>
             <select
               value={selectedMaterial}
               onChange={(e) => setSelectedMaterial(e.target.value)}
-              className="w-[250px] bg-muted border rounded px-3 py-2"
+              className="text-gray-700 w-[250px] bg-muted border rounded px-3 py-2"
             >
               <option value="">All</option>
               {materials.map((material) => (
@@ -208,11 +208,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
           {/* Theme */}
           <div>
-            <label className="block text-sm font-medium mb-1">Collection</label>
+            <label className="text-gray-700 block text-sm font-medium mb-1">Collection</label>
             <select
               value={selectedTheme}
               onChange={(e) => setSelectedTheme(e.target.value)}
-              className="w-[250px] bg-muted border rounded px-3 py-2"
+              className="text-gray-700 w-[250px] bg-muted border rounded px-3 py-2"
             >
               <option value="">All</option>
               {themes.map((theme) => (
@@ -226,26 +226,26 @@ const FilterModal: React.FC<FilterModalProps> = ({
           {/* Price Range */}
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium mb-1">
+              <label className="text-gray-700 block text-sm font-medium mb-1">
                 Min Price
               </label>
               <input
                 type="number"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                className="w-full bg-muted border rounded px-3 py-2"
+                className="text-gray-700 w-full bg-muted border rounded px-3 py-2"
                 placeholder="₹ min"
               />
             </div>
             <div className="flex-1">
-              <label className="block text-sm font-medium mb-1">
+              <label className="text-gray-700 block text-sm font-medium mb-1">
                 Max Price
               </label>
               <input
                 type="number"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full bg-muted border rounded px-3 py-2"
+                className="text-gray-700 w-full bg-muted border rounded px-3 py-2"
                 placeholder="₹ max"
               />
             </div>
@@ -253,11 +253,11 @@ const FilterModal: React.FC<FilterModalProps> = ({
 
           {/* Sort */}
           <div>
-            <label className="block text-sm font-medium mb-1">Sort</label>
+            <label className="text-gray-700 block text-sm font-medium mb-1">Sort</label>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="w-full bg-muted border rounded px-3 py-2"
+              className="text-gray-700 w-full bg-muted border rounded px-3 py-2"
             >
               <option value="">Recommended</option>
               <option value="lowToHigh">Price: Low to High</option>

@@ -27,7 +27,7 @@ const FilterChip: React.FC<FilterChipProps> = ({ paramKey, paramValue, label }) 
   };
 
   return (
-    <span className="flex items-center bg-gray-200 text-sm px-3 py-1 rounded-full">
+    <span className="flex text-gray-700 items-center bg-gray-200 text-sm px-3 py-1 rounded-full">
       {label || paramValue}
       <button onClick={removeFilter} className="ml-2 text-gray-600 hover:text-black">
         <X size={14} />

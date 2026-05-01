@@ -103,9 +103,9 @@ const ProductPage = () => {
           </div>
 
           <div className="space-y-6">
-            <h1 className="text-3xl font-bold">{product.title}</h1>
+            <h1 className="text-gray-700 text-3xl font-bold">{product.title}</h1>
             <p className="text-xl text-green-700">₹{product.price}</p>
-            <p>{product.description}</p>
+            <p className="text-gray-700">{product.description}</p>
             <a
                   href="/care"
                   className="text-primary py-[2px] hover:underline"
