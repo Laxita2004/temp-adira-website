@@ -136,7 +136,7 @@ const AddProductPage = () => {
 
     if (response.ok) {
       alert("Product added!");
-      router.push("/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory");
+      router.push("/admin/inventory");
     } else {
       alert(`Failed: ${result.error}`);
     }

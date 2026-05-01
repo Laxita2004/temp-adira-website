@@ -8,7 +8,6 @@ import AdminHeader from '@/components/admin/AdminHeader';
 export default function EditProductPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [form, setForm] = useState({
     title: '',
@@ -84,14 +83,14 @@ export default function EditProductPage() {
     }
 
     if (res.ok) {
-      alert('✅ Product updated!');
+      alert('Product updated!');
       router.push('/admin/inventory');
     } else {
-      alert(`❌ Error: ${data?.error || 'Unknown error'}`);
+      alert(`Error: ${data?.error || 'Unknown error'}`);
     }
   } catch (err) {
     console.error("Submission failed:", err);
-    alert("❌ Failed to update product.");
+    alert("Failed to update product.");
   }
 };
 

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminHeader from "@/components/admin/AdminHeader";
-// import { useRouter } from "next/router";
 
 interface Product {
   id: number;
@@ -19,7 +18,6 @@ interface Product {
 const Inventory = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-//   const router = useRouter();
 const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -61,11 +59,11 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <div className="p-8">
        <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <AdminHeader setSidebarOpen={setSidebarOpen} />
+      <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="pt-[120px] flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Inventory</h1>
         <Link
-          href="/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory/add"
+          href="/admin/inventory/add"
           className="bg-primary text-light px-4 py-2 rounded hover:bg-gray-800"
         >
           + Add New Product
@@ -81,12 +79,12 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
           <table className="w-full table-auto border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
-                <th className="p-3 border">Title</th>
-                <th className="p-3 border">Price</th>
-                <th className="p-3 border">Stock</th>
-                <th className="p-3 border">Category</th>
-                <th className="p-3 border">Tags</th>
-                <th className="p-3 border">Actions</th>
+                <th className="text-gray-700 p-3 border">Title</th>
+                <th className="text-gray-700 p-3 border">Price</th>
+                <th className="text-gray-700 p-3 border">Stock</th>
+                <th className="text-gray-700 p-3 border">Category</th>
+                <th className="text-gray-700 p-3 border">Tags</th>
+                <th className="text-gray-700 p-3 border">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -101,7 +99,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
                   </td>
                   <td className="p-3 border space-x-2">
                     <Link
-                      href={`/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory//edit/${product.id}`}
+                      href={`/admin/inventory//edit/${product.id}`}
                       className="text-blue-600 hover:underline"
                     >
                       Edit

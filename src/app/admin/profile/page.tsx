@@ -43,14 +43,14 @@ const AdminEditUserInfo = () => {
     <div className="flex">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex-1 min-h-screen bg-gray-100 pl-64">
-        <AdminHeader setSidebarOpen={setSidebarOpen} />
+        <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <div className="pt-[120px] p-6 max-w-xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">Edit Admin Info</h2>
+          <h2 className="text-primary text-2xl font-bold mb-4">Edit Admin Info</h2>
 
           {message && <p className="mb-4 text-sm text-red-500">{message}</p>}
 
-          <label className="block mb-2 font-medium">Current Email</label>
+          <label className="text-gray-700 block mb-2 font-medium">Current Email</label>
           <input
             className="w-full mb-4 px-4 py-2 border rounded"
             type="email"
@@ -59,7 +59,7 @@ const AdminEditUserInfo = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <label className="block mb-2 font-medium">New Name</label>
+          <label className="text-gray-700 block mb-2 font-medium">New Name</label>
           <input
             className="w-full mb-4 px-4 py-2 border rounded"
             type="text"
@@ -68,7 +68,7 @@ const AdminEditUserInfo = () => {
             onChange={(e) => setName(e.target.value)}
           />
 
-          <label className="block mb-2 font-medium">New Email (optional)</label>
+          <label className="text-gray-700 block mb-2 font-medium">New Email (optional)</label>
           <input
             className="w-full mb-4 px-4 py-2 border rounded"
             type="email"
@@ -77,7 +77,7 @@ const AdminEditUserInfo = () => {
             onChange={(e) => setNewEmail(e.target.value)}
           />
 
-          <label className="block mb-2 font-medium">New Password (optional)</label>
+          <label className="text-gray-700 block mb-2 font-medium">New Password (optional)</label>
           <input
             className="w-full mb-6 px-4 py-2 border rounded"
             type="password"

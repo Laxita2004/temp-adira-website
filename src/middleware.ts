@@ -16,8 +16,17 @@ export async function middleware(req: NextRequest) {
   const isAdmin = role === "ADMIN";
   const isUser = role === "USER";
 
+  // Skip middleware for Next.js internals & static files
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname === "/favicon.ico"
+  ) {
+    return NextResponse.next();
+  }
+
   // Block /login if already logged in
-  if (pathname === "/login" && isAuth) {
+  if ((pathname === "/login" || pathname === "/register") && isAuth) {
     return NextResponse.redirect(
       new URL(isAdmin ? "/admin" : "/", req.url)
     );
@@ -28,19 +37,18 @@ export async function middleware(req: NextRequest) {
     pathname.startsWith("/cart") ||
     pathname.startsWith("/profile")
   ) {
-    // Not logged in
     if (!isAuth) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
 
-    // Logged in but NOT a USER (i.e., admin)
+    // block admin from user pages
     if (!isUser) {
       return NextResponse.redirect(new URL("/admin", req.url));
     }
   }
 
   // ADMIN only routes
-  if (pathname.startsWith("/admin/")) {
+  if (pathname.startsWith("/admin")) {
     if (!isAuth) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
@@ -50,10 +58,25 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // Force admin isolation
-  if (isAdmin && !pathname.startsWith("/admin/")) {
+  // Admin isolation (prevent admin from accessing public/user pages)
+  if (
+    isAdmin &&
+    !pathname.startsWith("/admin")
+  ) {
     return NextResponse.redirect(new URL("/admin", req.url));
   }
 
   return NextResponse.next();
 }
+
+// Apply middleware only where needed
+export const config = {
+  matcher: [
+    "/login",
+    "/register",
+    "/cart/:path*",
+    "/profile/:path*",
+    "/admin/:path*",
+    "/", 
+  ],
+};

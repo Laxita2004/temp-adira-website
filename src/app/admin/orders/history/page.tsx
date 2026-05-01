@@ -46,7 +46,7 @@ const OrderHistoryPage = () => {
     <div className="flex">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex-1 min-h-screen bg-gray-100 pl-64">
-        <AdminHeader setSidebarOpen={setSidebarOpen} />
+        <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="pt-[120px] p-6">
           <h2 className="text-2xl font-bold mb-4">Order History</h2>
           {orders.length === 0 ? (
