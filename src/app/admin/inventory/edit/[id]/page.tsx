@@ -85,7 +85,7 @@ export default function EditProductPage() {
 
     if (res.ok) {
       alert('✅ Product updated!');
-      router.push('/admin/admin-portal-unguessable-0581d2602l2409s0731j/inventory');
+      router.push('/admin/inventory');
     } else {
       alert(`❌ Error: ${data?.error || 'Unknown error'}`);
     }
