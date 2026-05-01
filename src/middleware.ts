@@ -10,33 +10,49 @@ export async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  // 🔹 Redirect logged-in users away from login
-  if (pathname === "/login" && token) {
-    if (token.role === "ADMIN") {
-      return NextResponse.redirect(new URL("/admin", req.url));
-    }
-    return NextResponse.redirect(new URL("/", req.url));
+  const isAuth = !!token;
+  const role = token?.role;
+
+  const isAdmin = role === "ADMIN";
+  const isUser = role === "USER";
+
+  // Block /login if already logged in
+  if (pathname === "/login" && isAuth) {
+    return NextResponse.redirect(
+      new URL(isAdmin ? "/admin" : "/", req.url)
+    );
   }
 
-  // 🔹 Protect user routes
+  // USER (consumer) only routes
   if (
     pathname.startsWith("/cart") ||
     pathname.startsWith("/profile")
   ) {
-    if (!token) {
+    // Not logged in
+    if (!isAuth) {
       return NextResponse.redirect(new URL("/login", req.url));
+    }
+
+    // Logged in but NOT a USER (i.e., admin)
+    if (!isUser) {
+      return NextResponse.redirect(new URL("/admin", req.url));
     }
   }
 
-  // 🔹 Protect admin routes
-  if (pathname.startsWith("/admin")) {
-    if (!token) {
+  // ADMIN only routes
+  if (pathname.startsWith("/admin/")) {
+    if (!isAuth) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
 
-    if (token.role !== "ADMIN") {
+    if (!isAdmin) {
       return NextResponse.redirect(new URL("/", req.url));
     }
+  }
+
+  // Force admin isolation
+  if (isAdmin && !pathname.startsWith("/admin/")) {
+    return NextResponse.redirect(new URL("/admin", req.url));
   }
 
   return NextResponse.next();
