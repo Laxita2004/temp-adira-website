@@ -8,7 +8,7 @@ import AdminHeader from "@/components/admin/AdminHeader";
 interface Product {
   id: number;
   title: string;
-  price: string;
+  price: number;
   inStock: number;
   images: { url: string }[];
   tags: string[];
@@ -17,7 +17,7 @@ interface Product {
 const Inventory = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -25,35 +25,57 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const fetchProducts = async () => {
     try {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        setProducts(data);
+      const res = await fetch("/api/products");
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch products");
+      }
+
+      const data = await res.json();
+      setProducts(data);
     } catch (err) {
-        console.error("Failed to fetch products", err);
+      console.error("Failed to fetch products", err);
+      alert("Failed to load products");
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
-
-  const handleDelete = async (id : number) => {
+  const handleDelete = async (id: number) => {
     const confirmed = confirm("Are you sure you want to delete this product?");
     if (!confirmed) return;
 
     try {
-        const res = await fetch(`/api/products/${id}`, {
-            method: "DELETE",
-        });
+      const res = await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+      });
 
-        if(res.ok) {
-            setProducts(products.filter((p) => p.id !== id));
-        } else {
-            alert("Failed to delete product")
-        }
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {}
+
+      if (res.status === 401) {
+        alert("Please login first");
+        return;
+      }
+
+      if (res.status === 403) {
+        alert("You are not authorized to delete this product");
+        return;
+      }
+
+      if (!res.ok) {
+        alert(data?.error || "Failed to delete product");
+        return;
+      }
+
+      setProducts((prev) => prev.filter((p) => p.id !== id));
     } catch (err) {
-        console.error("Error deleting product:", err);
+      console.error("Error deleting product:", err);
+      alert("Something went wrong");
     }
-  }
+  };
 
   return (
     <div className="bg-light min-h-screen p-8">
@@ -90,9 +112,11 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
                 <tr key={product.id} className="text-center">
                   <td className="text-gray-600 p-3 border">{product.title}</td>
                   <td className="text-gray-600 p-3 border">₹{product.price}</td>
-                  <td className="text-gray-600 p-3 border">{product.inStock}</td>
                   <td className="text-gray-600 p-3 border">
-                    {product.tags.join(", ") || "—"}
+                    {product.inStock}
+                  </td>
+                  <td className="text-gray-600 p-3 border">
+                    {product.tags?.join(", ") || "—"}
                   </td>
                   <td className="p-3 border space-x-2">
                     <Link

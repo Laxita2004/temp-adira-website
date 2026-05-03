@@ -140,248 +140,298 @@ const AddProductPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...form,
-        price: parseFloat(form.price),
-        inStock: parseInt(form.inStock),
-        tags: form.tags.split(",").map((tag) => tag.trim()),
-        categoryId: parseInt(form.categoryId),
-        materialId: parseInt(form.materialId),
-        patternId: parseInt(form.patternId),
-        themeId: parseInt(form.themeId),
-        imageUrls: form.imageUrls.split(",").map((url) => url.trim()),
-      }),
-    });
+    try {
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          price: parseFloat(form.price),
+          inStock: parseInt(form.inStock),
+          tags: form.tags ? form.tags.split(",").map((tag) => tag.trim()) : [],
+          categoryId: parseInt(form.categoryId),
+          materialId: parseInt(form.materialId),
+          patternId: parseInt(form.patternId),
+          themeId: parseInt(form.themeId),
+          imageUrls: form.imageUrls
+            .split(",")
+            .map((url) => url.trim())
+            .filter(Boolean),
+        }),
+      });
 
-    const result = await response.json();
+      let result = null;
+      try {
+        result = await response.json();
+      } catch {}
 
-    if (response.ok) {
+      // Handle auth errors explicitly
+      if (response.status === 401) {
+        alert("Please login first");
+        return;
+      }
+
+      if (response.status === 403) {
+        alert("You are not authorized to add products");
+        return;
+      }
+
+      // Other failures
+      if (!response.ok) {
+        alert(result?.error || "Failed to add product");
+        return;
+      }
+
+      // Success
       alert("Product added!");
       router.push("/admin/inventory");
-    } else {
-      alert(`Failed: ${result.error}`);
+    } catch (err) {
+      console.error("Submission failed:", err);
+      alert("Something went wrong");
     }
   };
 
   return (
     <div className="bg-light">
-    <div className="bp-6 max-w-xl mx-auto">
-      <h2 className="text-primary text-xl font-semibold mb-4">Add New Product</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-        <label className="text-gray-600 block text-sm font-medium mb-1">Title</label>
-        <input
-          name="title"
-          placeholder="Title"
-          onChange={handleChange}
-          className="text-gray-600 w-full p-2 border"
-          required
-        />
-        </div>
-        <div>
-        <label className="text-gray-600 block text-sm font-medium mb-1">Description</label>
-        <textarea
-          name="description"
-          placeholder="Description"
-          onChange={handleChange}
-          className="text-gray-600 w-full p-2 border"
-          required
-        />
-        </div>
-        <div>
-        <label className="text-gray-600 block text-sm font-medium mb-1">Price</label>
-        <input
-          name="price"
-          placeholder="Price"
-          onChange={handleChange}
-          className="text-gray-600 w-full p-2 border"
-          required
-        />
-        </div>
-        <div>
-        <label className="text-gray-600 block text-sm font-medium mb-1">Stock</label>
-        <input
-          name="inStock"
-          placeholder="In Stock"
-          onChange={handleChange}
-          className="text-gray-600 w-full p-2 border"
-          required
-        />
-        </div>
-        <div>
-        <label className="text-gray-600 block text-sm font-medium mb-1">Tags</label>
-        <input
-          name="tags"
-          placeholder="Tags (comma-separated)"
-          onChange={handleChange}
-          className="text-gray-600 w-full p-2 border"
-        />
-        </div>
-        <div>
-        <label className="text-gray-600 block text-sm font-medium mb-1">Image URLs</label>
-        <input
-          name="imageUrls"
-          placeholder="Image URLs (comma-separated)"
-          onChange={handleChange}
-          className="text-gray-600 w-full p-2 border"
-          required
-        />
-        </div>
+      <div className="bp-6 max-w-xl mx-auto">
+        <h2 className="text-primary text-xl font-semibold mb-4">
+          Add New Product
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Title
+            </label>
+            <input
+              name="title"
+              placeholder="Title"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+            />
+          </div>
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Description
+            </label>
+            <textarea
+              name="description"
+              placeholder="Description"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+            />
+          </div>
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Price
+            </label>
+            <input
+              name="price"
+              placeholder="Price"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+            />
+          </div>
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Stock
+            </label>
+            <input
+              name="inStock"
+              placeholder="In Stock"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+            />
+          </div>
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Tags
+            </label>
+            <input
+              name="tags"
+              placeholder="Tags (comma-separated)"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+            />
+          </div>
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Image URLs
+            </label>
+            <input
+              name="imageUrls"
+              placeholder="Image URLs (comma-separated)"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+            />
+          </div>
 
-        {/* Category Dropdown + Add New */}
-        <div>
-          <label className="text-gray-600 block text-sm font-medium mb-1">Category</label>
-          <select
-            name="categoryId"
-            onChange={handleChange}
-            className="text-gray-600 w-full p-2 border"
-            required
-            value={form.categoryId}
-          >
-            <option value="">Select Category</option>
-            {categories.map((cat: any) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex gap-2 mt-1">
-            <input
-              placeholder="New category"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              className="text-gray-600 flex-1 p-2 border"
-            />
-            <button
-              type="button"
-              onClick={() => handleAddNew("category")}
-              className="bg-gray-700 text-white px-3 py-2 rounded"
+          {/* Category Dropdown + Add New */}
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Category
+            </label>
+            <select
+              name="categoryId"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+              value={form.categoryId}
             >
-              + Add
-            </button>
+              <option value="">Select Category</option>
+              {categories.map((cat: any) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex gap-2 mt-1">
+              <input
+                placeholder="New category"
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
+                className="text-gray-600 flex-1 p-2 border"
+              />
+              <button
+                type="button"
+                onClick={() => handleAddNew("category")}
+                className="bg-gray-700 text-white px-3 py-2 rounded"
+              >
+                + Add
+              </button>
+            </div>
           </div>
-        </div>
-        {/* Material Dropdown + Add New */}
-        <div>
-          <label className="text-gray-600 block text-sm font-medium mb-1">Material</label>
-          <select
-            name="materialId"
-            onChange={handleChange}
-            className="text-gray-600 w-full p-2 border"
-            required
-            value={form.materialId}
-          >
-            <option value="">Select Material</option>
-            {materials.map((mat: any) => (
-              <option key={mat.id} value={mat.id}>
-                {mat.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex gap-2 mt-1">
-            <input
-              placeholder="New material"
-              value={newMaterial}
-              onChange={(e) => setNewMaterial(e.target.value)}
-              className="text-gray-600 flex-1 p-2 border"
-            />
-            <button
-              type="button"
-              onClick={() => handleAddNew("material")}
-              className="bg-gray-700 text-white px-3 py-2 rounded"
+          {/* Material Dropdown + Add New */}
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Material
+            </label>
+            <select
+              name="materialId"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+              value={form.materialId}
             >
-              + Add
-            </button>
+              <option value="">Select Material</option>
+              {materials.map((mat: any) => (
+                <option key={mat.id} value={mat.id}>
+                  {mat.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex gap-2 mt-1">
+              <input
+                placeholder="New material"
+                value={newMaterial}
+                onChange={(e) => setNewMaterial(e.target.value)}
+                className="text-gray-600 flex-1 p-2 border"
+              />
+              <button
+                type="button"
+                onClick={() => handleAddNew("material")}
+                className="bg-gray-700 text-white px-3 py-2 rounded"
+              >
+                + Add
+              </button>
+            </div>
           </div>
-        </div>
-        {/* Pattern Dropdown + Add New */}
-        <div>
-          <label className="text-gray-600 block text-sm font-medium mb-1">Pattern</label>
-          <select
-            name="patternId"
-            onChange={handleChange}
-            className="text-gray-600 w-full p-2 border"
-            required
-            value={form.patternId}
-          >
-            <option value="">Select Pattern</option>
-            {patterns.map((pat: any) => (
-              <option key={pat.id} value={pat.id}>
-                {pat.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex gap-2 mt-1">
-            <input
-              placeholder="New pattern"
-              value={newPattern}
-              onChange={(e) => setNewPattern(e.target.value)}
-              className="text-gray-600 flex-1 p-2 border"
-            />
-            <input
-              placeholder="Pattern Image URL"
-              value={newPatternImage}
-              onChange={(e) => setNewPatternImage(e.target.value)}
-              className="text-gray-600 flex-1 p-2 border"
-            />
-            <button
-              type="button"
-              onClick={() => handleAddNew("pattern")}
-              className="bg-gray-700 text-white px-3 py-2 rounded"
+          {/* Pattern Dropdown + Add New */}
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Pattern
+            </label>
+            <select
+              name="patternId"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+              value={form.patternId}
             >
-              + Add
-            </button>
+              <option value="">Select Pattern</option>
+              {patterns.map((pat: any) => (
+                <option key={pat.id} value={pat.id}>
+                  {pat.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex gap-2 mt-1">
+              <input
+                placeholder="New pattern"
+                value={newPattern}
+                onChange={(e) => setNewPattern(e.target.value)}
+                className="text-gray-600 flex-1 p-2 border"
+              />
+              <input
+                placeholder="Pattern Image URL"
+                value={newPatternImage}
+                onChange={(e) => setNewPatternImage(e.target.value)}
+                className="text-gray-600 flex-1 p-2 border"
+              />
+              <button
+                type="button"
+                onClick={() => handleAddNew("pattern")}
+                className="bg-gray-700 text-white px-3 py-2 rounded"
+              >
+                + Add
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Theme Dropdown + Add New */}
-        <div>
-          <label className="text-gray-600 block text-sm font-medium mb-1">Theme</label>
-          <select
-            name="themeId"
-            onChange={handleChange}
-            className="text-gray-600 w-full p-2 border"
-            required
-            value={form.themeId}
-          >
-            <option value="">Select Theme</option>
-            {themes.map((theme: any) => (
-              <option key={theme.id} value={theme.id}>
-                {theme.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex gap-2 mt-1">
-            <input
-              placeholder="New theme"
-              value={newTheme}
-              onChange={(e) => setNewTheme(e.target.value)}
-              className="text-gray-600 flex-1 p-2 border"
-            />
-            <input
-              placeholder="Theme Image URL"
-              value={newThemeImage}
-              onChange={(e) => setNewThemeImage(e.target.value)}
-              className="text-gray-600 flex-1 p-2 border"
-            />
-            <button
-              type="button"
-              onClick={() => handleAddNew("theme")}
-              className="bg-gray-700 text-white px-3 py-2 rounded"
+          {/* Theme Dropdown + Add New */}
+          <div>
+            <label className="text-gray-600 block text-sm font-medium mb-1">
+              Theme
+            </label>
+            <select
+              name="themeId"
+              onChange={handleChange}
+              className="text-gray-600 w-full p-2 border"
+              required
+              value={form.themeId}
             >
-              + Add
-            </button>
+              <option value="">Select Theme</option>
+              {themes.map((theme: any) => (
+                <option key={theme.id} value={theme.id}>
+                  {theme.name}
+                </option>
+              ))}
+            </select>
+            <div className="flex gap-2 mt-1">
+              <input
+                placeholder="New theme"
+                value={newTheme}
+                onChange={(e) => setNewTheme(e.target.value)}
+                className="text-gray-600 flex-1 p-2 border"
+              />
+              <input
+                placeholder="Theme Image URL"
+                value={newThemeImage}
+                onChange={(e) => setNewThemeImage(e.target.value)}
+                className="text-gray-600 flex-1 p-2 border"
+              />
+              <button
+                type="button"
+                onClick={() => handleAddNew("theme")}
+                className="bg-gray-700 text-white px-3 py-2 rounded"
+              >
+                + Add
+              </button>
+            </div>
           </div>
-        </div>
 
-        <button type="submit" className="bg-black text-white px-4 py-2 rounded">
-          Add Product
-        </button>
-      </form>
-    </div>
+          <button
+            type="submit"
+            className="bg-black text-white px-4 py-2 rounded"
+          >
+            Add Product
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

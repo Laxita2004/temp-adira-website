@@ -34,12 +34,22 @@ export default function EditProductPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const fetchJson = async (url: string) => {
+          const res = await fetch(url);
+
+          if (!res.ok) {
+            throw new Error(`Failed to fetch ${url}`);
+          }
+
+          return res.json();
+        };
+
         const [product, mats, pats, thms, cats] = await Promise.all([
-          fetch(`/api/products/${id}`).then((res) => res.json()),
-          fetch("/api/materials").then((res) => res.json()),
-          fetch("/api/patterns").then((res) => res.json()),
-          fetch("/api/themes").then((res) => res.json()),
-          fetch("/api/categories").then((res) => res.json()),
+          fetchJson(`/api/products/${id}`),
+          fetchJson("/api/materials"),
+          fetchJson("/api/patterns"),
+          fetchJson("/api/themes"),
+          fetchJson("/api/categories"),
         ]);
 
         setMaterials(mats);
@@ -53,7 +63,7 @@ export default function EditProductPage() {
           price: product.price.toString(),
           inStock: product.inStock.toString(),
           categoryId: product.categoryId.toString(),
-          tags: product.tags.join(", "),
+          tags: product.tags?.join(", ") || "",
           materialId: product.materialId.toString(),
           patternId: product.patternId.toString(),
           themeId: product.themeId.toString(),
@@ -83,37 +93,53 @@ export default function EditProductPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`/api/admin/products/${id}`, {
+      const res = await fetch(`/api/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
           price: parseFloat(form.price),
           inStock: parseInt(form.inStock),
-          tags: form.tags.split(",").map((t) => t.trim()),
+          tags: form.tags ? form.tags.split(",").map((t) => t.trim()) : [],
+          categoryId: parseInt(form.categoryId),
           materialId: parseInt(form.materialId),
           patternId: parseInt(form.patternId),
           themeId: parseInt(form.themeId),
-          imageUrls: form.imageUrls.split(",").map((url) => url.trim()),
+          imageUrls: form.imageUrls
+            .split(",")
+            .map((url) => url.trim())
+            .filter(Boolean),
         }),
       });
 
-      let data;
+      let data = null;
       try {
         data = await res.json();
-      } catch {
-        data = null;
+      } catch {}
+
+      // Auth handling
+      if (res.status === 401) {
+        alert("Please login first");
+        return;
       }
 
-      if (res.ok) {
-        alert("Product updated!");
-        router.push("/admin/inventory");
-      } else {
-        alert(`Error: ${data?.error || "Unknown error"}`);
+      if (res.status === 403) {
+        alert("You are not authorized to edit this product");
+        return;
       }
+
+      // Other errors
+      if (!res.ok) {
+        alert(data?.error || "Failed to update product");
+        return;
+      }
+
+      // Success
+      alert("Product updated!");
+      router.push("/admin/inventory");
     } catch (err) {
       console.error("Submission failed:", err);
-      alert("Failed to update product.");
+      alert("Something went wrong");
     }
   };
 
@@ -129,64 +155,64 @@ export default function EditProductPage() {
               <label className="text-gray-600 block text-sm font-medium mb-1">
                 Title
               </label>
-            <input
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              className="text-gray-600 w-full p-2 border"
-              required
-            />
+              <input
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                className="text-gray-600 w-full p-2 border"
+                required
+              />
             </div>
             <div>
               <label className="text-gray-600 block text-sm font-medium mb-1">
                 Description
               </label>
-            <textarea
-              name="description"
-              value={form.description}
-              onChange={handleChange}
-              className="text-gray-600 w-full p-2 border"
-              required
-            />
+              <textarea
+                name="description"
+                value={form.description}
+                onChange={handleChange}
+                className="text-gray-600 w-full p-2 border"
+                required
+              />
             </div>
             <div>
               <label className="text-gray-600 block text-sm font-medium mb-1">
                 Price
               </label>
-            <input
-              name="price"
-              type="number"
-              value={form.price}
-              onChange={handleChange}
-              className="text-gray-600 w-full p-2 border"
-              required
-            />
+              <input
+                name="price"
+                type="number"
+                value={form.price}
+                onChange={handleChange}
+                className="text-gray-600 w-full p-2 border"
+                required
+              />
             </div>
             <div>
               <label className="text-gray-600 block text-sm font-medium mb-1">
                 Stock
               </label>
-            <input
-              name="inStock"
-              type="number"
-              value={form.inStock}
-              onChange={handleChange}
-              className="text-gray-600 w-full p-2 border"
-              required
-            />
+              <input
+                name="inStock"
+                type="number"
+                value={form.inStock}
+                onChange={handleChange}
+                className="text-gray-600 w-full p-2 border"
+                required
+              />
             </div>
             <div>
               <label className="text-gray-600 block text-sm font-medium mb-1">
                 Image URLs
               </label>
-            <input
-              name="imageUrls"
-              value={form.imageUrls}
-              onChange={handleChange}
-              className="text-gray-600 w-full p-2 border"
-              placeholder="Comma-separated image URLs"
-              required
-            />
+              <input
+                name="imageUrls"
+                value={form.imageUrls}
+                onChange={handleChange}
+                className="text-gray-600 w-full p-2 border"
+                placeholder="Comma-separated image URLs"
+                required
+              />
             </div>
             <div>
               <label className="text-gray-600 block text-sm font-medium mb-1">
