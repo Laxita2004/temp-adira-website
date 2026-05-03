@@ -24,14 +24,14 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
-
+  
   // Block /login if already logged in
   if ((pathname === "/login" || pathname === "/register") && isAuth) {
     return NextResponse.redirect(
       new URL(isAdmin ? "/admin" : "/", req.url)
     );
   }
-
+  
   // USER (consumer) only routes
   if (
     pathname.startsWith("/cart") ||

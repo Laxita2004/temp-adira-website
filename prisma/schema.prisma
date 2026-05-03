@@ -80,23 +80,6 @@ model SearchHistory {
   @@map("search_history")
 }
 
-model Color {
-  id       Int       @id @default(autoincrement())
-  name     String    @unique
-  hexCode  String
-  products ProductColor[]
-}
-
-model ProductColor {
-  id        Int     @id @default(autoincrement())
-  productId Int
-  colorId   Int
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  color     Color   @relation(fields: [colorId], references: [id], onDelete: Cascade)
-
-  @@unique([productId, colorId])
-}
-
 model Product {
   id            Int            @id @default(autoincrement())
   title         String
@@ -104,24 +87,34 @@ model Product {
   description   String
   price         Decimal
   inStock       Int
-  category      String
+  categoryId    Int
   materialId    Int
   patternId     Int
   themeId       Int
-  material      Material       @relation(fields: [materialId], references: [id])
-  pattern       Pattern        @relation(fields: [patternId], references: [id])
-  theme         Theme          @relation(fields: [themeId], references: [id])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  category      Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  material      Material       @relation(fields: [materialId], references: [id], onDelete: Restrict)
+  pattern       Pattern        @relation(fields: [patternId], references: [id], onDelete: Restrict)
+  theme         Theme          @relation(fields: [themeId], references: [id], onDelete: Restrict)
+
   images        ProductImage[]
   cartItems     CartItem[]
   orderItems    OrderItem[]
   productViews  ProductView[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
   testimonials  Testimonial[]
   offerProducts OfferProduct[]
-  productColors ProductColor[]
 
   @@map("product")
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
+
+  @@map("category")
 }
 
 model Material {
@@ -158,6 +151,10 @@ model ProductImage {
 
   @@map("product_image")
 }
+
+
+
+
 
 model ProductView {
   id         Int      @id @default(autoincrement())

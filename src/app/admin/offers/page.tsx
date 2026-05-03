@@ -39,11 +39,12 @@ export default function Offers() {
   };
 
   return (
-    <div className="p-6">
+    <div className="bg-light w-full">
+    <div className="bg-light p-6">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex justify-between items-center pt-[120px] ">
-        <h1 className="text-xl font-semibold">Offers</h1>
+        <h1 className="text-primary text-xl font-semibold">Offers</h1>
         <Link
           href="/admin/offers/new"
           className="bg-primary text-white px-4 py-2 rounded"
@@ -84,6 +85,7 @@ export default function Offers() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }
