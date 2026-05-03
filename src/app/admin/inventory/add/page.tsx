@@ -90,7 +90,10 @@ const AddProductPage = () => {
           ? newThemeImage
           : "";
 
-    if (!name.trim()) return;
+    if (!name.trim()) {
+      alert("Name cannot be empty");
+      return;
+    }
 
     const body =
       type === "category" || type === "material"
@@ -104,13 +107,25 @@ const AddProductPage = () => {
         body: JSON.stringify(body),
       });
 
-      if (!res.ok) {
-        const errorResult = await res.json().catch(() => ({}));
-        alert(errorResult.error || `Failed to add new ${type}`);
+      let result = null;
+      try {
+        result = await res.json();
+      } catch {}
+
+      if (res.status === 401) {
+        alert("Please login first");
         return;
       }
 
-      const result = await res.json();
+      if (res.status === 403) {
+        alert("You are not authorized to perform this action");
+        return;
+      }
+
+      if (!res.ok) {
+        alert(result?.error || `Failed to add new ${type}`);
+        return;
+      }
 
       if (type === "category") {
         setCategories((prev) => [...prev, result]);
@@ -124,12 +139,12 @@ const AddProductPage = () => {
         setPatterns((prev) => [...prev, result]);
         setForm((prev) => ({ ...prev, patternId: result.id.toString() }));
         setNewPattern("");
-        setNewPatternImage(""); // clear input
+        setNewPatternImage("");
       } else {
         setThemes((prev) => [...prev, result]);
         setForm((prev) => ({ ...prev, themeId: result.id.toString() }));
         setNewTheme("");
-        setNewThemeImage(""); // clear input
+        setNewThemeImage("");
       }
     } catch (err) {
       console.error("Error adding new entry:", err);
@@ -141,6 +156,16 @@ const AddProductPage = () => {
     e.preventDefault();
 
     try {
+      if (isNaN(parseFloat(form.price))) {
+        alert("Invalid price");
+        return;
+      }
+
+      if (isNaN(parseInt(form.inStock))) {
+        alert("Invalid stock value");
+        return;
+      }
+
       const response = await fetch("/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
