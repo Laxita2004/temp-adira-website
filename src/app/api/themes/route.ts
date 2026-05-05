@@ -24,6 +24,8 @@ export const GET = async () => {
 
   } catch (error) {
     console.error("Failed to fetch themes:", error);
+    console.error("Error Type:", typeof error);
+    console.error("Full error:", error);
 
     return NextResponse.json(
       { error: "Failed to fetch themes" },

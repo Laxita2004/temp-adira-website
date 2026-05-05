@@ -1,4 +1,3 @@
-// app/about/page.tsx or pages/about.tsx
 "use client";
 
 import { motion, useAnimation } from "framer-motion";

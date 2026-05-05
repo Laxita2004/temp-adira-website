@@ -5,10 +5,32 @@ import Link from "next/link";
 
 const youtubeSources = ["L3ydZM-IeKQ"];
 
+function capitalizeWords(str: string) {
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 const Hero = () => {
+  const [categories, setCategories] = useState<any[]>([]);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   const currentVideoId = youtubeSources[currentVideoIndex];
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories");
+        const data = await res.json();
+        setCategories(data);
+      } catch (err) {
+        console.error("Failed to fetch categories", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -35,18 +57,15 @@ const Hero = () => {
           modernity.
         </h2>
         <div className="mt-8 flex justify-center md:justify-start gap-6">
-          <Link
-            href="/shop/all?category=saree"
-            className="text-base md:text-lg lg:text-xl bg-transparent border border-white px-6 md:px-8 lg:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white hover:text-black transition"
-          >
-            Shop Sarees
-          </Link>
-          <Link
-            href="/shop/all?category=poshak"
-            className="text-base md:text-lg lg:text-xl bg-transparent border border-white px-6 md:px-8 lg:px-10 py-3 md:py-4 rounded-full font-semibold hover:bg-white hover:text-black transition"
-          >
-            Shop Poshaks
-          </Link>
+          {categories.map((cat) => (
+            <Link
+              key={cat.id}
+              href={`/shop/all?category=${encodeURIComponent(cat.name)}`}
+              className="text-base md:text-lg lg:text-xl border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition"
+            >
+              Shop {capitalizeWords(cat.name)}
+            </Link>
+          ))}
         </div>
       </div>
     </section>
