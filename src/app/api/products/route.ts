@@ -1,26 +1,179 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
 import { requireRole, ApiError } from "@/lib/auth";
-import { Role } from "@prisma/client";
+import { Role, Prisma } from "@prisma/client";
 
 /**
  * GET /api/products
  *
- * Fetch all products (public endpoint)
+ * Public endpoint to fetch products.
  *
- * Access: Public
+ * If query parameters are provided, products are filtered accordingly.
+ * If no query parameters are provided, all products are returned.
  *
- * Returns:
- * - 200 → list of products
- * - 500 → server error
+ * Supported query parameters:
+ * - tag=Festive
+ * - category=Kurta
+ * - pattern=Floral
+ * - material=Cotton
+ * - theme=Wedding
+ * - minPrice=500
+ * - maxPrice=3000
+ * - sort=lowToHigh | highToLow | newest
+ * - limit=12
+ * - offerId=2
+ *
+ * Examples:
+ * - /api/products
+ * - /api/products?category=Kurta
+ * - /api/products?category=Kurta&material=Cotton
+ * - /api/products?theme=Festive&sort=lowToHigh
+ * - /api/products?offerId=2
  */
-export const GET = async () => {
+export const GET = async (req: Request) => {
   try {
-    
-    // Fetch all products with related data
+    const { searchParams } = new URL(req.url);
+
+    // Extract query parameters
+    const tag = searchParams.get("tag");
+    const category = searchParams.get("category");
+    const pattern = searchParams.get("pattern");
+    const material = searchParams.get("material");
+    const theme = searchParams.get("theme");
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+    const sort = searchParams.get("sort");
+    const limit = searchParams.get("limit");
+    const offerId = searchParams.get("offerId");
+
+    // Sorting configuration
+    const orderBy =
+      sort === "lowToHigh"
+        ? { price: "asc" as const }
+        : sort === "highToLow"
+          ? { price: "desc" as const }
+          : sort === "newest"
+            ? { createdAt: "desc" as const }
+            : { createdAt: "desc" as const };
+
+    // Build dynamic filters with proper Prisma typing
+    const filters: Prisma.ProductWhereInput[] = [
+      // Filter by tag (Product.tags is String[])
+      ...(tag ? [{ tags: { has: tag } }] : []),
+
+      // Filter by Category.name
+      ...(category
+        ? [
+            {
+              category: {
+                is: {
+                  name: {
+                    equals: category,
+                    mode: Prisma.QueryMode.insensitive,
+                  },
+                },
+              },
+            },
+          ]
+        : []),
+
+      // Filter by Pattern.name
+      ...(pattern
+        ? [
+            {
+              pattern: {
+                is: {
+                  name: {
+                    equals: pattern,
+                    mode: Prisma.QueryMode.insensitive,
+                  },
+                },
+              },
+            },
+          ]
+        : []),
+
+      // Filter by Material.name
+      ...(material
+        ? [
+            {
+              material: {
+                is: {
+                  name: {
+                    equals: material,
+                    mode: Prisma.QueryMode.insensitive,
+                  },
+                },
+              },
+            },
+          ]
+        : []),
+
+      // Filter by Theme.name
+      ...(theme
+        ? [
+            {
+              theme: {
+                is: {
+                  name: {
+                    equals: theme,
+                    mode: Prisma.QueryMode.insensitive,
+                  },
+                },
+              },
+            },
+          ]
+        : []),
+
+      // Minimum price
+      ...(minPrice
+        ? [
+            {
+              price: {
+                gte: Number(minPrice),
+              },
+            },
+          ]
+        : []),
+
+      // Maximum price
+      ...(maxPrice
+        ? [
+            {
+              price: {
+                lte: Number(maxPrice),
+              },
+            },
+          ]
+        : []),
+
+      // Filter products belonging to a specific offer
+      ...(offerId
+        ? [
+            {
+              offerProducts: {
+                some: {
+                  offerId: Number(offerId),
+                },
+              },
+            },
+          ]
+        : []),
+    ];
+
+    // Fetch products
     const products = await prisma.product.findMany({
+      where: {
+        AND: filters,
+      },
+
+      orderBy,
+
+      take: limit ? Number(limit) : undefined,
+
       include: {
         images: true,
+        category: true,
         material: true,
         pattern: true,
         theme: true,
@@ -35,27 +188,19 @@ export const GET = async () => {
           },
         },
       },
-      orderBy: {
-        createdAt: "desc",
-      },
     });
 
-    
-    // Return products    
+    // Return products (filtered or all)
     return NextResponse.json(products);
-
   } catch (error) {
-
-    // Handle unexpected errors
     console.error("Failed to fetch products:", error);
 
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
-
 
 /**
  * POST /api/products
@@ -79,7 +224,6 @@ export const GET = async () => {
  */
 export const POST = async (req: NextRequest) => {
   try {
-
     // Authorization (Admin only)
     await requireRole([Role.ADMIN]);
 
@@ -143,14 +287,12 @@ export const POST = async (req: NextRequest) => {
 
     // Return created product
     return NextResponse.json(newProduct, { status: 201 });
-
   } catch (error: any) {
-
     // Handle known errors (auth, validation, etc.)
     if (error instanceof ApiError) {
       return NextResponse.json(
         { error: error.message },
-        { status: error.status }
+        { status: error.status },
       );
     }
 
@@ -159,7 +301,7 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

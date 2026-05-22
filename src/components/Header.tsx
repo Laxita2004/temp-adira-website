@@ -1,12 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { MdOutlineNotificationImportant } from "react-icons/md";
+import { useState, useRef, useEffect } from "react";
+import { User, ShoppingCart } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
+  const [profileOpen, setProfileOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showNote, setShowNote] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setProfileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const { data: session, status } = useSession();
+  const user = session?.user;
 
   return (
     <>
@@ -54,13 +74,6 @@ const Header = () => {
             Sale
           </Link>
           <Link
-            href="/shop"
-            onClick={() => setSidebarOpen(false)}
-            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
-          >
-            New In
-          </Link>
-          <Link
             href="/shop/all?pattern=jaal%20work"
             onClick={() => setSidebarOpen(false)}
             className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
@@ -89,31 +102,25 @@ const Header = () => {
             Printed Chiffons
           </Link>
           <Link
-            href="/about"
-            onClick={() => setSidebarOpen(false)}
-            className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
-          >
-            About Us
-          </Link>
-
-          <Link
             href="/contact"
             onClick={() => setSidebarOpen(false)}
             className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
           >
-            Contact
+            Contact Us
           </Link>
         </nav>
       </aside>
 
-      <header className="bg-light px-6 py-4 shadow-md fixed  top-0 left-0 w-full z-50"
-      style={{ height: "100px" }}>
+      <header
+        className="bg-light px-6 py-4 shadow-md fixed  top-0 left-0 w-full z-50"
+        style={{ height: "100px" }}
+      >
         <div className="relative flex items-center justify-between pt-[20px]">
           {/* LEFT */}
           <div className="flex items-center gap-4">
             <button
               className="text-primary font-semibold text-2xl"
-              onClick={() => setSidebarOpen(true)}
+              onClick={() => setSidebarOpen((prev) => !prev)}
             >
               ☰
             </button>
@@ -122,31 +129,97 @@ const Header = () => {
           {/* CENTER */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
-              <img src="/logo/AdiraLogo.png" alt="Logo" className="h-20 w-auto" />
+              <img
+                src="/logo/AdiraLogo.png"
+                alt="Logo"
+                className="h-20 w-auto"
+              />
             </Link>
           </div>
 
-          {/* RIGHT — Notification Tooltip */}
+          {/* RIGHT */}
           <div className="flex items-center gap-4 relative z-50">
-            <div
-              className="relative group cursor-pointer"
-              onMouseEnter={() => setShowNote(true)}
-              onMouseLeave={() => setShowNote(false)}
-            >
-              <MdOutlineNotificationImportant className="text-2xl text-primary" />
-
-              {showNote && (
-                <div className="absolute top-10 right-0 w-72 text-lg bg-primary/90 backdrop-blur-md border border-light shadow-lg rounded p-3 text-light z-50 animate-fadeIn">
-                  <strong>This is our temporary website!</strong>
-                  <p className="mt-1">
-                    Many of you were asking where you can view our full catalog.
-                    While the original website is under development, here’s a
-                    temporary version with our collections, catalog, and more!
-                  </p>
-                </div>
-              )}
-            </div>
+  {status === "loading" ? null : user ? (
+    <>
+      {/* 🛒 CART ICON */}
+      <Link href="/cart">
+        <div className="relative group cursor-pointer">
+          <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition">
+            <ShoppingCart size={20} />
           </div>
+
+          {/* Hover label */}
+          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs bg-primary text-light px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+            Cart
+          </span>
+        </div>
+      </Link>
+
+      {/* 👤 PROFILE */}
+      <div ref={dropdownRef} className="relative">
+        <div className="relative group">
+          <button
+            onClick={() => setProfileOpen((prev) => !prev)}
+            className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition"
+          >
+            <User size={20} />
+          </button>
+
+          {/* Hover label */}
+          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs bg-primary text-light px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+            Profile
+          </span>
+        </div>
+
+        {/* DROPDOWN */}
+        {profileOpen && (
+          <div className="absolute right-0 mt-3 w-52 bg-light border shadow-lg rounded-md overflow-hidden">
+            <Link
+              href="/profile"
+              className="text-gray-600 block px-4 py-2 hover:bg-muted"
+              onClick={() => setProfileOpen(false)}
+            >
+              My Profile
+            </Link>
+
+            <Link
+              href="/orders"
+              className="text-gray-600 block px-4 py-2 hover:bg-muted"
+              onClick={() => setProfileOpen(false)}
+            >
+              Order History
+            </Link>
+
+            <Link
+              href="/help"
+              className="text-gray-600 block px-4 py-2 hover:bg-muted"
+              onClick={() => setProfileOpen(false)}
+            >
+              Get Help
+            </Link>
+
+            <button
+              onClick={() => {
+                setProfileOpen(false);
+                signOut({ callbackUrl: "/" });
+              }}
+              className="w-full text-left px-4 py-2 hover:bg-muted text-red-600"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+    </>
+  ) : (
+    <Link
+      href="/login"
+      className="text-primary font-medium hover:underline"
+    >
+      Login / Signup
+    </Link>
+  )}
+</div>
         </div>
       </header>
     </>

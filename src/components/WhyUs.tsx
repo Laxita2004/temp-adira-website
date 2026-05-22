@@ -43,7 +43,7 @@ const WhyUs = () => {
             <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-primary transition">
               {feature.title}
             </h3>
-            <p className="text-m text-muted-foreground">{feature.description}</p>
+            <p className="text-gray-600 text-m text-muted-foreground">{feature.description}</p>
           </div>
         ))}
       </div>

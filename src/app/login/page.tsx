@@ -61,7 +61,7 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
           <div>
-            <label className="block mb-1 text-sm font-medium">Email</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">Email</label>
             <input
               name="email"
               type="email"
@@ -75,7 +75,7 @@ const Login = () => {
 
           {/* Password */}
           <div>
-            <label className="block mb-1 text-sm font-medium">Password</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">Password</label>
             <input
               name="password"
               type="password"
@@ -108,7 +108,7 @@ const Login = () => {
           </button>
         </form>
 
-        <p className="text-center text-sm mt-6">
+        <p className="text-gray-600 text-center text-sm mt-6">
           Don’t have an account?{" "}
           <Link href="/register" className="text-primary hover:underline">
             Register
