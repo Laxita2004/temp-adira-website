@@ -10,9 +10,9 @@ const AdminPanel = () => {
   return (
     <div className="min-h-screen bg-light">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <AdminHeader setSidebarOpen={setSidebarOpen} />
+      <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      <main className="pt-[120px] px-6">
+      <main className="pt-[120px] px-6 text-gray-900">
         <h2 className="text-2xl font-semibold mb-4">Welcome, Admin!</h2>
         <p>Select an option from the menu to begin.</p>
       </main>

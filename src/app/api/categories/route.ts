@@ -4,32 +4,32 @@ import { requireRole, ApiError } from "@/lib/auth";
 import { Role } from "@prisma/client";
 
 /**
- * GET /api/materials
+ * GET /api/categories
  *
- * Fetch all materials
+ * Fetch all categories
  *
  * Access: Public
  *
  * Returns:
- * - 200 → list of materials
+ * - 200 → list of categories
  * - 500 → server error
  */
 export const GET = async () => {
   try {
 
-    // Fetch materials (sorted for better UX)
-    const materials = await prisma.material.findMany({
+    // Fetch all categories
+    const categories = await prisma.category.findMany({
       orderBy: { name: "asc" },
     });
 
-    return NextResponse.json(materials);
+    return NextResponse.json(categories);
 
   } catch (error) {
 
-    console.error("Failed to fetch materials:", error);
+    console.error("Failed to fetch categories:", error);
 
     return NextResponse.json(
-      { error: "Failed to fetch materials" },
+      { error: "Failed to fetch categories" },
       { status: 500 }
     );
   }
@@ -37,9 +37,9 @@ export const GET = async () => {
 
 
 /**
- * POST /api/materials
+ * POST /api/categories
  *
- * Create a new material
+ * Create a new category
  *
  * Access: Admin only
  *
@@ -47,7 +47,7 @@ export const GET = async () => {
  * - name (string)
  *
  * Returns:
- * - 201 → material created
+ * - 201 → category created
  * - 400 → invalid input
  * - 401 → not authenticated
  * - 403 → not authorized
@@ -63,31 +63,32 @@ export const POST = async (req: Request) => {
 
     // Validation
     if (!name || typeof name !== "string") {
-      throw new ApiError("Material name required", 400);
+      throw new ApiError("Category name required", 400);
     }
 
     // Normalize input
     const normalizedName = name.trim().toLowerCase();
 
     if (!normalizedName) {
-      throw new ApiError("Material name cannot be empty", 400);
+      throw new ApiError("Category name cannot be empty", 400);
     }
 
-    // Check duplicate
-    const existingMaterial = await prisma.material.findUnique({
+    // Check for duplicate category
+    const existingCategory = await prisma.category.findUnique({
       where: { name: normalizedName },
     });
 
-    if (existingMaterial) {
-      throw new ApiError("Material already exists", 400);
+    if (existingCategory) {
+      throw new ApiError("Category already exists", 400);
     }
 
-    // Create material
-    const newMaterial = await prisma.material.create({
+    // Create category
+    const newCategory = await prisma.category.create({
       data: { name: normalizedName },
     });
 
-    return NextResponse.json(newMaterial, { status: 201 });
+    // Success response
+    return NextResponse.json(newCategory, { status: 201 });
 
   } catch (error: any) {
 
@@ -100,10 +101,10 @@ export const POST = async (req: Request) => {
     }
 
     // Unexpected errors
-    console.error("Failed to add material:", error);
+    console.error("Failed to add category:", error);
 
     return NextResponse.json(
-      { error: "Failed to add material" },
+      { error: "Failed to add category" },
       { status: 500 }
     );
   }

@@ -55,7 +55,7 @@ export default function EditOfferPage() {
 
       if (res.ok) {
         alert('Offer updated successfully!');
-        router.push('/admin/admin-portal-unguessable-0581d2602l2409s0731j/offers');
+        router.push('/admin/offers');
       } else {
         alert('Failed to update offer');
       }

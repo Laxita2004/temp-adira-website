@@ -82,7 +82,7 @@ export default function AddOffers() {
 
       if (res.ok) {
         alert("Offer created successfully!");
-        router.push("/admin/admin-portal-unguessable-0581d2602l2409s0731j/offers");
+        router.push("/admin/offers");
       } else {
         alert("Failed to create offer");
       }

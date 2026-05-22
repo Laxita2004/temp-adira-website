@@ -46,11 +46,11 @@ const OrdersPage = () => {
     <div className="flex">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex-1 min-h-screen bg-gray-100 pl-64">
-        <AdminHeader setSidebarOpen={setSidebarOpen} />
+        <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="pt-[120px] p-6">
-          <h2 className="text-2xl font-bold mb-4">Orders Placed</h2>
+          <h2 className="text-primary text-2xl font-bold mb-4">Orders Placed</h2>
           {orders.length === 0 ? (
-            <p>No current orders.</p>
+            <p className="text-gray-600">No current orders.</p>
           ) : (
             orders.map((order) => <OrderCard key={order.id} order={order} />)
           )}

@@ -39,13 +39,14 @@ export default function Offers() {
   };
 
   return (
-    <div className="p-6">
+    <div className="bg-light w-full">
+    <div className="bg-light p-6">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <AdminHeader setSidebarOpen={setSidebarOpen} />
+      <AdminHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex justify-between items-center pt-[120px] ">
-        <h1 className="text-xl font-semibold">Offers</h1>
+        <h1 className="text-primary text-xl font-semibold">Offers</h1>
         <Link
-          href="/admin/admin-portal-unguessable-0581d2602l2409s0731j/offers/new"
+          href="/admin/offers/new"
           className="bg-primary text-white px-4 py-2 rounded"
         >
           + New Offer
@@ -69,7 +70,7 @@ export default function Offers() {
             )}
             <div className="mt-2 flex gap-4">
               <Link
-                href={`/admin/admin-portal-unguessable-0581d2602l2409s0731j/offers/edit/${offer.id}`}
+                href={`/admin/offers/edit/${offer.id}`}
                 className="text-blue-500"
               >
                 Edit
@@ -84,6 +85,7 @@ export default function Offers() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }
