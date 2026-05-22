@@ -74,13 +74,6 @@ const Header = () => {
             Sale
           </Link>
           <Link
-            href="/shop"
-            onClick={() => setSidebarOpen(false)}
-            className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
-          >
-            New In
-          </Link>
-          <Link
             href="/shop/all?pattern=jaal%20work"
             onClick={() => setSidebarOpen(false)}
             className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
@@ -109,19 +102,11 @@ const Header = () => {
             Printed Chiffons
           </Link>
           <Link
-            href="/about"
-            onClick={() => setSidebarOpen(false)}
-            className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
-          >
-            About Us
-          </Link>
-
-          <Link
             href="/contact"
             onClick={() => setSidebarOpen(false)}
             className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
           >
-            Contact
+            Contact Us
           </Link>
         </nav>
       </aside>
