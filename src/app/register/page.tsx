@@ -15,7 +15,6 @@ const Register = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -29,7 +28,6 @@ const Register = () => {
 
     setLoading(true);
     setError("");
-    setSuccess("");
 
     try {
       const res = await fetch("/api/register", {
@@ -42,12 +40,28 @@ const Register = () => {
 
       const data = await res.json();
 
+      // Error case
       if (!res.ok) {
         setError(data.error || "Something went wrong");
-      } else {
-        alert("Registered successfully!");
-        router.push("/login");
+        return;
       }
+
+      if (data.type === "existing") {
+        router.push(
+          `/verify-email?email=${encodeURIComponent(
+            form.email
+          )}&type=existing`
+        );
+
+        return;
+      }
+
+      // Normal registration flow
+      router.push(
+        `/verify-email?email=${encodeURIComponent(
+          form.email
+        )}&type=new`
+      );
     } catch (err) {
       setError("Network error");
     } finally {
@@ -61,6 +75,7 @@ const Register = () => {
         <h2 className="text-3xl font-bold text-center mb-2 text-primary">
           Register
         </h2>
+
         <p className="text-sm text-secondary text-center mb-6">
           And be a part of the Adira family!
         </p>
@@ -68,7 +83,10 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name */}
           <div>
-            <label className="text-gray-600 block mb-1 text-sm font-medium">Name</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">
+              Name
+            </label>
+
             <input
               name="name"
               value={form.name}
@@ -81,7 +99,10 @@ const Register = () => {
 
           {/* Email */}
           <div>
-            <label className="text-gray-600 block mb-1 text-sm font-medium">Email</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">
+              Email
+            </label>
+
             <input
               name="email"
               type="email"
@@ -95,7 +116,10 @@ const Register = () => {
 
           {/* Password */}
           <div>
-            <label className="text-gray-600 block mb-1 text-sm font-medium">Password</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">
+              Password
+            </label>
+
             <input
               name="password"
               type="password"
@@ -109,11 +133,13 @@ const Register = () => {
           </div>
 
           {/* Error */}
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-sm">
+              {error}
+            </p>
+          )}
 
-          {/* Success */}
-          {success && <p className="text-green-600 text-sm">{success}</p>}
-
+          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
@@ -125,7 +151,10 @@ const Register = () => {
 
         <p className="text-gray-600 text-center text-sm mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-primary hover:underline">
+          <Link
+            href="/login"
+            className="text-primary hover:underline"
+          >
             Login
           </Link>
         </p>
