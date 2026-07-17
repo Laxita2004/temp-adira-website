@@ -12,7 +12,7 @@ const Footer = () => {
         {/* Left: Logo + Description */}
         <div>
           <img
-            src="/logo/AdiraLogo.png"
+            src="/logo/RatnawadLogo.png"
             alt="Adira Logo"
             className="h-[150px] mb-4"
           />
@@ -106,7 +106,7 @@ const Footer = () => {
 
       {/* Bottom Copyright */}
       <div className="bg-primary text-white text-center text-sm mt-10 py-3">
-        Copyright © {new Date().getFullYear()} Adira | The House of Chiffon. All
+        Copyright © {new Date().getFullYear()} RATNAWAD. All
         Rights Reserved.
       </div>
     </footer>

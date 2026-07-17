@@ -19,10 +19,20 @@ export const authOptions: NextAuthOptions = {
 
         // Find user
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email.toLocaleLowerCase() },
+          where: {
+            email: credentials.email.toLowerCase(),
+          },
         });
 
-        if (!user) return null;
+        // User not found
+        if (!user) {
+          throw new Error("Invalid credentials");
+        }
+
+        // Email not verified
+        if (!user.isEmailVerified) {
+          throw new Error("Email not verified");
+        }
 
         // Compare password
         const isValid = await bcrypt.compare(
@@ -30,7 +40,9 @@ export const authOptions: NextAuthOptions = {
           user.password,
         );
 
-        if (!isValid) return null;
+        if (!isValid) {
+          throw new Error("Invalid credentials");
+        }
 
         // Return minimal user object
         return {

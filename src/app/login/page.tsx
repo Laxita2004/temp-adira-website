@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getSession } from "next-auth/react";
 
 const Login = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const verified = searchParams.get("verified");
 
   const [form, setForm] = useState({
     email: "",
@@ -51,6 +54,17 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (verified === "true") {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete("verified");
+
+      router.replace(
+        params.toString() ? `/login?${params.toString()}` : "/login",
+        { scroll: false },
+      );
+    }
+  }, [verified, router, searchParams]);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
@@ -58,10 +72,17 @@ const Login = () => {
           Welcome Back
         </h2>
 
+        {verified === "true" && (
+          <div className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+            Your email has been verified successfully. You can now log in.
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
           <div>
-            <label className="text-gray-600 block mb-1 text-sm font-medium">Email</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">
+              Email
+            </label>
             <input
               name="email"
               type="email"
@@ -75,7 +96,9 @@ const Login = () => {
 
           {/* Password */}
           <div>
-            <label className="text-gray-600 block mb-1 text-sm font-medium">Password</label>
+            <label className="text-gray-600 block mb-1 text-sm font-medium">
+              Password
+            </label>
             <input
               name="password"
               type="password"

@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+
+-- CreateEnum
 CREATE TYPE "OrderStatus" AS ENUM ('PENDING', 'CONFIRMED', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED');
 
 -- CreateEnum
@@ -11,42 +14,18 @@ CREATE TYPE "PaymentProvider" AS ENUM ('STRIPE', 'RAZORPAY', 'CASH_ON_DELIVERY')
 CREATE TYPE "DiscountType" AS ENUM ('PERCENTAGE', 'FLAT');
 
 -- CreateTable
-CREATE TABLE "admin" (
-    "email" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "admin_pkey" PRIMARY KEY ("email")
-);
-
--- CreateTable
 CREATE TABLE "user" (
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" "Role" NOT NULL DEFAULT 'USER',
+    "isEmailVerified" BOOLEAN NOT NULL DEFAULT false,
+    "emailVerifyToken" TEXT,
+    "emailVerifyExpiry" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("email")
-);
-
--- CreateTable
-CREATE TABLE "session" (
-    "id" TEXT NOT NULL,
-    "sessionToken" TEXT NOT NULL,
-    "userEmail" TEXT NOT NULL,
-    "expires" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "session_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "verification_token" (
-    "identifier" TEXT NOT NULL,
-    "token" TEXT NOT NULL,
-    "expires" TIMESTAMP(3) NOT NULL
 );
 
 -- CreateTable
@@ -80,7 +59,7 @@ CREATE TABLE "product" (
     "description" TEXT NOT NULL,
     "price" DECIMAL(65,30) NOT NULL,
     "inStock" INTEGER NOT NULL,
-    "category" TEXT NOT NULL,
+    "categoryId" INTEGER NOT NULL,
     "materialId" INTEGER NOT NULL,
     "patternId" INTEGER NOT NULL,
     "themeId" INTEGER NOT NULL,
@@ -88,6 +67,14 @@ CREATE TABLE "product" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "product_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "category" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "category_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -200,10 +187,11 @@ CREATE TABLE "testimonial" (
 );
 
 -- CreateTable
-CREATE TABLE "sale" (
+CREATE TABLE "offer" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "bannerUrl" TEXT NOT NULL,
     "discountType" "DiscountType" NOT NULL,
     "discountValue" DECIMAL(65,30) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
@@ -212,26 +200,20 @@ CREATE TABLE "sale" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "sale_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "offer_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "sale_product" (
+CREATE TABLE "offer_product" (
     "id" SERIAL NOT NULL,
-    "saleId" INTEGER NOT NULL,
+    "offerId" INTEGER NOT NULL,
     "productId" INTEGER NOT NULL,
 
-    CONSTRAINT "sale_product_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "offer_product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "session_sessionToken_key" ON "session"("sessionToken");
-
--- CreateIndex
-CREATE UNIQUE INDEX "verification_token_token_key" ON "verification_token"("token");
-
--- CreateIndex
-CREATE UNIQUE INDEX "verification_token_identifier_token_key" ON "verification_token"("identifier", "token");
+CREATE UNIQUE INDEX "category_name_key" ON "category"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "material_name_key" ON "material"("name");
@@ -255,16 +237,16 @@ CREATE UNIQUE INDEX "cart_items_cartId_productId_key" ON "cart_items"("cartId", 
 CREATE UNIQUE INDEX "payment_details_orderId_key" ON "payment_details"("orderId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "sale_product_saleId_productId_key" ON "sale_product"("saleId", "productId");
-
--- AddForeignKey
-ALTER TABLE "session" ADD CONSTRAINT "session_userEmail_fkey" FOREIGN KEY ("userEmail") REFERENCES "user"("email") ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE UNIQUE INDEX "offer_product_offerId_productId_key" ON "offer_product"("offerId", "productId");
 
 -- AddForeignKey
 ALTER TABLE "shipping_address" ADD CONSTRAINT "shipping_address_userEmail_fkey" FOREIGN KEY ("userEmail") REFERENCES "user"("email") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "search_history" ADD CONSTRAINT "search_history_userEmail_fkey" FOREIGN KEY ("userEmail") REFERENCES "user"("email") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "product" ADD CONSTRAINT "product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "product" ADD CONSTRAINT "product_materialId_fkey" FOREIGN KEY ("materialId") REFERENCES "material"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -312,7 +294,7 @@ ALTER TABLE "testimonial" ADD CONSTRAINT "testimonial_userEmail_fkey" FOREIGN KE
 ALTER TABLE "testimonial" ADD CONSTRAINT "testimonial_productId_fkey" FOREIGN KEY ("productId") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "sale_product" ADD CONSTRAINT "sale_product_saleId_fkey" FOREIGN KEY ("saleId") REFERENCES "sale"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "offer_product" ADD CONSTRAINT "offer_product_offerId_fkey" FOREIGN KEY ("offerId") REFERENCES "offer"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "sale_product" ADD CONSTRAINT "sale_product_productId_fkey" FOREIGN KEY ("productId") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "offer_product" ADD CONSTRAINT "offer_product_productId_fkey" FOREIGN KEY ("productId") REFERENCES "product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
