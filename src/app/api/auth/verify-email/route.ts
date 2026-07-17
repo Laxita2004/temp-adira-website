@@ -41,7 +41,7 @@ export async function GET(req: Request) {
       user.emailVerifyExpiry < new Date()
     ) {
       return NextResponse.redirect(
-        `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?status=failed&email=${encodeURIComponent(user.email)}`
+        `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?status=expired&email=${encodeURIComponent(user.email)}`
       );
     }
 

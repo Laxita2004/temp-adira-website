@@ -148,7 +148,7 @@ const VerifyEmailPage = () => {
             </h1>
 
             <p className="text-gray-600 mb-6">
-              This verification link is invalid or has expired.
+              This verification link is invalid.
             </p>
 
             {email && (

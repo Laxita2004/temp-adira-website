@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     if (!email || !password || !name) {
       return NextResponse.json(
         { error: "All fields are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     if (existingUser && existingUser.isEmailVerified) {
       return NextResponse.json(
         { error: "User already exists" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -47,7 +47,6 @@ export async function POST(req: Request) {
 
     // USER EXISTS BUT EMAIL NOT VERIFIED
     if (existingUser && !existingUser.isEmailVerified) {
-
       // Update verification token only
       await prisma.user.update({
         where: {
@@ -69,12 +68,11 @@ export async function POST(req: Request) {
 
       return NextResponse.json(
         {
-          message:
-            "Account already exists but email is not verified.",
+          message: "Account already exists but email is not verified.",
 
           type: "existing",
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
@@ -97,26 +95,37 @@ export async function POST(req: Request) {
       },
     });
 
-    // Send verification email
-    await sendVerificationEmail({
-      email,
-      token: rawToken,
-      name,
-    });
+    try {
+      // Send verification email
+      await sendVerificationEmail({
+        email,
+        token: rawToken,
+        name,
+      });
+    } catch (err) {
+      console.error(err);
+      return NextResponse.json(
+        {
+          error:
+            "Account created, but verification email could not be sent. Please use 'Resend Verification Email'.",
+        },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(
       {
         message: "Verification email sent.",
         type: "new",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("REGISTER ERROR:", error);
 
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

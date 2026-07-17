@@ -1,6 +1,12 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_EMAIL,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 interface SendVerificationEmailProps {
   email: string;
@@ -15,12 +21,10 @@ export async function sendVerificationEmail({
 }: SendVerificationEmailProps) {
   const verifyUrl = `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/verify-email?token=${token}`;
 
-  await resend.emails.send({
-    from: process.env.EMAIL_FROM!,
+  await transporter.sendMail({
+    from: `"Ratnawad" <${process.env.GMAIL_EMAIL}>`,
     to: email,
-
     subject: "Verify your email",
-
     html: `
       <div>
         <h2>Hello ${name},</h2>
@@ -48,7 +52,7 @@ export async function sendVerificationEmail({
         </a>
 
         <p>
-          This link will expire in 1 hour.
+          This link will expire in 10 minutes.
         </p>
       </div>
     `,

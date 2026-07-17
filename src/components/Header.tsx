@@ -130,7 +130,7 @@ const Header = () => {
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
               <img
-                src="/logo/AdiraLogo.png"
+                src="/logo/RatnawadLogo.png"
                 alt="Logo"
                 className="h-20 w-auto"
               />
@@ -139,87 +139,87 @@ const Header = () => {
 
           {/* RIGHT */}
           <div className="flex items-center gap-4 relative z-50">
-  {status === "loading" ? null : user ? (
-    <>
-      {/* 🛒 CART ICON */}
-      <Link href="/cart">
-        <div className="relative group cursor-pointer">
-          <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition">
-            <ShoppingCart size={20} />
+            {status === "loading" ? null : user ? (
+              <>
+                {/* 🛒 CART ICON */}
+                <Link href="/cart">
+                  <div className="relative group cursor-pointer">
+                    <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition">
+                      <ShoppingCart size={20} />
+                    </div>
+
+                    {/* Hover label */}
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs bg-primary text-light px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                      Cart
+                    </span>
+                  </div>
+                </Link>
+
+                {/* 👤 PROFILE */}
+                <div ref={dropdownRef} className="relative">
+                  <div className="relative group">
+                    <button
+                      onClick={() => setProfileOpen((prev) => !prev)}
+                      className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition"
+                    >
+                      <User size={20} />
+                    </button>
+
+                    {/* Hover label */}
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs bg-primary text-light px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                      Profile
+                    </span>
+                  </div>
+
+                  {/* DROPDOWN */}
+                  {profileOpen && (
+                    <div className="absolute right-0 mt-3 w-52 bg-light border shadow-lg rounded-md overflow-hidden">
+                      <Link
+                        href="/profile"
+                        className="text-gray-600 block px-4 py-2 hover:bg-muted"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        My Profile
+                      </Link>
+
+                      <Link
+                        href="/orders"
+                        className="text-gray-600 block px-4 py-2 hover:bg-muted"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        Order History
+                      </Link>
+
+                      <Link
+                        href="/help"
+                        className="text-gray-600 block px-4 py-2 hover:bg-muted"
+                        onClick={() => setProfileOpen(false)}
+                      >
+                        Get Help
+                      </Link>
+
+                      <button
+                        onClick={() => {
+                          setProfileOpen(false);
+                          signOut({ callbackUrl: "/" });
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-muted text-red-600"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <Link
+                href="/login"
+                className="text-primary font-medium hover:underline"
+              >
+                Login / Signup
+              </Link>
+            )}
           </div>
-
-          {/* Hover label */}
-          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs bg-primary text-light px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-            Cart
-          </span>
-        </div>
-      </Link>
-
-      {/* 👤 PROFILE */}
-      <div ref={dropdownRef} className="relative">
-        <div className="relative group">
-          <button
-            onClick={() => setProfileOpen((prev) => !prev)}
-            className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition"
-          >
-            <User size={20} />
-          </button>
-
-          {/* Hover label */}
-          <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs bg-primary text-light px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-            Profile
-          </span>
-        </div>
-
-        {/* DROPDOWN */}
-        {profileOpen && (
-          <div className="absolute right-0 mt-3 w-52 bg-light border shadow-lg rounded-md overflow-hidden">
-            <Link
-              href="/profile"
-              className="text-gray-600 block px-4 py-2 hover:bg-muted"
-              onClick={() => setProfileOpen(false)}
-            >
-              My Profile
-            </Link>
-
-            <Link
-              href="/orders"
-              className="text-gray-600 block px-4 py-2 hover:bg-muted"
-              onClick={() => setProfileOpen(false)}
-            >
-              Order History
-            </Link>
-
-            <Link
-              href="/help"
-              className="text-gray-600 block px-4 py-2 hover:bg-muted"
-              onClick={() => setProfileOpen(false)}
-            >
-              Get Help
-            </Link>
-
-            <button
-              onClick={() => {
-                setProfileOpen(false);
-                signOut({ callbackUrl: "/" });
-              }}
-              className="w-full text-left px-4 py-2 hover:bg-muted text-red-600"
-            >
-              Logout
-            </button>
-          </div>
-        )}
-      </div>
-    </>
-  ) : (
-    <Link
-      href="/login"
-      className="text-primary font-medium hover:underline"
-    >
-      Login / Signup
-    </Link>
-  )}
-</div>
         </div>
       </header>
     </>

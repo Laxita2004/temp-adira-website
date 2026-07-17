@@ -68,7 +68,7 @@ const Testimonials = () => {
         <div className="text-center md:text-left">
           <h2 className="text-3xl font-semibold mb-2">Testimonials</h2>
           <p className="text-white/90 mb-4">
-            Become a part of the Adira family!
+            Become a part of the RATNAWAD family!
           </p>
           <p className="text-white/70 mb-6">
             Follow us on Instagram and join our whatsapp community for latest
@@ -83,7 +83,7 @@ const Testimonials = () => {
             className="inline-flex items-center text-lg bg-white text-primary font-semibold px-6 py-2 rounded-full border hover:bg-primary hover:text-white hover:border-white transition"
           >
             <FaInstagram className="mr-2" />
-            <span>adirachiffons</span>
+            <span>ratnawadofficial</span>
           </a>
         </div>
       </div>
