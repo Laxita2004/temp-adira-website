@@ -77,7 +77,7 @@ const Testimonials = () => {
             (A little secret: We offer upto 15% off to our instagram followers!)
           </p>
           <a
-            href="https://www.instagram.com/adirachiffons?igsh=N2FxaDBidHVpeTcx"
+            href="https://www.instagram.com/ratnawadofficial?igsh=d3g0NDFmcmY5cjlx"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-lg bg-white text-primary font-semibold px-6 py-2 rounded-full border hover:bg-primary hover:text-white hover:border-white transition"

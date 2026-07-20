@@ -16,7 +16,7 @@ const TermsPolicyPage = () => {
           <section className="mb-10">
             <h2 className="text-2xl font-semibold mb-4">Returns & Exchanges</h2>
             <p className="mb-4">
-              We hope you love your Adira saree, but if for any reason you’re not satisfied, please review our policies below.
+              We hope you love your RATNAWAD saree, but if for any reason you’re not satisfied, please review our policies below.
             </p>
             <ul className="list-disc ml-5 space-y-2">
               <li>Only <strong>prepaid orders</strong> are accepted.</li>
@@ -65,7 +65,7 @@ const TermsPolicyPage = () => {
             <ul className="list-disc ml-5 space-y-2">
               <li>All product images are for representation. Color may vary slightly due to lighting and screen settings.</li>
               <li>Prices and availability are subject to change without notice.</li>
-              <li>Misuse or duplication of Adira’s designs, photographs, or content is strictly prohibited.</li>
+              <li>Misuse or duplication of RATNAWAD’s designs, photographs, or content is strictly prohibited.</li>
               <li>We reserve the right to cancel any order that appears fraudulent or violates our terms.</li>
             </ul>
           </section>

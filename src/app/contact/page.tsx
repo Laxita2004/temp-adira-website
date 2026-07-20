@@ -44,7 +44,7 @@ export default function Contact() {
                 <FaWhatsapp /> WhatsApp
               </a>
               <a
-                href="https://www.instagram.com/adirachiffons?igsh=N2FxaDBidHVpeTcx"
+                href="https://www.instagram.com/ratnawadofficial?igsh=d3g0NDFmcmY5cjlx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-primary transition"

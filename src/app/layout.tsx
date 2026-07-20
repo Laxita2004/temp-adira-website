@@ -11,18 +11,18 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata = {
-  title: "Adira | The House of Chiffon",
+  title: "RATNAWAD",
   description:
-    "Adira brings you graceful chiffon sarees where timeless tradition meets quiet luxury.",
+    "RATNAWAD brings you graceful chiffon sarees where timeless tradition meets quiet luxury.",
   icons: {
-    icon: "/AdiraLogo.ico",
+    icon: "logo//RatnawadLogo.png",
   },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={cormorant.variable}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-light">
         <Providers>
           <main className="flex-1">{children}</main>
         </Providers>

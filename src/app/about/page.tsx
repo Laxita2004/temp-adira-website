@@ -37,7 +37,7 @@ const About = () => {
                 Passion Meets Purpose
               </h2>
               <p className="text-lg lg:text-xl text-white/80 max-w-md mx-auto">
-                At Adira, every drape tells a story — a story woven with
+                At RATNAWAD, every drape tells a story — a story woven with
                 passion, rooted in purpose. What began as a love for timeless
                 textiles has grown into a commitment to celebrate India’s rich
                 heritage through sarees that feel both soulful and modern. We
@@ -84,7 +84,7 @@ const About = () => {
                 where heritage meets modern minimalism, and where every saree
                 speaks softly, yet powerfully. What keeps her going, even today,
                 is the smile that lights up on a woman’s face when she sees
-                herself draped in Adira — when she pauses, admires her own
+                herself draped in RATNAWAD — when she pauses, admires her own
                 reflection, and feels something shift. That quiet moment of
                 confidence, pride, and self-love is the true heartbeat of the
                 brand.
@@ -110,22 +110,22 @@ const About = () => {
         <FadeInSection>
           <div className="relative z-10 max-w-6xl mx-auto text-center text-white space-y-20">
             <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
-              What Drives Us at Adira
+              What Drives Us at RATNAWAD
             </h2>
 
             {/* Mission/Vision/Values Cards */}
             {[
               {
                 title: "Our Essence – The Mission",
-                desc: "At Adira, our mission is simple yet soulful — to preserve the timeless grace of Indian textiles, especially chiffons, and present them through a lens of modern elegance. We’re here to make heritage wearable, not just for occasions, but for everyday moments of grace. By working closely with skilled local artisans, we ensure that every saree is not only a reflection of tradition, but also a means of preserving livelihoods and craftsmanship passed down through generations.",
+                desc: "At RATNAWAD, our mission is simple yet soulful — to preserve the timeless grace of Indian textiles, especially chiffons, and present them through a lens of modern elegance. We’re here to make heritage wearable, not just for occasions, but for everyday moments of grace. By working closely with skilled local artisans, we ensure that every saree is not only a reflection of tradition, but also a means of preserving livelihoods and craftsmanship passed down through generations.",
               },
               {
                 title: "Our Horizon – The Vision",
-                desc: "We envision a world where heritage is not confined to ceremonies, but celebrated in everyday choices. Adira strives to become a global symbol of quiet luxury — where the softest fabrics, the subtlest designs, and the deepest cultural threads come together to dress a woman not just in beauty, but in meaning. As we grow, we remain deeply committed to empowering local artisans, bringing their work to the forefront, and creating a space where handmade meets high fashion with integrity.",
+                desc: "We envision a world where heritage is not confined to ceremonies, but celebrated in everyday choices. RATNAWAD strives to become a global symbol of quiet luxury — where the softest fabrics, the subtlest designs, and the deepest cultural threads come together to dress a woman not just in beauty, but in meaning. As we grow, we remain deeply committed to empowering local artisans, bringing their work to the forefront, and creating a space where handmade meets high fashion with integrity.",
               },
               {
                 title: "Our Soul – The Values",
-                desc: "Adira is woven with values that define our every thread and thought. We believe in grace — in the way we design, drape, and express femininity. Authenticity guides our sourcing, storytelling, and craftsmanship, ensuring each piece carries truth and tradition. We hold deep respect for heritage, for the women who wear our sarees, and for the hands that create them. Our aesthetic is rooted in simplicity, allowing elegance to breathe without excess. We proudly extend our support to local artisans, preserving sustainable artistry with every creation. And above all, we remain committed to consistency — in quality, care, and the experience we offer to every Adira woman.",
+                desc: "RATNAWAD is woven with values that define our every thread and thought. We believe in grace — in the way we design, drape, and express femininity. Authenticity guides our sourcing, storytelling, and craftsmanship, ensuring each piece carries truth and tradition. We hold deep respect for heritage, for the women who wear our sarees, and for the hands that create them. Our aesthetic is rooted in simplicity, allowing elegance to breathe without excess. We proudly extend our support to local artisans, preserving sustainable artistry with every creation. And above all, we remain committed to consistency — in quality, care, and the experience we offer to every RATNAWAD woman.",
               },
             ].map((item, idx) => (
               <div key={idx} className="space-y-4">
@@ -193,7 +193,7 @@ const About = () => {
               Our Journey Began Here
             </h2>
             <p className="text-lg font-semibold lg:text-xl text-white/90 leading-relaxed">
-              In the early days of 2024, Adira was just a quiet dream — one
+              In the early days of 2024, RATNAWAD was just a quiet dream — one
               stitched together with care, curiosity, and a lot of heart. We
               began by immersing ourselves in the world of fabrics,
               understanding their language, their origins, and their stories. We
@@ -201,10 +201,10 @@ const About = () => {
               values, and a purpose to build around. Every decision — from our
               brand’s name to its colors, from the weaves we use to the vision
               we hold — was made with utmost thought and soul. We spent months
-              defining our "why" — what Adira should stand for, what it must
+              defining our "why" — what RATNAWAD should stand for, what it must
               never compromise on, and how it could make women not just look
               beautiful, but feel truly seen. After months of research,
-              designing, dreaming, and refining, Adira officially came to life
+              designing, dreaming, and refining, RATNAWAD officially came to life
               in August 2024 — not as just a label, but as a heartfelt offering.
               From day one, it has been more than fabric — it’s about stories,
               slow fashion, and that spark of confidence a saree can bring when

@@ -9,11 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#830D0F",       // text, button
+        primary: "#7A0309",       // text, button
         secondary: "#8E8D8E",     // accent text(dark grey) 
-        light: "#F4F2F3",         // background
-        muted: "#E8E2E2",         // block sections
-        footer: "#F4F2F3",        // footer bg
+        light: "#F7F1EE",         // background
+        muted: "#EFE6E2",         // block sections
+        footer: "#F7F1EE",        // footer bg
       },
       fontFamily: {
         serif: ['var(--font-cormorant)', 'serif'],

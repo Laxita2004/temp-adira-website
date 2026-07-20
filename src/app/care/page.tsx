@@ -12,7 +12,7 @@ const SareeCareGuide: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-6">Saree Care Guide</h1>
           <p className="mb-6">
-            Every Adira saree is a work of art — woven with love and made to
+            Every RATNAWAD saree is a work of art — woven with love and made to
             last when cared for properly. Here's how to keep your saree
             beautiful for years to come:
           </p>

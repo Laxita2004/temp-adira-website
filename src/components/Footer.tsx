@@ -24,16 +24,28 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
-            <Link href="https://www.instagram.com/adirachiffons?igsh=N2FxaDBidHVpeTcx" target="_blank">
+            <Link
+              href="https://www.instagram.com/ratnawadofficial?igsh=d3g0NDFmcmY5cjlx"
+              target="_blank"
+            >
               <FaInstagram className="text-2xl text-primary hover:scale-110 transition" />
             </Link>
-            <Link href="https://www.facebook.com/dharmnishtha.singh.thakur?mibextid=ZbWKwL" target="_blank">
+            <Link
+              href="https://www.facebook.com/dharmnishtha.singh.thakur?mibextid=ZbWKwL"
+              target="_blank"
+            >
               <FaFacebookF className="text-2xl text-primary hover:scale-110 transition" />
             </Link>
-            <Link href="http://chat.whatsapp.com/HIm4x09TqlPE4gDgMStdZW" target="_blank">
+            <Link
+              href="http://chat.whatsapp.com/HIm4x09TqlPE4gDgMStdZW"
+              target="_blank"
+            >
               <FaWhatsapp className="text-2xl text-primary hover:scale-110 transition" />
             </Link>
-            <Link href="https://www.threads.com/@adirachiffons" target="_blank">
+            <Link
+              href="https://www.threads.com/@ratnawadofficial"
+              target="_blank"
+            >
               <FaSquareThreads className="text-2xl text-primary hover:scale-110 transition" />
             </Link>
           </div>
@@ -106,8 +118,7 @@ const Footer = () => {
 
       {/* Bottom Copyright */}
       <div className="bg-primary text-white text-center text-sm mt-10 py-3">
-        Copyright © {new Date().getFullYear()} RATNAWAD. All
-        Rights Reserved.
+        Copyright © {new Date().getFullYear()} RATNAWAD. All Rights Reserved.
       </div>
     </footer>
   );
