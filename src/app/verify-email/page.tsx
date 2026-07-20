@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 
-const VerifyEmailPage = () => {
+function VerifyEmailContent(){
   const searchParams = useSearchParams();
 
   const email = searchParams.get("email");
@@ -187,6 +187,14 @@ const VerifyEmailPage = () => {
         </Link>
       </div>
     </div>
+  );
+}
+
+const VerifyEmailPage = () => {
+   return (
+    <Suspense fallback={null}>
+      <VerifyEmailContent />
+    </Suspense>
   );
 };
 
