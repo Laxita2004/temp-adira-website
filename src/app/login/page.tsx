@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getSession } from "next-auth/react";
 
-const Login = () => {
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -19,6 +19,7 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showVerifiedMessage, setShowVerifiedMessage] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -56,6 +57,8 @@ const Login = () => {
 
   useEffect(() => {
     if (verified === "true") {
+      setShowVerifiedMessage(true);
+
       const params = new URLSearchParams(searchParams.toString());
       params.delete("verified");
 
@@ -65,6 +68,7 @@ const Login = () => {
       );
     }
   }, [verified, router, searchParams]);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
@@ -72,7 +76,7 @@ const Login = () => {
           Welcome Back
         </h2>
 
-        {verified === "true" && (
+        {showVerifiedMessage && (
           <div className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
             Your email has been verified successfully. You can now log in.
           </div>
@@ -140,6 +144,14 @@ const Login = () => {
       </div>
     </div>
   );
+}
+
+const LoginPage = () => {
+  return (
+    <Suspense fallback={null}>
+      <LoginContent />
+    </Suspense>
+  );
 };
 
-export default Login;
+export default LoginPage;
