@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const categories = ["Best Seller", "Sale", "New In", "View All"];
 
-const TopBar = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Best Seller");
+const TopBarContent = () => {
+  const [selectedCategory, setSelectedCategory] =
+    useState("Best Seller");
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -56,7 +57,7 @@ const TopBar = () => {
   };
 
   return (
-    <div className="flex gap-3 justify-center py-4">
+    <div className="flex items-center gap-2">
       {categories.map((category) => (
         <button
           key={category}
@@ -74,4 +75,27 @@ const TopBar = () => {
   );
 };
 
+const TopBar = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              disabled
+              className="px-5 py-2 rounded-full text-sm font-medium bg-muted border border-primary text-primary opacity-70"
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      }
+    >
+      <TopBarContent />
+    </Suspense>
+  );
+};
+
 export default TopBar;
+
