@@ -18,7 +18,7 @@ const NewInSection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("/api/products/?sort=newest&limit=8");
+        const res = await fetch("/api/products/?sort=newest&limit=4");
         const data = await res.json();
         setProducts(data);
       } catch (error) {
@@ -84,7 +84,7 @@ const NewInSection = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <Link
             href={`/shop/product/${product.id}`}

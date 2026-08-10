@@ -223,7 +223,7 @@ const About = () => {
       </section>
 
       <section
-        className="h-screen bg-cover bg-center relative flex items-center justify-center text-center px-6 lg:px-20"
+        className="min-h-screen bg-cover bg-center relative flex items-center justify-center text-center px-6 lg:px-20"
         style={{ backgroundImage: "url('/about/showroom.png')" }}
       >
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-0" />
