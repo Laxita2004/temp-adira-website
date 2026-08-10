@@ -15,7 +15,7 @@ interface ProductImage {
 interface Product {
   id: number;
   title: string;
-  price: string | number; 
+  price: string | number;
   tags: string[];
   images: ProductImage[];
 }
@@ -32,7 +32,7 @@ const AllSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Active filters from URL
-  const category = searchParams.get("category") ||  "";
+  const category = searchParams.get("category") || "";
   const tag = searchParams.get("tag") || "";
   const pattern = searchParams.get("pattern") || "";
   const material = searchParams.get("material") || "";
@@ -42,47 +42,6 @@ const AllSection = () => {
   const sort = searchParams.get("sort") || "";
   const offerId = searchParams.get("offerId") || "";
 
-  /** 
-  // Offer title
-  const [offerTitle, setOfferTitle] = useState("");
-
-  
-  Fetch offer title if offerId is present
-   
-  useEffect(() => {
-    const fetchOffer = async () => {
-      if (!offerId) {
-        setOfferTitle("");
-        return;
-      }
-
-      try {
-        const res = await fetch(`/api/offers/${offerId}`);
-
-        if (!res.ok) return;
-
-        const data = await res.json();
-
-        if (data?.title) {
-          setOfferTitle(data.title);
-        }
-      } catch (err) {
-        console.error("Error fetching offer title:", err);
-      }
-    };
-
-    fetchOffer();
-  }, [offerId]);
-
-  */
-
-  /**
-   * Fetch products from:
-   * GET /api/products?...queryParams
-   *
-   * If no query parameters exist, all products are returned.
-   * If query parameters exist, filtered products are returned.
-   */
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -102,9 +61,7 @@ const AllSection = () => {
 
         const query = params.toString();
 
-        const url = query
-          ? `/api/products?${query}`
-          : "/api/products";
+        const url = query ? `/api/products?${query}` : "/api/products";
 
         const res = await fetch(url);
 
@@ -141,40 +98,15 @@ const AllSection = () => {
     <section className="px-4 md:px-10 py-16 bg-light">
       {/* Applied Filter Chips */}
       <div className="flex flex-wrap gap-2 mb-6">
-        {category && (
-          <FilterChip
-            paramKey="category"
-            paramValue={category}
-          />
-        )}
+        {category && <FilterChip paramKey="category" paramValue={category} />}
 
-        {pattern && (
-          <FilterChip
-            paramKey="pattern"
-            paramValue={pattern}
-          />
-        )}
+        {pattern && <FilterChip paramKey="pattern" paramValue={pattern} />}
 
-        {material && (
-          <FilterChip
-            paramKey="material"
-            paramValue={material}
-          />
-        )}
+        {material && <FilterChip paramKey="material" paramValue={material} />}
 
-        {theme && (
-          <FilterChip
-            paramKey="theme"
-            paramValue={theme}
-          />
-        )}
+        {theme && <FilterChip paramKey="theme" paramValue={theme} />}
 
-        {tag && (
-          <FilterChip
-            paramKey="tag"
-            paramValue={tag}
-          />
-        )}
+        {tag && <FilterChip paramKey="tag" paramValue={tag} />}
 
         {(minPrice || maxPrice) && (
           <Suspense fallback={<div>Loading...</div>}>
@@ -195,23 +127,12 @@ const AllSection = () => {
                 sort === "lowToHigh"
                   ? "Price: Low to High"
                   : sort === "highToLow"
-                  ? "Price: High to Low"
-                  : "Newest"
+                    ? "Price: High to Low"
+                    : "Newest"
               }
             />
           </Suspense>
         )}
-        {/*
-        {offerId && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <FilterChip
-              paramKey="offerId"
-              paramValue={offerId}
-              label={`Offer: ${offerTitle || offerId}`}
-            />
-          </Suspense>
-        )}
-          */}
       </div>
 
       {/* Filter Button */}
@@ -236,11 +157,19 @@ const AllSection = () => {
 
       {/* Product Grid */}
       {loading ? (
-        <p>Loading products...</p>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-gray-500"> Loading products... </p>
+        </div>
       ) : error ? (
-        <p>{error}</p>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-red-500"> {error} </p>
+        </div>
       ) : products.length === 0 ? (
-        <p>No products found with selected filters.</p>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-gray-500">
+            No products found with selected filters.{" "}
+          </p>
+        </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (
@@ -262,14 +191,12 @@ const AllSection = () => {
               />
 
               <div className="p-4 mt-2">
-                <h3 className="text-lg bg-yellow text-black font-bold capitalize">
+                <h3 className="text-lg bg-yellow text-primary font-bold capitalize">
                   {product.title}
                 </h3>
 
                 <div className="mt-2 text-sm">
-                  <span className="font-bold">
-                    ₹{Number(product.price)}
-                  </span>
+                  <span className="text-secondary font-bold">₹{Number(product.price)}</span>
                 </div>
               </div>
 

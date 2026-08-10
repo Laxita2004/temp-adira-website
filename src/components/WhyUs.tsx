@@ -1,35 +1,40 @@
-"use client"
+"use client";
 
 // import Link from "next/link";
 import React from "react";
-import { FaStar, FaPalette, FaHeart } from "react-icons/fa";
+import { FaHandSparkles } from "react-icons/fa";
+import { GiSewingNeedle } from "react-icons/gi";
+import { TbArrowLoopRight } from "react-icons/tb";
 
 const features = [
   {
-    icon: <FaStar size={32} />,
-    title: "Artisan Craftsmanship",
-    description: "Each piece is handcrafted with love and attention to detail.",
+    icon: <GiSewingNeedle size={32} />,
+    title: "Thoughtful Craft",
+    description:
+      "We choose exceptional fabrics and intricate handwork over hurried production and fleeting trends.",
   },
   {
-    icon: <FaPalette size={32} />,
-    title: "Personalized Care",
-    description: "From packaging to delivery, your satisfaction is our priority.",
+    icon: <FaHandSparkles size={32} />,
+    title: "Artisan Made",
+    description:
+      "Each piece passes through skilled hands, carrying techniques and stories rooted in Indian craftsmanship.",
   },
   {
-    icon: <FaHeart size={32} />,
-    title: "Heartfelt Service",
-    description: "We serve with humility and treat every customer like family.",
+    icon: <TbArrowLoopRight size={32} />,
+    title: "Beyond the Trend Cycle",
+    description:
+      "Designed to remain beautiful long after the trend has passed, and meaningful enough to become part of your wardrobe for generations.",
   },
 ];
 
 const WhyUs = () => {
-    return (
-        <section className="bg-muted py-14 mt-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-10">
-                Crafted With Care, Delivered With Love
-            </h2>
+  return (
+    <section className="bg-muted py-14 mt-20">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-10">
+        The Beauty of Taking Time
+      </h2>
 
-            <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-10">
         {features.map((feature, index) => (
           <div
             key={index}
@@ -43,12 +48,14 @@ const WhyUs = () => {
             <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-primary transition">
               {feature.title}
             </h3>
-            <p className="text-gray-600 text-m text-muted-foreground">{feature.description}</p>
+            <p className="text-gray-600 text-m text-muted-foreground">
+              {feature.description}
+            </p>
           </div>
         ))}
       </div>
-        </section>
-    )
-} 
+    </section>
+  );
+};
 
 export default WhyUs;

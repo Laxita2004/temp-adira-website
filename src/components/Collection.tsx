@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Navigation } from "swiper/modules";
 import Image from "next/image";
@@ -16,6 +16,11 @@ type Pattern = {
 
 const Collection = () => {
   const [collections, setCollections] = useState<Pattern[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const formatPatternName = (name: string) => {
+    return name.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  };
 
   useEffect(() => {
     const fetchPatterns = async () => {
@@ -27,12 +32,40 @@ const Collection = () => {
         setCollections(data);
       } catch (err) {
         console.error("Error loading collections:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPatterns();
   }, []);
 
+  if (loading) {
+    return (
+      <section className="w-full px-4 pt-10 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8">
+        <h2 className="text-center text-4xl font-bold text-primary mb-10">
+          Featured Collection
+        </h2>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-gray-500"> Loading collections... </p>{" "}
+        </div>
+      </section>
+    );
+  }
+
+  if (collections.length === 0) {
+    return (
+      <section className="w-full px-4 pt-10 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8">
+        <h2 className="text-center text-4xl font-bold text-primary mb-10">
+          Featured Collection
+        </h2>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-gray-500"> No collections found. </p>{" "}
+        </div>
+      </section>
+    );
+  }
+  
   return (
     <section className="w-full px-4 pt-10 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8">
       <h2 className="text-center text-4xl font-bold text-primary mb-10">
@@ -44,7 +77,7 @@ const Collection = () => {
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
-        loop={true}
+        loop={collections.length > 3}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         coverflowEffect={{
           rotate: 0,
@@ -68,14 +101,16 @@ const Collection = () => {
             <div className="relative w-full h-80">
               <Image
                 src={item.imageUrl}
-                alt={`${item.name} saree`}
+                alt={`${formatPatternName(item.name)} saree`}
                 fill
                 className="object-cover"
               />
             </div>
 
             <div className="p-4 text-center bg-white">
-              <h3 className="text-lg font-semibold text-primary mb-2">{item.name}</h3>
+              <h3 className="text-lg font-semibold text-primary mb-2">
+                {formatPatternName(item.name)}
+              </h3>
               <Link
                 href={`/shop/all?pattern=${encodeURIComponent(item.name)}`}
                 className="inline-block px-5 py-2 border border-primary text-primary font-medium rounded-full hover:bg-primary hover:text-white transition duration-300"
