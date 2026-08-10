@@ -33,17 +33,14 @@ const About = () => {
           {/* Left */}
           <div className="flex-1 space-y-6 mt-10">
             <FadeInSection>
-              <h2 className="text-4xl lg:text-5xl md:mt-5 font-bold tracking-tight text-white mt-10">
-                Passion Meets Purpose
-              </h2>
               <p className="text-lg lg:text-xl text-white/80 max-w-md mx-auto">
-                At RATNAWAD, every drape tells a story — a story woven with
-                passion, rooted in purpose. What began as a love for timeless
-                textiles has grown into a commitment to celebrate India’s rich
-                heritage through sarees that feel both soulful and modern. We
-                don’t just design fabrics — we preserve traditions, embrace
-                elegance, and create pieces that resonate with the women who
-                wear them.
+                A saree can be beautiful. But we believe it can also carry a
+                story. To many, a homemaker is someone who keeps the house
+                running, remembers the little things, welcomes everyone with a
+                smile and somehow keeps an entire family together. But there is
+                a part of every woman that belongs only to herself — her dreams,
+                her interests, the things that bring her joy. For Dharmnishtha
+                Singh Thakur, that joy has always been found in sarees.
               </p>
             </FadeInSection>
           </div>
@@ -69,25 +66,17 @@ const About = () => {
                 Mrs. Dharmnishtha Singh Thakur
               </h3>
               <p className="text-base lg:text-lg font-bold text-white/80 leading-relaxed max-w-md mx-auto">
-                Born and raised amidst the regal essence of Rajputi culture,
-                Mrs. Dharmnishtha Singh Thakur grew up wrapped in the quiet
-                grace of chiffons. She understood its elegance to the core — its
-                softness, its flow, its understated charm. But beyond her own
-                world, she noticed chiffon often went unrecognized, overlooked
-                among louder fabrics and modern trends.
-                <br />
-                Driven by a desire to give chiffon its rightful place in
-                contemporary fashion, she envisioned a brand where this fabric
-                could shine — not just as a cultural heirloom, but as a
-                statement of quiet luxury. Her creative spirit and deep-rooted
-                love for ethnic fashion inspired her to build Adira — a space
-                where heritage meets modern minimalism, and where every saree
-                speaks softly, yet powerfully. What keeps her going, even today,
-                is the smile that lights up on a woman’s face when she sees
-                herself draped in RATNAWAD — when she pauses, admires her own
-                reflection, and feels something shift. That quiet moment of
-                confidence, pride, and self-love is the true heartbeat of the
-                brand.
+                In the softness of a flowing fabric, the beauty of an unusual
+                design, the charm of intricate handwork and the excitement of
+                discovering something you simply wouldn't find in an ordinary
+                retail store. But over time, that fascination became something
+                more. She began to see sarees not simply as clothes, but as
+                pieces of art — carrying the hands, skill and stories of the
+                people who created them. She wanted to build something of her
+                own. Something beyond the role of being a homemaker. Something
+                she could look towards with the same sense of purpose and
+                fulfilment that she found in the things she loved. And that
+                thought became the beginning of Ratnawad.
               </p>
               <div className="italic font-semibold text-md text-light mt-2">
                 "Tradition is not the worship of ashes, but the preservation of
@@ -101,7 +90,7 @@ const About = () => {
       <section
         className="relative bg-cover bg-center bg-no-repeat text-white py-20 px-6 lg:px-20"
         style={{
-          backgroundImage: `url('/about/about.png')`, // Replace with your own image path
+          backgroundImage: `url('/about/about.png')`,
         }}
       >
         {/* Dark overlay */}
@@ -109,74 +98,125 @@ const About = () => {
 
         <FadeInSection>
           <div className="relative z-10 max-w-6xl mx-auto text-center text-white space-y-20">
-            <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
-              What Drives Us at RATNAWAD
-            </h2>
+            <div className="y-5">
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
+                What We Believe
+              </h2>
 
-            {/* Mission/Vision/Values Cards */}
-            {[
-              {
-                title: "Our Essence – The Mission",
-                desc: "At RATNAWAD, our mission is simple yet soulful — to preserve the timeless grace of Indian textiles, especially chiffons, and present them through a lens of modern elegance. We’re here to make heritage wearable, not just for occasions, but for everyday moments of grace. By working closely with skilled local artisans, we ensure that every saree is not only a reflection of tradition, but also a means of preserving livelihoods and craftsmanship passed down through generations.",
-              },
-              {
-                title: "Our Horizon – The Vision",
-                desc: "We envision a world where heritage is not confined to ceremonies, but celebrated in everyday choices. RATNAWAD strives to become a global symbol of quiet luxury — where the softest fabrics, the subtlest designs, and the deepest cultural threads come together to dress a woman not just in beauty, but in meaning. As we grow, we remain deeply committed to empowering local artisans, bringing their work to the forefront, and creating a space where handmade meets high fashion with integrity.",
-              },
-              {
-                title: "Our Soul – The Values",
-                desc: "RATNAWAD is woven with values that define our every thread and thought. We believe in grace — in the way we design, drape, and express femininity. Authenticity guides our sourcing, storytelling, and craftsmanship, ensuring each piece carries truth and tradition. We hold deep respect for heritage, for the women who wear our sarees, and for the hands that create them. Our aesthetic is rooted in simplicity, allowing elegance to breathe without excess. We proudly extend our support to local artisans, preserving sustainable artistry with every creation. And above all, we remain committed to consistency — in quality, care, and the experience we offer to every RATNAWAD woman.",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="space-y-4">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-white">
-                  {item.title}
-                </h3>
+              <div className="mt-8 space-y-0">
                 <p className="text-lg lg:text-xl leading-relaxed text-white/80 max-w-3xl mx-auto">
-                  {item.desc}
+                  Fashion, to us, is not about how much a label costs. It is
+                  about knowing what you are bringing home.
+                  <br />
+                  <br />
+                  We live in a world where clothes are produced faster than we
+                  can wear them, trends change every few weeks and low prices
+                  often come at a cost that isn't visible on the tag.
+                  <br />
+                  <br />
+                  We believe it is time to slow down.
+                  <br />
+                  <br />
+                  Slow fashion, for us, means creating fewer pieces with greater
+                  thought. It means choosing fabrics that are made to last,
+                  designs that aren't dependent on a trend cycle and
+                  craftsmanship that deserves to be seen rather than replaced by
+                  mass production.
+                  <br />
+                  <br />
+                  Because a saree shouldn't be valuable simply because it
+                  carries a fancy label or a high price tag. Its value lies in
+                  the story behind it — who made it, how it was made, what it is
+                  made from, whether the people behind it were fairly
+                  compensated and whether it is something you will still want to
+                  wear years from now.
+                  <br />
+                  <br />
+                  We want to look at fashion as collecting rather than
+                  consuming.
+                  <br />
+                  <br />
+                  Pieces that you genuinely love. Pieces you wear again and
+                  again. Pieces that gather memories with you and eventually
+                  become something you can pass on.
+                  <br />
+                  <br />
+                  For us, sustainability isn't just about using better
+                  materials. It is also about changing the way we think about
+                  what we buy, how often we buy it and how long we expect it to
+                  stay with us.
                 </p>
               </div>
-            ))}
+            </div>
 
-            {/* What We Offer */}
             <div>
-              <h3 className="text-2xl lg:text-3xl font-bold text-muted mb-6">
-                What We Bring to Your Wardrobe
-              </h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg max-w-5xl mx-auto text-left">
+              <div className="space-y-0">
+                <h3 className="text-2xl lg:text-3xl font-bold text-muted">
+                  What We Bring to Your Wardrobe
+                </h3>
+
+                <h5 className="text-muted">
+                  Pieces made to be kept, not replaced.
+                </h5>
+              </div>
+              <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-lg max-w-5xl mx-auto text-left">
                 {[
                   {
                     icon: <TbNeedleThread />,
-                    text: "Heritage-Inspired Handcrafted Sarees",
+                    title: "Heritage, Reimagined",
+                    desc: "We draw from India's rich textile and artistic traditions, bringing them into sarees that feel relevant to the woman wearing them today.",
                   },
-                  { icon: <FaLeaf />, text: "Sustainably Made, Gently Styled" },
+                  {
+                    icon: <FaLeaf />,
+                    title: "Craftsmanship Over Mass Production",
+                    desc: "Our designs are brought to life through skilled hands and intricate techniques, giving each piece its own character and imperfections that make it human.",
+                  },
                   {
                     icon: <FaExchangeAlt />,
-                    text: "Tradition Meets Contemporary Elegance",
+                    title: "Thoughtful Materials",
+                    desc: "We choose fabrics for how they feel, move and age — not simply because they are convenient to produce.",
                   },
                   {
                     icon: <FaPaintBrush />,
-                    text: "Hand Embroidery Rooted in Legacy",
+                    title: "Slow by Choice",
+                    desc: "We don't create around every passing trend. We would rather take the time to create something you will genuinely want to wear years from now.",
                   },
-                  { icon: <FaHeart />, text: "Crafted with Intention & Care" },
+                  {
+                    icon: <FaHeart />,
+                    title: "Fairness Behind the Beauty",
+                    desc: "The beauty of a handcrafted piece should never come at the cost of the person who made it. We believe artisans deserve to be valued for their skill and compensated fairly for their work.",
+                  },
                   {
                     icon: <TbSparkles />,
-                    text: "Timeless Pieces with Quiet Luxury",
+                    title: "Collect, Don't Consume",
+                    desc: "We want your wardrobe to hold pieces you remember — the saree you wore to your sister's wedding, the one you danced in all night, the one your daughter eventually discovers in your wardrobe.",
                   },
                 ].map((item, idx) => (
                   <li
                     key={idx}
                     className="group bg-light text-gray-800 shadow-md rounded-2xl p-6 flex items-center gap-4 border border-transparent hover:border-primary/50 hover:shadow-[0_0_10px_rgba(94,15,15,0.4)] transition duration-300"
                   >
-                    <span className="text-[#5e0f0f] group-hover:scale-110 transition-transform text-2xl">
-                      {item.icon}
-                    </span>
-                    <span className="font-semibold tracking-tight group-hover:text-primary transition-colors">
-                      {item.text}
-                    </span>
+                    <div className="flex items-start gap-4">
+                      <span className="text-[#5e0f0f] group-hover:scale-110 transition-transform text-2xl">
+                        {item.icon}
+                      </span>
+                      <div>
+                        <h4 className="font-semibold tracking-tight group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h4>
+
+                        <p className="text-sm text-secondary mt-2 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
+              <p className="mt-10 text-center text-muted max-w-3xl mx-auto leading-relaxed">
+                Because perhaps the most beautiful thing a saree can become
+                isn't something new.
+              </p>
             </div>
           </div>
         </FadeInSection>
@@ -189,27 +229,51 @@ const About = () => {
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-0" />
         <div className="relative z-10 text-white space-y-6 max-w-4xl">
           <FadeInSection>
-            <h2 className="text-4xl lg:text-5xl font-bold">
-              Our Journey Began Here
-            </h2>
-            <p className="text-lg font-semibold lg:text-xl text-white/90 leading-relaxed">
-              In the early days of 2024, RATNAWAD was just a quiet dream — one
-              stitched together with care, curiosity, and a lot of heart. We
-              began by immersing ourselves in the world of fabrics,
-              understanding their language, their origins, and their stories. We
-              weren’t just choosing materials — we were choosing emotions,
-              values, and a purpose to build around. Every decision — from our
-              brand’s name to its colors, from the weaves we use to the vision
-              we hold — was made with utmost thought and soul. We spent months
-              defining our "why" — what RATNAWAD should stand for, what it must
-              never compromise on, and how it could make women not just look
-              beautiful, but feel truly seen. After months of research,
-              designing, dreaming, and refining, RATNAWAD officially came to life
-              in August 2024 — not as just a label, but as a heartfelt offering.
-              From day one, it has been more than fabric — it’s about stories,
-              slow fashion, and that spark of confidence a saree can bring when
-              it’s worn with love.
-            </p>
+            <div className="space-y-8">
+              <h2 className="text-4xl lg:text-5xl font-bold">
+                Our Journey Began Here
+              </h2>
+              <p className="text-lg font-semibold lg:text-xl text-white/90 leading-relaxed">
+                We started with very little, except the belief that we could
+                build something meaningful.
+                <br />
+                <br />
+                Our journey began as Adira.
+                <br />
+                <br />
+                We entered the world of fashion as complete newcomers — with no
+                big resources, no established connections and very little
+                knowledge of what it actually takes to build a brand. We were
+                learning everything as we went: fabrics, craftsmanship,
+                designing, sourcing, production, customers and, most
+                importantly, ourselves. The years since then have taught us more
+                than we could have imagined. We learnt to understand our
+                products beyond how they looked. We learnt what quality truly
+                means to us, what details we refuse to compromise on and, most
+                importantly, what we want every saree we create to feel like
+                when it finally reaches you. That process made us look inward.
+                <br />
+                <br />
+                And somewhere along the way, Adira evolved into RATNAWAD™.
+                <br />
+                <br />
+                The name itself comes from our roots — a combination of our two
+                ठिकाना, Ratwada and Sanawad. It felt like the right name for the
+                brand we were becoming: one that is deeply connected to where we
+                come from, while creating something that can travel far beyond
+                it. Our logo is inspired by the Goolar tree, a tree deeply
+                rooted in the Indian landscape and known for its strength,
+                longevity and ability to flourish through generations.
+                <br />
+                <br />
+                RATNAWAD™ today is not the brand we started with. It is the
+                result of everything we have learnt, unlearnt, changed and
+                refined along the way.
+                <br />
+                <br />
+                And we are still learning.
+              </p>
+            </div>
           </FadeInSection>
         </div>
       </section>

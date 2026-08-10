@@ -196,10 +196,10 @@ const FilterModal: React.FC<FilterModalProps> = ({ isOpen, onClose }) => {
           &times;
         </button>
 
-        <h2 className="text-lg font-semibold mb-6">Filter Products</h2>
+        <h2 className="text-lg text-gray-700 font-semibold mb-6">Filter Products</h2>
 
         {loadingFilters ? (
-          <p>Loading filters...</p>
+          <p className="text-gray-500">Loading filters...</p>
         ) : (
           <div className="space-y-4">
             {/* Category */}

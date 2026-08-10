@@ -60,14 +60,14 @@ const Header = () => {
             Shop All Products
           </Link>
           <Link
-            href="/shop"
+            href="/shop?section=bestseller"
             onClick={() => setSidebarOpen(false)}
             className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
             Best Sellers
           </Link>
           <Link
-            href="/shop"
+            href="/shop?section=sale"
             onClick={() => setSidebarOpen(false)}
             className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
@@ -81,7 +81,7 @@ const Header = () => {
             Jaal Work
           </Link>
           <Link
-            href="/shop/all?pattern=scattered%20motifs"
+            href="/shop/all?pattern=scattered%20motifs%20(buta%20work)"
             onClick={() => setSidebarOpen(false)}
             className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
@@ -95,18 +95,18 @@ const Header = () => {
             Statement Borders
           </Link>
           <Link
-            href="/shop/all?pattern=printed%20chiffons"
+            href="/about"
             onClick={() => setSidebarOpen(false)}
             className="text-primary hover:bg-muted px-4 py-2 rounded hover:text-primary hover:translate-x-1 transition duration-300"
           >
-            Printed Chiffons
+            About Us
           </Link>
           <Link
             href="/contact"
             onClick={() => setSidebarOpen(false)}
             className="text-primary px-4 py-2 rounded hover:bg-muted hover:text-primary hover:translate-x-1 transition duration-300"
           >
-            Contact Us
+            Get in Touch
           </Link>
         </nav>
       </aside>
@@ -141,7 +141,7 @@ const Header = () => {
           <div className="flex items-center gap-4 relative z-50">
             {status === "loading" ? null : user ? (
               <>
-                {/* 🛒 CART ICON */}
+                {/* CART ICON */}
                 <Link href="/cart">
                   <div className="relative group cursor-pointer">
                     <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:opacity-80 transition">
@@ -155,7 +155,7 @@ const Header = () => {
                   </div>
                 </Link>
 
-                {/* 👤 PROFILE */}
+                {/* PROFILE */}
                 <div ref={dropdownRef} className="relative">
                   <div className="relative group">
                     <button

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 interface Product {
   id: number;
-  name: string;
+  title: string;
   price: string;
   images: { url: string }[];
 }
@@ -30,7 +30,7 @@ const BestSeller: React.FC = () => {
   useEffect(() => {
     const fetchBestSellers = async () => {
       try {
-        const res = await fetch("/api/products/filter?tag=bestseller");
+        const res = await fetch("/api/products/?tag=bestseller");
         const data = await res.json();
         setBestSellers(data);
       } catch (error) {
@@ -43,13 +43,35 @@ const BestSeller: React.FC = () => {
     fetchBestSellers();
   }, []);
 
-  if (loading)
-    return <p className="px-4 py-8 text-gray-600">Loading best sellers...</p>;
-  if (bestSellers.length === 0)
-    return <p className="px-4 py-8 text-gray-600">No best sellers found.</p>;
+  if (loading) {
+    return (
+      <section id="best-seller" className="relative py-12 px-4">
+        <h2 className="text-3xl font-bold text-gray-900 tracking-wide">
+          Best Sellers
+        </h2>
+        <div className="w-16 h-1 mt-2 bg-primary rounded-full"></div>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-gray-500">Loading best sellers...</p>
+        </div>
+      </section>
+    );
+  }
+  if (bestSellers.length === 0) {
+    return (
+      <section id="best-seller" className="relative py-12 px-4">
+        <h2 className="text-3xl font-bold text-gray-900 tracking-wide">
+          Best Sellers
+        </h2>
+        <div className="w-16 h-1 mt-2 bg-primary rounded-full"></div>
+        <div className="flex justify-center items-center py-20">
+          <p className="text-lg text-gray-600"> No best sellers found. </p>{" "}
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div id="best-seller-section" className="relative py-12 px-4">
+    <section id="best-seller" className="relative py-12 px-4">
       <div className="flex items-center justify-between mb-8 px-4">
         <div>
           <h2 className="text-3xl font-bold text-gray-900 tracking-wide">
@@ -57,7 +79,6 @@ const BestSeller: React.FC = () => {
           </h2>
           <div className="w-16 h-1 mt-2 bg-primary rounded-full"></div>
         </div>
-        {/* Optional link/button */}
         <button
           className="text-sm text-primary hover:underline"
           onClick={() => router.push("/shop/all?tag=bestseller")}
@@ -94,32 +115,32 @@ const BestSeller: React.FC = () => {
             {/* Image */}
             <img
               src={item.images?.[0]?.url}
-              alt={item.name}
+              alt={item.title}
               className="w-full h-80 object-cover"
             />
-
+            {/* Product Information */}{" "}
+            <div className="p-4">
+              <h3 className="text-lg text-primary font-bold capitalize">
+                {item.title}
+              </h3>
+              <div className="mt-2 text-sm">
+                <span className="font-bold text-secondary"> ₹{Number(item.price)} </span>{" "}
+              </div>
+            </div>
             {/* Hover overlay (DESKTOP ONLY) */}
             <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4">
-              <p className="text-white font-semibold text-sm mb-2">
-                {item.name}
-              </p>
               <button
                 onClick={() => router.push(`/shop/product/${item.id}`)}
                 className="bg-white text-primary px-3 py-1 text-xs font-medium rounded-full flex items-center gap-2 self-start hover:bg-primary hover:text-white transition"
               >
                 View Product
+                
               </button>
-            </div>
-
-            {/* Mobile-only bottom info box */}
-            <div className="p-4 block md:hidden">
-              <p className="font-medium text-sm">{item.name}</p>
-              <p className="text-primary font-semibold text-sm">{item.price}</p>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

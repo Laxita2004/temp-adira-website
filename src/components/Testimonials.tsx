@@ -9,27 +9,56 @@ import { FaInstagram, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
   {
-    quote: "Absolutely love the collection! I got so many compliments.",
-    name: "Pushpalata Ji Solanki",
+    quote:
+      "The saree was even more beautiful in person. The chiffon fabric is unbelievably light, of great quality and the craftsmanship is exquisite.",
+    name: "Pushpalata Singh Solanki",
     location: "Sanawad",
   },
   {
-    quote: "The pittan work was even more beautiful in person, and the fabric felt so light and luxurious. So graceful!",
-    name: "Anushree Ji Thakur",
+    quote:
+      "The pittan work was even more beautiful in person, and the fabric felt so light and luxurious. So graceful!",
+    name: "Anushree Thakur",
     location: "Washington, D.C., USA",
   },
   {
-    quote: "Blown away by the quality and detailing! Every saree I ordered was better than I imagined.",
-    name: "Minu Ji Soni",
-    location: "Indore",
-  },
-  {
-    quote: "Beautiful sarees and very prompt service!",
-    name: "Mitali Ji Thakur",
+    quote:
+      "You can genuinely see the time and thought that has gone into every detail. It feels like a piece of art.",
+    name: "Mithali Thakur",
     location: "Lucknow",
   },
   {
-    quote: "Loved the black saree I ordered – it was perfect for the cocktail party! Got so many compliments on it.",
+    quote:
+      "I loved that the saree felt luxurious without being heavy. It was so comfortable to wear and absolutely stunning.",
+    name: "Meenu Soni",
+    location: "Indore",
+  },
+  {
+    quote:
+      "Ratnawad makes you appreciate how beautiful slow fashion can be. It feels timeless rather than trend-driven.",
+    name: "Priyamwada Tanwar",
+    location: "Satna",
+  },
+  {
+    quote:
+      "I wanted something Indian but not something I would wear just once. This was exactly that, beautiful, timeless and so easy to wear.",
+    name: "Sana Sheikh",
+    location: "Bangalore",
+  },
+  {
+    quote:
+      "I loved that the saree felt luxurious without being heavy. It was so comfortable to wear and absolutely stunning.",
+    name: "Harpreet Kaur Anand",
+    location: "Mumbai",
+  },
+  {
+    quote:
+      "I bought three sarees for a close one's wedding, and I got so many compliments for all three pieces! Love the collection.",
+    name: "Tanvi Gupta",
+    location: "Indore",
+  },
+  {
+    quote:
+      "Loved the black saree I ordered – it was perfect for the cocktail party! Got so many compliments on it.",
     name: "Kritika Ji Dongre",
     location: "Netherlands",
   },
@@ -74,7 +103,6 @@ const Testimonials = () => {
             Follow us on Instagram and join our whatsapp community for latest
             updates
             <br />
-            (A little secret: We offer upto 15% off to our instagram followers!)
           </p>
           <a
             href="https://www.instagram.com/ratnawadofficial?igsh=d3g0NDFmcmY5cjlx"

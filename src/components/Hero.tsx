@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const youtubeSources = ["L3ydZM-IeKQ"];
+const youtubeSources = ["FvRMvZTDsiY"];
 
 function capitalizeWords(str: string) {
   return str
@@ -52,9 +52,9 @@ const Hero = () => {
       {/* Slogan + Buttons */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
         <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl text-white font-semibold leading-tight">
-          Preserving heritage <br />
-          with a touch of <br />
-          modernity.
+          Woven with time, <br />
+          meant to <br />
+          outlive it.
         </h2>
         <div className="mt-8 flex justify-center md:justify-start gap-6">
           {categories.map((cat) => (

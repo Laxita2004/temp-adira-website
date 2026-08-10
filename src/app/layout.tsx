@@ -15,7 +15,7 @@ export const metadata = {
   description:
     "RATNAWAD brings you graceful chiffon sarees where timeless tradition meets quiet luxury.",
   icons: {
-    icon: "logo//RatnawadLogo.png",
+    icon: "/logo/RatnawadLogo.png",
   },
 };
 
